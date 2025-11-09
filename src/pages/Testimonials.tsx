@@ -57,21 +57,21 @@ const Testimonials = () => {
   ];
 
   return (
-    <div className="min-h-screen pt-24 pb-20">
-      <div className="container mx-auto px-4">
+    <div className="min-h-screen pt-20 md:pt-24 pb-12 md:pb-20">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-16 animate-fade-in">
-          <h1 className="text-5xl md:text-6xl font-heading font-bold mb-6">
+        <div className="text-center mb-10 md:mb-16 animate-fade-in">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-4 md:mb-6">
             Student <span className="text-gradient">Success Stories</span>
           </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-base md:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
             Real results from real students. See how personalized German instruction 
             has helped others achieve their language goals.
           </p>
         </div>
 
         {/* Success Metrics */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-20">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-4xl mx-auto mb-12 md:mb-20">
           {successMetrics.map((metric, index) => (
             <Card 
               key={index}
@@ -91,7 +91,7 @@ const Testimonials = () => {
         </div>
 
         {/* Testimonials Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto mb-20">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 max-w-7xl mx-auto mb-12 md:mb-20">
           {testimonials.map((testimonial, index) => (
             <Card 
               key={index}

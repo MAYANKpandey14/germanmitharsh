@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { CheckCircle2, Users, Video, BookOpen, Award, Clock } from "lucide-react";
+import { CheckCircle2, Users, Video, BookOpen, Award, Clock, PlayCircle, ArrowRight } from "lucide-react";
 import instructorPortrait from "@/assets/instructor-portrait.jpg";
 
 const Home = () => {
@@ -75,43 +75,55 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="py-20 lg:py-24 bg-gradient-to-br from-background to-blue-50/30">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <section className="py-16 md:py-20 lg:py-24 bg-gradient-to-br from-background to-blue-50/30">
+        <div className="container mx-auto px-4 md:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
             
             {/* Left Column - Text Content */}
-            <div className="space-y-6 animate-fade-in order-2 lg:order-1">
+            <div className="space-y-4 md:space-y-6 animate-fade-in order-2 lg:order-1">
               {/* Badge */}
               <div className="inline-block">
-                <span className="inline-flex items-center px-4 py-2 bg-secondary text-secondary-foreground rounded-full text-sm font-medium">
-                  <Award className="w-4 h-4 mr-2" />
+                <span className="inline-flex items-center px-3 md:px-4 py-1.5 md:py-2 bg-secondary text-secondary-foreground rounded-full text-xs md:text-sm font-medium">
+                  <Award className="w-3 h-3 md:w-4 md:h-4 mr-1.5 md:mr-2" />
                   Ex-Language Pantheon Faculty
                 </span>
               </div>
               
               {/* Headline */}
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold leading-tight">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold leading-tight">
                 <span className="text-primary">German Language</span><br />
                 <span className="text-gradient">Expert</span>
               </h1>
               
               {/* Subtitle */}
-              <p className="text-xl text-muted-foreground max-w-xl">
+              <p className="text-base md:text-lg lg:text-xl text-muted-foreground max-w-xl">
                 Learn German with Harsh - An experienced instructor dedicated to your success.
                 Live classes, personal mentorship, and proven results.
               </p>
               
               {/* CTAs */}
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <Button asChild size="lg" variant="outline" className="hover-scale">
-                  <Link to="/course/a1">Watch Free Lesson</Link>
+              <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-2 md:pt-4">
+                <Button 
+                  asChild 
+                  size="lg" 
+                  variant="outline" 
+                  className="group relative overflow-hidden border-2 hover:border-primary transition-all duration-300"
+                >
+                  <Link to="/course/a1" className="flex items-center justify-center">
+                    <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 mr-2">
+                      <PlayCircle className="w-5 h-5" />
+                    </span>
+                    <span className="group-hover:translate-x-1 transition-transform duration-300">
+                      Watch Free Lesson
+                    </span>
+                  </Link>
                 </Button>
               </div>
             </div>
             
             {/* Right Column - Portrait with Floating German Phrases */}
-            <div className="relative flex items-center justify-center order-1 lg:order-2 animate-scale-in">
-              <div className="relative w-[240px] h-[240px] md:w-[280px] md:h-[280px] lg:w-[320px] lg:h-[320px]">
+            <div className="relative flex items-center justify-center order-1 lg:order-2 animate-scale-in mb-8 lg:mb-0">
+              <div className="relative w-[220px] h-[220px] sm:w-[260px] sm:h-[260px] md:w-[300px] md:h-[300px] lg:w-[320px] lg:h-[320px]">
                 
                 {/* Background blur circle */}
                 <div className="absolute inset-0 bg-gradient-to-br from-primary to-blue-400 rounded-full blur-3xl opacity-20" />
@@ -155,9 +167,9 @@ const Home = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-12 bg-background border-t">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <section className="py-8 md:py-12 bg-background border-t">
+        <div className="container mx-auto px-4 md:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {stats.map((stat, index) => (
               <div key={index} className="text-center animate-slide-up" style={{ animationDelay: `${index * 100}ms` }}>
                 <div className="text-4xl md:text-5xl font-bold text-primary mb-2">
@@ -173,18 +185,18 @@ const Home = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-gradient-to-b from-background to-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16 animate-fade-in">
-            <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">
+      <section className="py-12 md:py-16 lg:py-20 bg-gradient-to-b from-background to-muted/30">
+        <div className="container mx-auto px-4 md:px-6 lg:px-8">
+          <div className="text-center mb-10 md:mb-16 animate-fade-in">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-3 md:mb-4">
               Why Learn with <span className="text-gradient">Harsh?</span>
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-base md:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
               A proven teaching methodology that combines structure, flexibility, and results
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {features.map((feature, index) => (
               <Card 
                 key={index} 
@@ -209,18 +221,18 @@ const Home = () => {
       </section>
 
       {/* Courses Overview */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16 animate-fade-in">
-            <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">
+      <section className="py-12 md:py-16 lg:py-20">
+        <div className="container mx-auto px-4 md:px-6 lg:px-8">
+          <div className="text-center mb-10 md:mb-16 animate-fade-in">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-3 md:mb-4">
               Choose Your <span className="text-gradient">Level</span>
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-base md:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
               From complete beginner to advanced proficiency - structured courses for every level
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
             {courses.map((course, index) => (
               <Card 
                 key={index}
@@ -240,9 +252,10 @@ const Home = () => {
                   <Button 
                     asChild 
                     variant="outline" 
-                    className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                    className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors text-xs md:text-sm"
                   >
-                    <Link to={`/course/${course.level.toLowerCase()}`}>
+                    <Link to={`/course/${course.level.toLowerCase()}`} className="flex items-center justify-center gap-1">
+                      <Video className="w-3 h-3 md:w-4 md:h-4" />
                       Watch Video
                     </Link>
                   </Button>
@@ -251,25 +264,28 @@ const Home = () => {
             ))}
           </div>
 
-          <div className="text-center mt-12">
+          <div className="text-center mt-8 md:mt-12">
             <Button asChild size="lg" className="bg-accent hover:bg-accent/90 hover-scale">
-              <Link to="/courses">Explore All Courses</Link>
+              <Link to="/courses" className="flex items-center gap-2">
+                Explore All Courses
+                <ArrowRight className="w-4 h-4" />
+              </Link>
             </Button>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-primary-dark to-primary text-white">
-        <div className="container mx-auto px-4 text-center">
-          <div className="max-w-3xl mx-auto space-y-6 animate-fade-in">
-            <h2 className="text-4xl md:text-5xl font-heading font-bold">
+      <section className="py-12 md:py-16 lg:py-20 bg-gradient-to-r from-primary-dark to-primary text-white">
+        <div className="container mx-auto px-4 md:px-6 lg:px-8 text-center">
+          <div className="max-w-3xl mx-auto space-y-4 md:space-y-6 animate-fade-in">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold">
               Ready to Start Your German Journey?
             </h2>
-            <p className="text-xl text-white/90">
+            <p className="text-base md:text-lg lg:text-xl text-white/90 px-4">
               Join hundreds of successful students who achieved their language goals with personalized guidance
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 pt-2 md:pt-4">
               <Button 
                 asChild 
                 size="lg" 

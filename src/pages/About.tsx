@@ -47,16 +47,16 @@ const About = () => {
   ];
 
   return (
-    <div className="min-h-screen pt-24 pb-20">
-      <div className="container mx-auto px-4">
+    <div className="min-h-screen pt-20 md:pt-24 pb-12 md:pb-20">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8">
         {/* Hero Section */}
-        <div className="max-w-6xl mx-auto mb-20 animate-fade-in">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="max-w-6xl mx-auto mb-12 md:mb-20 animate-fade-in">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div>
-              <h1 className="text-5xl md:text-6xl font-heading font-bold mb-6">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-4 md:mb-6">
                 Meet <span className="text-gradient">Harsh</span>
               </h1>
-              <p className="text-xl text-muted-foreground mb-6">
+              <p className="text-lg md:text-xl text-muted-foreground mb-4 md:mb-6">
                 Your dedicated German language instructor with a passion for helping students achieve fluency and confidence.
               </p>
               <p className="text-muted-foreground mb-8">
@@ -85,11 +85,11 @@ const About = () => {
         </div>
 
         {/* Credentials */}
-        <div className="max-w-6xl mx-auto mb-20">
-          <h2 className="text-4xl font-heading font-bold text-center mb-12 animate-fade-in">
+        <div className="max-w-6xl mx-auto mb-12 md:mb-20">
+          <h2 className="text-3xl md:text-4xl font-heading font-bold text-center mb-8 md:mb-12 animate-fade-in">
             Credentials & <span className="text-gradient">Experience</span>
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {credentials.map((credential, index) => (
               <Card 
                 key={index}

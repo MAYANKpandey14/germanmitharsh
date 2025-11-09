@@ -73,21 +73,21 @@ const CoursesOverview = () => {
   ];
 
   return (
-    <div className="min-h-screen pt-24 pb-20">
-      <div className="container mx-auto px-4">
+    <div className="min-h-screen pt-20 md:pt-24 pb-12 md:pb-20">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-16 animate-fade-in">
-          <h1 className="text-5xl md:text-6xl font-heading font-bold mb-6">
+        <div className="text-center mb-10 md:mb-16 animate-fade-in">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-4 md:mb-6">
             Our <span className="text-gradient">Courses</span>
           </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-base md:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
             Structured learning paths from complete beginner to advanced fluency. 
             Each course includes live classes, comprehensive notes, and exam preparation.
           </p>
         </div>
 
         {/* Course Cards */}
-        <div className="space-y-8 max-w-5xl mx-auto">
+        <div className="space-y-6 md:space-y-8 max-w-5xl mx-auto">
           {courses.map((course, index) => (
             <Card 
               key={index}
