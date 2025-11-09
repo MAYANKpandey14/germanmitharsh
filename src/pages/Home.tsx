@@ -3,23 +3,24 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle2, Users, Video, BookOpen, Award, Clock, PlayCircle, ArrowRight } from "lucide-react";
 import instructorPortrait from "@/assets/instructor-portrait.jpg";
+import SocialProofBar from "@/components/SocialProofBar";
 const Home = () => {
   const features = [{
     icon: Video,
-    title: "Live Interactive Classes",
-    description: "Real-time learning with personalized attention and instant doubt resolution"
+    title: "Get Answers in Real-Time",
+    description: "Live interactive classes where you can ask questions and practice speaking immediately"
   }, {
     icon: Users,
-    title: "1:1 Mentorship",
-    description: "Personal guidance tailored to your learning pace and goals"
+    title: "Personal Mentorship",
+    description: "Individual attention tailored to your learning pace, goals, and challenges"
   }, {
     icon: BookOpen,
-    title: "Comprehensive Notes",
-    description: "Detailed study materials covering grammar, vocabulary, and culture"
+    title: "Reference Anytime",
+    description: "Comprehensive notes and materials you can revisit whenever you need them"
   }, {
     icon: Award,
-    title: "Exam Preparation",
-    description: "Focused training for Goethe-Institut certifications (A1-C1)"
+    title: "Exam Success Guaranteed",
+    description: "Focused preparation for official Goethe-Institut certifications with 95% pass rate"
   }];
   const stats = [{
     number: "500+",
@@ -184,21 +185,27 @@ const Home = () => {
               
               {/* Headline */}
               <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold leading-tight">
-                <span className="text-primary">German Language</span><br />
-                <span className="text-gradient">Expert</span>
+                Master Conversational <span className="text-gradient">German</span><br />
+                <span className="text-primary">in 6 Months</span>
               </h1>
               
               {/* Subtitle */}
-              <p className="text-base md:text-lg lg:text-xl text-muted-foreground max-w-xl">
-                Learn German with Harsh - An experienced instructor dedicated to your success.
-                Live classes, personal mentorship, and proven results.
+              <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-xl">
+                Proven method for busy professionals. Live classes, 1:1 mentorship, 95% success rate.
               </p>
               
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-2 md:pt-4">
-                <Button asChild size="lg" variant="outline" className="group transition-all duration-300">
-                  <Link to="/course/a1" className="flex items-center justify-center gap-0 group-hover:gap-2 transition-all duration-300">
-                    <span>Watch Free Lesson</span>
+                <Button asChild size="lg" variant="cta" className="group">
+                  <Link to="/courses" className="flex items-center gap-2">
+                    View All Courses
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="group">
+                  <Link to="/course/a1" className="flex items-center gap-2">
+                    <PlayCircle className="w-5 h-5" />
+                    Watch Free Lesson
                   </Link>
                 </Button>
               </div>
@@ -239,6 +246,9 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Social Proof Bar */}
+      <SocialProofBar />
+
       {/* Stats Section */}
       <section className="py-8 md:py-12 bg-background border-t">
         <div className="container mx-auto px-4 md:px-6 lg:px-8">
@@ -264,8 +274,8 @@ const Home = () => {
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-3 md:mb-4">
               Why Learn with <span className="text-gradient">Harsh?</span>
             </h2>
-            <p className="text-base md:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
-              A proven teaching methodology that combines structure, flexibility, and results
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
+              A proven teaching methodology focused on real results, not just theory
             </p>
           </div>
 
@@ -326,7 +336,7 @@ const Home = () => {
           </div>
 
           <div className="text-center mt-8 md:mt-12">
-            <Button asChild size="lg" className="bg-accent hover:bg-accent/90 hover-scale">
+            <Button asChild size="lg" variant="cta" className="hover-scale">
               <Link to="/courses" className="flex items-center gap-2">
                 Explore All Courses
                 <ArrowRight className="w-4 h-4" />
@@ -344,14 +354,14 @@ const Home = () => {
               Ready to Start Your German Journey?
             </h2>
             <p className="text-base md:text-lg lg:text-xl text-white/90 px-4">
-              Join hundreds of successful students who achieved their language goals with personalized guidance
+              Join 500+ successful students who achieved their language goals with personalized guidance
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 pt-2 md:pt-4">
-              <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground hover-scale">
+              <Button asChild size="lg" variant="cta">
                 <Link to="/enroll">Enroll Now</Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm border-white text-white hover:bg-white/20">
-                <Link to="/testimonials">Read Success Stories</Link>
+                <Link to="/student-results">Read Success Stories</Link>
               </Button>
             </div>
           </div>

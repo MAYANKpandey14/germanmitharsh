@@ -11,6 +11,7 @@ import CourseVideo from "./pages/CourseVideo";
 import About from "./pages/About";
 import Testimonials from "./pages/Testimonials";
 import Enroll from "./pages/Enroll";
+import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -27,8 +28,10 @@ const App = () => (
           <Route path="/courses" element={<CoursesOverview />} />
           <Route path="/course/:level" element={<CourseVideo />} />
           <Route path="/about" element={<About />} />
-          <Route path="/testimonials" element={<Testimonials />} />
+          <Route path="/student-results" element={<Testimonials />} />
+          <Route path="/testimonials" element={<Testimonials />} /> {/* Redirect old URL */}
           <Route path="/enroll" element={<Enroll />} />
+          <Route path="/contact" element={<Contact />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

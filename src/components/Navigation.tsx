@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import NavDropdown from "@/components/NavDropdown";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,9 +11,9 @@ const Navigation = () => {
 
   const navLinks = [
     { name: "Home", path: "/" },
-    { name: "Courses", path: "/courses" },
-    { name: "About", path: "/about" },
-    { name: "Testimonials", path: "/testimonials" },
+    { name: "About Harsh", path: "/about" },
+    { name: "Student Results", path: "/student-results" },
+    { name: "Contact", path: "/contact" },
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -40,7 +41,8 @@ const Navigation = () => {
                 {link.name}
               </Link>
             ))}
-            <Button asChild variant="default" className="bg-accent hover:bg-accent/90">
+            <NavDropdown />
+            <Button asChild variant="cta">
               <Link to="/enroll">Enroll Now</Link>
             </Button>
           </div>
@@ -67,7 +69,14 @@ const Navigation = () => {
                 {link.name}
               </Link>
             ))}
-            <Button asChild variant="default" className="w-full bg-accent hover:bg-accent/90">
+            <Link
+              to="/courses"
+              onClick={() => setIsOpen(false)}
+              className="block py-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+            >
+              Courses
+            </Link>
+            <Button asChild variant="cta" className="w-full">
               <Link to="/enroll" onClick={() => setIsOpen(false)}>
                 Enroll Now
               </Link>
