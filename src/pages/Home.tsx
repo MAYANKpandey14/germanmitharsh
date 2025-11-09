@@ -100,7 +100,7 @@ const Home = () => {
             
             {/* Right Column - Portrait with Floating German Phrases */}
             <div className="relative flex items-center justify-center order-1 lg:order-2 animate-scale-in">
-              <div className="relative w-[280px] h-[280px] md:w-[350px] md:h-[350px] lg:w-[420px] lg:h-[420px]">
+              <div className="relative w-[240px] h-[240px] md:w-[280px] md:h-[280px] lg:w-[320px] lg:h-[320px]">
                 
                 {/* Background blur circle */}
                 <div className="absolute inset-0 bg-gradient-to-br from-primary to-blue-400 rounded-full blur-3xl opacity-20" />
