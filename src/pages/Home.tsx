@@ -309,7 +309,7 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 max-w-5xl mx-auto">
             {courses.map((course, index) => <Card key={index} className="hover-lift cursor-pointer group border-2 border-transparent hover:border-primary transition-all animate-fade-in" style={{
             animationDelay: `${index * 100}ms`
           }}>
