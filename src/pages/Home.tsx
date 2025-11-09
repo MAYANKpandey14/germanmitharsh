@@ -107,15 +107,11 @@ const Home = () => {
                   asChild 
                   size="lg" 
                   variant="outline" 
-                  className="group relative overflow-hidden border-2 hover:border-primary transition-all duration-300"
+                  className="group border-2 hover:border-primary transition-all duration-300"
                 >
-                  <Link to="/course/a1" className="flex items-center justify-center">
-                    <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 mr-2">
-                      <PlayCircle className="w-5 h-5" />
-                    </span>
-                    <span className="group-hover:translate-x-1 transition-transform duration-300">
-                      Watch Free Lesson
-                    </span>
+                  <Link to="/course/a1" className="flex items-center justify-center gap-0 group-hover:gap-2 transition-all duration-300">
+                    <PlayCircle className="w-0 h-5 group-hover:w-5 transition-all duration-300 opacity-0 group-hover:opacity-100" />
+                    <span>Watch Free Lesson</span>
                   </Link>
                 </Button>
               </div>
