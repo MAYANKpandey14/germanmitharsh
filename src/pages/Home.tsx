@@ -103,9 +103,6 @@ const Home = () => {
               
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <Button asChild size="lg" className="bg-accent hover:bg-accent/90 hover-scale">
-                  <Link to="/courses">Start Learning Today</Link>
-                </Button>
                 <Button asChild size="lg" variant="outline" className="hover-scale">
                   <Link to="/course/a1">Watch Free Lesson</Link>
                 </Button>
