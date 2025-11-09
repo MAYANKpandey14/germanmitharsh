@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, Instagram, Linkedin } from "lucide-react";
-
 const Footer = () => {
-  return (
-    <footer className="bg-card border-t border-border mt-12 md:mt-16 lg:mt-20">
+  return <footer className="bg-card border-t border-border mt-12 md:mt-16 lg:mt-20">
       <div className="container mx-auto px-4 md:px-6 lg:px-8 py-8 md:py-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
           {/* Brand */}
@@ -53,7 +51,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center space-x-2 text-sm text-muted-foreground">
                 <Phone size={16} className="text-primary" />
-                <span>+91 XXXXX XXXXX</span>
+                <span>+49 15511330861</span>
               </li>
               <li className="flex items-center space-x-4 pt-2">
                 <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
@@ -73,8 +71,6 @@ const Footer = () => {
           </p>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
