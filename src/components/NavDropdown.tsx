@@ -20,13 +20,12 @@ const NavDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="relative" onMouseLeave={() => setIsOpen(false)}>
+    <div className="relative">
       <button
         className={cn(
           "flex items-center space-x-1 text-sm font-medium transition-colors hover:text-primary",
           isOpen ? "text-primary" : "text-muted-foreground"
         )}
-        onMouseEnter={() => setIsOpen(true)}
         onClick={() => setIsOpen(!isOpen)}
       >
         <span>Courses</span>
