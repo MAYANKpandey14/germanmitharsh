@@ -162,3 +162,21 @@ All colors MUST be HSL.
     transform: translateY(0);
   }
 }
+
+@keyframes float-gentle {
+  0%, 100% { 
+    transform: translateY(0px) translateX(0px);
+  }
+  50% { 
+    transform: translateY(-12px) translateX(3px);
+  }
+}
+
+@keyframes float-soft {
+  0%, 100% { 
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  50% { 
+    transform: translateY(-15px) translateX(-3px) rotate(2deg);
+  }
+}
