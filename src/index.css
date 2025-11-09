@@ -9,92 +9,99 @@ All colors MUST be HSL.
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 224 15% 20%;
+    --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
-    --card-foreground: 224 15% 20%;
+    --card-foreground: 222 47% 11%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 224 15% 20%;
+    --popover-foreground: 222 47% 11%;
 
-    --primary: 217 19% 27%;
-    --primary-foreground: 0 0% 98%;
-    --primary-dark: 217 24% 20%;
+    --primary: 221 83% 53%;
+    --primary-foreground: 0 0% 100%;
+    --primary-dark: 224 76% 36%;
     
-    --secondary: 210 16% 93%;
-    --secondary-foreground: 224 15% 20%;
+    --secondary: 43 96% 56%;
+    --secondary-foreground: 222 47% 11%;
 
-    --muted: 210 11% 96%;
-    --muted-foreground: 215 14% 48%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
 
-    --accent: 183 25% 45%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 0 72% 51%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 50% 45%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214 15% 91%;
-    --input: 214 15% 91%;
-    --ring: 217 19% 27%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 221 83% 53%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
     
-    --gradient-hero: linear-gradient(135deg, hsl(217 24% 20%), hsl(217 19% 27%));
-    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%), hsl(210 11% 98%));
-    --gradient-accent: linear-gradient(135deg, hsl(183 25% 45%), hsl(183 20% 38%));
+    --gradient-hero: linear-gradient(135deg, hsl(224 76% 36%), hsl(221 83% 53%));
+    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%), hsl(210 40% 98%));
+    --gradient-accent: linear-gradient(135deg, hsl(43 96% 56%), hsl(38 92% 50%));
     
-    --shadow-elegant: 0 4px 12px -2px hsl(217 19% 27% / 0.08);
-    --shadow-glow: 0 2px 16px hsl(217 19% 27% / 0.06);
+    --shadow-elegant: 0 10px 30px -10px hsl(221 83% 53% / 0.3);
+    --shadow-glow: 0 0 40px hsl(221 83% 53% / 0.15);
     
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 224 15% 20%;
-    --sidebar-primary: 217 19% 27%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
     --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 210 16% 93%;
-    --sidebar-accent-foreground: 224 15% 20%;
-    --sidebar-border: 214 15% 91%;
-    --sidebar-ring: 217 19% 27%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
-    --background: 224 20% 12%;
-    --foreground: 0 0% 95%;
+    --background: 222 47% 11%;
+    --foreground: 0 0% 98%;
 
-    --card: 224 18% 16%;
-    --card-foreground: 0 0% 95%;
+    --card: 217 33% 17%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 224 18% 16%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 217 33% 17%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 217 19% 35%;
-    --primary-foreground: 0 0% 98%;
-    --primary-dark: 217 24% 25%;
+    --primary: 221 83% 53%;
+    --primary-foreground: 0 0% 100%;
+    --primary-dark: 224 76% 36%;
 
-    --secondary: 215 12% 22%;
-    --secondary-foreground: 0 0% 95%;
+    --secondary: 43 96% 56%;
+    --secondary-foreground: 222 47% 11%;
 
-    --muted: 215 12% 18%;
-    --muted-foreground: 215 14% 60%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
 
-    --accent: 183 25% 45%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 0 72% 51%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 50% 40%;
-    --destructive-foreground: 0 0% 95%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 215 12% 22%;
-    --input: 215 12% 22%;
-    --ring: 217 19% 35%;
-    --sidebar-background: 224 20% 10%;
-    --sidebar-foreground: 0 0% 90%;
-    --sidebar-primary: 217 19% 35%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 215 12% 18%;
-    --sidebar-accent-foreground: 0 0% 90%;
-    --sidebar-border: 215 12% 18%;
-    --sidebar-ring: 217 19% 35%;
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 221 83% 53%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
@@ -114,30 +121,30 @@ All colors MUST be HSL.
 
 @layer utilities {
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary to-primary-dark;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-dark;
   }
   
   .hover-scale {
-    @apply transition-transform duration-300 hover:scale-[1.02];
+    @apply transition-transform duration-300 hover:scale-105;
   }
   
   .hover-lift {
-    @apply transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md;
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
   }
   
   .animate-fade-in {
-    animation: fadeIn 0.8s ease-out;
+    animation: fadeIn 0.6s ease-out;
   }
   
   .animate-slide-up {
-    animation: slideUp 0.8s ease-out;
+    animation: slideUp 0.6s ease-out;
   }
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -148,7 +155,7 @@ All colors MUST be HSL.
 @keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(40px);
   }
   to {
     opacity: 1;
@@ -161,7 +168,7 @@ All colors MUST be HSL.
     transform: translateY(0px) translateX(0px);
   }
   50% { 
-    transform: translateY(-8px) translateX(2px);
+    transform: translateY(-12px) translateX(3px);
   }
 }
 
@@ -170,6 +177,6 @@ All colors MUST be HSL.
     transform: translateY(0px) translateX(0px) rotate(0deg);
   }
   50% { 
-    transform: translateY(-10px) translateX(-2px) rotate(1deg);
+    transform: translateY(-15px) translateX(-3px) rotate(2deg);
   }
 }

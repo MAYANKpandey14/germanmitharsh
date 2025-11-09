@@ -114,7 +114,7 @@ const About = () => {
 
         {/* Teaching Philosophy */}
         <div className="max-w-4xl mx-auto mb-20 animate-fade-in">
-          <Card className="border">
+          <Card className="border-2 border-primary/20">
             <CardContent className="p-8 md:p-12">
               <h2 className="text-3xl font-heading font-bold mb-6 text-center">
                 My Teaching <span className="text-gradient">Philosophy</span>
@@ -153,8 +153,8 @@ const About = () => {
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <CardContent className="p-8 text-center">
-                  <div className="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-primary/5 text-primary mb-4 border border-primary/10">
-                    <value.icon size={28} />
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 text-primary mb-4">
+                    <value.icon size={32} />
                   </div>
                   <h3 className="text-xl font-heading font-semibold mb-3">
                     {value.title}
@@ -170,12 +170,12 @@ const About = () => {
 
         {/* CTA */}
         <div className="max-w-4xl mx-auto text-center animate-fade-in">
-          <Card className="bg-primary text-primary-foreground border">
+          <Card className="bg-gradient-to-r from-primary-dark to-primary text-white border-0">
             <CardContent className="p-8 md:p-12">
               <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
                 Let's Start Your German Journey Together
               </h2>
-              <p className="text-xl text-primary-foreground/80 mb-8">
+              <p className="text-xl text-white/90 mb-8">
                 Whether you're a complete beginner or looking to advance your skills, 
                 I'm here to guide you every step of the way.
               </p>

@@ -66,16 +66,16 @@ const Home = () => {
   ];
 
   const phraseStyles = {
-    primary: "bg-white text-primary border border-primary/20 shadow-sm",
-    gold: "bg-white text-muted-foreground border border-border shadow-sm",
-    accent: "bg-white text-accent border border-accent/20 shadow-sm",
-    blue: "bg-white text-primary border border-primary/20 shadow-sm",
+    primary: "bg-white text-primary border border-primary shadow-lg",
+    gold: "bg-white text-secondary border border-secondary shadow-lg",
+    accent: "bg-white text-accent border border-accent shadow-lg",
+    blue: "bg-white text-blue-600 border border-blue-500 shadow-lg",
   };
 
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="py-20 lg:py-24 bg-gradient-to-br from-background via-background to-muted/20">
+      <section className="py-20 lg:py-24 bg-gradient-to-br from-background to-blue-50/30">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             
@@ -83,8 +83,8 @@ const Home = () => {
             <div className="space-y-6 animate-fade-in order-2 lg:order-1">
               {/* Badge */}
               <div className="inline-block">
-                <span className="inline-flex items-center px-4 py-2 bg-muted text-foreground rounded-full text-sm font-medium border border-border">
-                  <Award className="w-4 h-4 mr-2 text-primary" />
+                <span className="inline-flex items-center px-4 py-2 bg-secondary text-secondary-foreground rounded-full text-sm font-medium">
+                  <Award className="w-4 h-4 mr-2" />
                   Ex-Language Pantheon Faculty
                 </span>
               </div>
@@ -117,10 +117,10 @@ const Home = () => {
               <div className="relative w-[240px] h-[240px] md:w-[280px] md:h-[280px] lg:w-[320px] lg:h-[320px]">
                 
                 {/* Background blur circle */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 rounded-full blur-3xl" />
+                <div className="absolute inset-0 bg-gradient-to-br from-primary to-blue-400 rounded-full blur-3xl opacity-20" />
                 
                 {/* Gradient circle behind portrait */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-primary-dark rounded-full scale-95" />
+                <div className="absolute inset-0 bg-gradient-to-br from-primary via-blue-500 to-blue-400 rounded-full scale-95" />
                 
                 {/* Instructor Portrait */}
                 <img 
@@ -139,7 +139,7 @@ const Home = () => {
                       ${phrase.size}
                       px-4 py-2 rounded-full font-semibold 
                       whitespace-nowrap hidden md:block
-                      hover:scale-105 hover:shadow-md hover:-translate-y-0.5
+                      hover:scale-110 hover:shadow-xl hover:-translate-y-1
                       transition-all duration-300 cursor-default
                     `}
                     style={{
@@ -176,7 +176,7 @@ const Home = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-gradient-to-b from-background to-muted/20">
+      <section className="py-20 bg-gradient-to-b from-background to-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 animate-fade-in">
             <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">
@@ -191,12 +191,12 @@ const Home = () => {
             {features.map((feature, index) => (
               <Card 
                 key={index} 
-                className="hover-lift border transition-all animate-fade-in"
+                className="hover-lift border-2 border-transparent hover:border-primary/20 transition-all animate-fade-in"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <CardContent className="p-6 text-center">
-                  <div className="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-primary/5 text-primary mb-4 border border-primary/10">
-                    <feature.icon size={28} />
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 text-primary mb-4">
+                    <feature.icon size={32} />
                   </div>
                   <h3 className="text-xl font-heading font-semibold mb-3">
                     {feature.title}
@@ -227,7 +227,7 @@ const Home = () => {
             {courses.map((course, index) => (
               <Card 
                 key={index}
-                className="hover-lift cursor-pointer group border transition-all animate-fade-in"
+                className="hover-lift cursor-pointer group border-2 border-transparent hover:border-primary transition-all animate-fade-in"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <CardContent className="p-6 text-center">
@@ -263,13 +263,13 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-primary text-primary-foreground">
+      <section className="py-20 bg-gradient-to-r from-primary-dark to-primary text-white">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-3xl mx-auto space-y-6 animate-fade-in">
             <h2 className="text-4xl md:text-5xl font-heading font-bold">
               Ready to Start Your German Journey?
             </h2>
-            <p className="text-xl text-primary-foreground/80">
+            <p className="text-xl text-white/90">
               Join hundreds of successful students who achieved their language goals with personalized guidance
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
@@ -284,7 +284,7 @@ const Home = () => {
                 asChild 
                 size="lg" 
                 variant="outline" 
-                className="bg-white/100 border-primary-foreground/20 text-primary hover:bg-white/90"
+                className="bg-white/10 backdrop-blur-sm border-white text-white hover:bg-white/20"
               >
                 <Link to="/testimonials">Read Success Stories</Link>
               </Button>

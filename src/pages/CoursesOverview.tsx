@@ -91,7 +91,7 @@ const CoursesOverview = () => {
           {courses.map((course, index) => (
             <Card 
               key={index}
-              className="hover-lift animate-fade-in border"
+              className="hover-lift animate-fade-in border-2 border-transparent hover:border-primary/20"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <CardHeader>
@@ -174,12 +174,12 @@ const CoursesOverview = () => {
 
         {/* CTA */}
         <div className="text-center mt-16 animate-fade-in">
-          <Card className="max-w-3xl mx-auto bg-primary text-primary-foreground border">
+          <Card className="max-w-3xl mx-auto bg-gradient-to-r from-primary-dark to-primary text-white border-0">
             <CardContent className="p-8">
               <h3 className="text-3xl font-heading font-bold mb-4">
                 Not Sure Which Level to Start?
               </h3>
-              <p className="text-primary-foreground/80 mb-6">
+              <p className="text-white/90 mb-6">
                 Book a free consultation call to discuss your goals and find the perfect starting point.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -194,9 +194,9 @@ const CoursesOverview = () => {
                   asChild 
                   size="lg" 
                   variant="outline" 
-                  className="bg-background text-primary hover:bg-background/90"
+                  className="bg-white/10 backdrop-blur-sm border-white text-white hover:bg-white/20"
                 >
-                  <Link to="/about">Learn More About Instructor</Link>
+                  <Link to="/about">Learn More About Harsh</Link>
                 </Button>
               </div>
             </CardContent>
