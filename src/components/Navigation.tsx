@@ -23,9 +23,7 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <span className="text-2xl font-heading font-bold text-gradient">
-              German Mit Harsh
-            </span>
+            <span className="text-2xl font-heading font-bold text-gradient font-italic">German Mit Harsh</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -36,9 +34,7 @@ const Navigation = () => {
                 to={link.path}
                 className={cn(
                   "text-sm font-medium transition-colors hover:text-primary",
-                  isActive(link.path)
-                    ? "text-primary"
-                    : "text-muted-foreground"
+                  isActive(link.path) ? "text-primary" : "text-muted-foreground",
                 )}
               >
                 {link.name}
@@ -50,11 +46,7 @@ const Navigation = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle menu"
-          >
+          <button className="md:hidden p-2" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle menu">
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
@@ -69,9 +61,7 @@ const Navigation = () => {
                 onClick={() => setIsOpen(false)}
                 className={cn(
                   "block py-2 text-sm font-medium transition-colors",
-                  isActive(link.path)
-                    ? "text-primary"
-                    : "text-muted-foreground"
+                  isActive(link.path) ? "text-primary" : "text-muted-foreground",
                 )}
               >
                 {link.name}
