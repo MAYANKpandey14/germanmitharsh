@@ -7,24 +7,24 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { CheckCircle2, Mail, Phone, User, MessageSquare } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-
 const Enroll = () => {
-  const { toast } = useToast();
+  const {
+    toast
+  } = useToast();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     level: "",
-    message: "",
+    message: ""
   });
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Here you would integrate with your backend/email service
     toast({
       title: "Enrollment Request Received!",
-      description: "We will contact you within 24 hours to discuss your learning goals.",
+      description: "We will contact you within 24 hours to discuss your learning goals."
     });
 
     // Reset form
@@ -33,25 +33,17 @@ const Enroll = () => {
       email: "",
       phone: "",
       level: "",
-      message: "",
+      message: ""
     });
   };
-
   const handleChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
   };
-
-  const benefits = [
-    "Free consultation call to discuss your goals",
-    "Personalized learning plan tailored to you",
-    "Flexible class scheduling",
-    "Comprehensive study materials included",
-    "Lifetime doubt support",
-    "Exam preparation guidance",
-  ];
-
-  return (
-    <div className="min-h-screen pt-20 md:pt-24 pb-12 md:pb-20">
+  const benefits = ["Free consultation call to discuss your goals", "Personalized learning plan tailored to you", "Flexible class scheduling", "Comprehensive study materials included", "Lifetime doubt support", "Exam preparation guidance"];
+  return <div className="min-h-screen pt-20 md:pt-24 pb-12 md:pb-20">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-10 md:mb-16 animate-fade-in">
@@ -78,13 +70,7 @@ const Enroll = () => {
                     <User className="w-4 h-4 mr-2 text-primary" />
                     Full Name *
                   </Label>
-                  <Input
-                    id="name"
-                    placeholder="Enter your full name"
-                    value={formData.name}
-                    onChange={(e) => handleChange("name", e.target.value)}
-                    required
-                  />
+                  <Input id="name" placeholder="Enter your full name" value={formData.name} onChange={e => handleChange("name", e.target.value)} required />
                 </div>
 
                 {/* Email */}
@@ -93,14 +79,7 @@ const Enroll = () => {
                     <Mail className="w-4 h-4 mr-2 text-primary" />
                     Email Address *
                   </Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="your.email@example.com"
-                    value={formData.email}
-                    onChange={(e) => handleChange("email", e.target.value)}
-                    required
-                  />
+                  <Input id="email" type="email" placeholder="your.email@example.com" value={formData.email} onChange={e => handleChange("email", e.target.value)} required />
                 </div>
 
                 {/* Phone */}
@@ -109,20 +88,13 @@ const Enroll = () => {
                     <Phone className="w-4 h-4 mr-2 text-primary" />
                     Phone Number *
                   </Label>
-                  <Input
-                    id="phone"
-                    type="tel"
-                    placeholder="+91 XXXXX XXXXX"
-                    value={formData.phone}
-                    onChange={(e) => handleChange("phone", e.target.value)}
-                    required
-                  />
+                  <Input id="phone" type="tel" placeholder="+91 XXXXX XXXXX" value={formData.phone} onChange={e => handleChange("phone", e.target.value)} required />
                 </div>
 
                 {/* Level Selection */}
                 <div className="space-y-2">
                   <Label htmlFor="level">Desired Course Level *</Label>
-                  <Select value={formData.level} onValueChange={(value) => handleChange("level", value)}>
+                  <Select value={formData.level} onValueChange={value => handleChange("level", value)}>
                     <SelectTrigger>
                       <SelectValue placeholder="Select your level" />
                     </SelectTrigger>
@@ -142,21 +114,11 @@ const Enroll = () => {
                     <MessageSquare className="w-4 h-4 mr-2 text-primary" />
                     Tell us about your goals (Optional)
                   </Label>
-                  <Textarea
-                    id="message"
-                    placeholder="Why do you want to learn German? What are your goals?"
-                    value={formData.message}
-                    onChange={(e) => handleChange("message", e.target.value)}
-                    rows={4}
-                  />
+                  <Textarea id="message" placeholder="Why do you want to learn German? What are your goals?" value={formData.message} onChange={e => handleChange("message", e.target.value)} rows={4} />
                 </div>
 
                 {/* Submit Button */}
-                <Button 
-                  type="submit" 
-                  size="lg" 
-                  className="w-full bg-accent hover:bg-accent/90 hover-scale"
-                >
+                <Button type="submit" size="lg" className="w-full bg-accent hover:bg-accent/90 hover-scale">
                   Book Free Consultation
                 </Button>
 
@@ -168,7 +130,9 @@ const Enroll = () => {
           </Card>
 
           {/* Benefits & Info */}
-          <div className="space-y-8 animate-fade-in" style={{ animationDelay: '200ms' }}>
+          <div className="space-y-8 animate-fade-in" style={{
+          animationDelay: '200ms'
+        }}>
             {/* What Happens Next */}
             <Card>
               <CardHeader>
@@ -232,12 +196,10 @@ const Enroll = () => {
               </CardHeader>
               <CardContent>
                 <ul className="space-y-3">
-                  {benefits.map((benefit, index) => (
-                    <li key={index} className="flex items-start">
+                  {benefits.map((benefit, index) => <li key={index} className="flex items-start">
                       <CheckCircle2 className="w-5 h-5 mr-3 flex-shrink-0 mt-0.5" />
                       <span>{benefit}</span>
-                    </li>
-                  ))}
+                    </li>)}
                 </ul>
               </CardContent>
             </Card>
@@ -254,7 +216,7 @@ const Enroll = () => {
                 </div>
                 <div className="flex items-center text-muted-foreground">
                   <Phone className="w-5 h-5 mr-3 text-primary" />
-                  <span>+91 XXXXX XXXXX</span>
+                  <span>+49 15511330861</span>
                 </div>
                 <p className="text-sm text-muted-foreground pt-2">
                   Feel free to reach out if you have any questions before enrolling.
@@ -264,8 +226,6 @@ const Enroll = () => {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default Enroll;
