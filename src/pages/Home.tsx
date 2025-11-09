@@ -110,7 +110,6 @@ const Home = () => {
                   className="group border-2 hover:border-primary transition-all duration-300"
                 >
                   <Link to="/course/a1" className="flex items-center justify-center gap-0 group-hover:gap-2 transition-all duration-300">
-                    <PlayCircle className="w-0 h-5 group-hover:w-5 transition-all duration-300 opacity-0 group-hover:opacity-100" />
                     <span>Watch Free Lesson</span>
                   </Link>
                 </Button>
