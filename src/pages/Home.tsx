@@ -66,10 +66,10 @@ const Home = () => {
   ];
 
   const phraseStyles = {
-    primary: "bg-gradient-to-br from-primary/10 to-primary/5 text-primary border border-primary/20 shadow-[0_4px_12px_rgba(59,130,246,0.15)] backdrop-blur-sm",
-    gold: "bg-gradient-to-br from-secondary/10 to-secondary/5 text-secondary-foreground border border-secondary/30 shadow-[0_4px_12px_rgba(251,191,36,0.2)] backdrop-blur-sm",
-    accent: "bg-gradient-to-br from-accent/10 to-accent/5 text-accent border border-accent/20 shadow-[0_4px_12px_rgba(220,38,38,0.15)] backdrop-blur-sm",
-    blue: "bg-gradient-to-br from-blue-500/10 to-blue-500/5 text-blue-700 border border-blue-300/30 shadow-[0_4px_12px_rgba(59,130,246,0.12)] backdrop-blur-sm",
+    primary: "bg-primary/90 text-primary-foreground border border-primary shadow-lg",
+    gold: "bg-secondary/90 text-secondary-foreground border border-secondary shadow-lg",
+    accent: "bg-accent/90 text-accent-foreground border border-accent shadow-lg",
+    blue: "bg-blue-500/90 text-white border border-blue-600 shadow-lg",
   };
 
   return (
@@ -97,7 +97,7 @@ const Home = () => {
               
               {/* Subtitle */}
               <p className="text-xl text-muted-foreground max-w-xl">
-                Learn from Harsh - An experienced instructor dedicated to your success. 
+                Learn German with Harsh - An experienced instructor dedicated to your success.
                 Live classes, personal mentorship, and proven results.
               </p>
               

@@ -9,7 +9,7 @@ const Footer = () => {
           {/* Brand */}
           <div>
             <h3 className="text-xl font-heading font-bold text-gradient mb-4">
-              Harsh German
+              German Mit Harsh
             </h3>
             <p className="text-muted-foreground text-sm">
               Learn German from an experienced instructor. Personalized teaching approach with live classes and comprehensive support.
@@ -49,7 +49,7 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-center space-x-2 text-sm text-muted-foreground">
                 <Mail size={16} className="text-primary" />
-                <span>harsh@example.com</span>
+                <span>support@germanmitharsh.com</span>
               </li>
               <li className="flex items-center space-x-2 text-sm text-muted-foreground">
                 <Phone size={16} className="text-primary" />
@@ -69,7 +69,7 @@ const Footer = () => {
 
         <div className="border-t border-border mt-8 pt-8 text-center">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Harsh German. All rights reserved.
+            © {new Date().getFullYear()} German Mit Harsh. All rights reserved.
           </p>
         </div>
       </div>

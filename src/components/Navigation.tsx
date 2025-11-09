@@ -24,7 +24,7 @@ const Navigation = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <span className="text-2xl font-heading font-bold text-gradient">
-              Harsh German
+              German Mit Harsh
             </span>
           </Link>
 
