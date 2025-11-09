@@ -167,9 +167,9 @@ const Home = () => {
     accent: "bg-white text-accent border border-accent shadow-lg",
     blue: "bg-white text-blue-600 border border-blue-500 shadow-lg"
   };
-  return <div className="min-h-screen m-12">
+  return <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="py-16 md:py-20 lg:py-24 bg-gradient-to-br from-background to-blue-50/30">
+      <section className="py-16 md:py-20 lg:py-24 bg-gradient-to-br from-background to-blue-50/30 m-12">
         <div className="container mx-auto px-4 md:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
             
@@ -249,8 +249,10 @@ const Home = () => {
       {/* Social Proof Bar */}
       <SocialProofBar />
 
+      <div className="m-12">
+
       {/* Stats Section */}
-      <section className="py-8 md:py-12 bg-background border-t">
+      <section className="py-8 md:py-12 bg-background border-t m-12">
         <div className="container mx-auto px-4 md:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {stats.map((stat, index) => <div key={index} className="text-center animate-slide-up" style={{
@@ -367,6 +369,7 @@ const Home = () => {
           </div>
         </div>
       </section>
+      </div>
     </div>;
 };
 export default Home;
