@@ -66,10 +66,10 @@ const Home = () => {
   ];
 
   const phraseStyles = {
-    primary: "bg-primary/90 text-primary-foreground border border-primary shadow-lg",
-    gold: "bg-secondary/90 text-secondary-foreground border border-secondary shadow-lg",
-    accent: "bg-accent/90 text-accent-foreground border border-accent shadow-lg",
-    blue: "bg-blue-500/90 text-white border border-blue-600 shadow-lg",
+    primary: "bg-white text-primary border border-primary shadow-lg",
+    gold: "bg-white text-secondary border border-secondary shadow-lg",
+    accent: "bg-white text-accent border border-accent shadow-lg",
+    blue: "bg-white text-blue-600 border border-blue-500 shadow-lg",
   };
 
   return (
