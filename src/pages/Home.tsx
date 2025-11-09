@@ -73,7 +73,7 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen m-12">
       {/* Hero Section */}
       <section className="py-16 md:py-20 lg:py-24 bg-gradient-to-br from-background to-blue-50/30">
         <div className="container mx-auto px-4 md:px-6 lg:px-8">
@@ -107,7 +107,7 @@ const Home = () => {
                   asChild 
                   size="lg" 
                   variant="outline" 
-                  className="group border-2 hover:border-primary transition-all duration-300"
+                  className="group transition-all duration-300"
                 >
                   <Link to="/course/a1" className="flex items-center justify-center gap-0 group-hover:gap-2 transition-all duration-300">
                     <span>Watch Free Lesson</span>
