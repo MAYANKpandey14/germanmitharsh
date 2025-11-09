@@ -14,8 +14,8 @@ const Testimonials = () => {
     },
     {
       name: "Rahul Verma",
-      level: "C1 Student",
-      text: "I needed to learn German for my job in Munich. Harsh not only helped me pass my C1 exam but also taught me practical business German that I use every day at work.",
+      level: "B2 Student",
+      text: "I needed to learn German for my job in Munich. Harsh not only helped me pass my B2 exam but also taught me practical business German that I use every day at work.",
       rating: 5,
       result: "Now working in Germany",
     },

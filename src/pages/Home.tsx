@@ -32,7 +32,7 @@ const Home = () => {
     number: "5+",
     label: "Years Experience"
   }, {
-    number: "A1-C1",
+    number: "A1-B2",
     label: "All Levels"
   }];
   const courses = [{
@@ -51,10 +51,6 @@ const Home = () => {
     level: "B2",
     title: "Upper Intermediate",
     description: "Master communication"
-  }, {
-    level: "C1",
-    title: "Advanced",
-    description: "Achieve fluency"
   }];
   const germanPhrases = [
   // TOP LEFT

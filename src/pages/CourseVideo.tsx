@@ -288,69 +288,6 @@ const CourseVideo = () => {
       price: "₹26,000",
       originalPrice: "₹35,000"
     },
-    c1: {
-      title: "C1 - Advanced Level",
-      duration: "16-20 weeks",
-      description: "Achieve near-native fluency and handle sophisticated German in professional and academic contexts.",
-      transformations: [
-        "Write professional reports and academic papers in German",
-        "Lead complex negotiations and business discussions",
-        "Give university lectures or professional presentations",
-        "Understand and analyze literary texts and films",
-        "Function professionally at executive level in German companies"
-      ],
-      outcomes: [
-        "Express yourself fluently and spontaneously",
-        "Use language flexibly for social, academic, and professional purposes",
-        "Produce clear, well-structured, detailed text on complex subjects",
-        "Understand a wide range of demanding texts",
-        "Recognize implicit meaning and cultural subtleties",
-      ],
-      modules: [
-        {
-          title: "Module 1: Sophisticated Grammar",
-          lessons: [
-            { title: "Advanced Subjunctive Uses", duration: "55 min", isFreePreview: true },
-            { title: "Stylistic Variations", duration: "50 min" },
-            { title: "Complex Syntax Structures", duration: "60 min" },
-          ]
-        },
-        {
-          title: "Module 2: Professional Mastery",
-          lessons: [
-            { title: "Executive Communication", duration: "60 min" },
-            { title: "Legal & Technical Language", duration: "55 min" },
-            { title: "High-Level Negotiations", duration: "50 min" },
-          ]
-        },
-        {
-          title: "Module 3: Academic Excellence",
-          lessons: [
-            { title: "Research Methodology", duration: "60 min", isFreePreview: true },
-            { title: "Academic Writing Mastery", duration: "65 min" },
-            { title: "Thesis & Dissertation Language", duration: "55 min" },
-          ]
-        },
-        {
-          title: "Module 4: Cultural Depth",
-          lessons: [
-            { title: "Literary Analysis", duration: "60 min" },
-            { title: "Media & Film Studies", duration: "55 min" },
-            { title: "Philosophy & Abstract Concepts", duration: "50 min" },
-          ]
-        },
-        {
-          title: "Module 5: Exam Preparation",
-          lessons: [
-            { title: "C1 Exam Strategies", duration: "60 min" },
-            { title: "Advanced Writing Tasks", duration: "90 min" },
-            { title: "Full Mock Examination", duration: "240 min" },
-          ]
-        }
-      ],
-      price: "₹30,000",
-      originalPrice: "₹40,000"
-    },
   };
 
   const course = courseData[level?.toLowerCase() || 'a1'];

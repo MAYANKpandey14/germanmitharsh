@@ -131,7 +131,6 @@ const Enroll = () => {
                       <SelectItem value="a2">A2 - Elementary</SelectItem>
                       <SelectItem value="b1">B1 - Intermediate</SelectItem>
                       <SelectItem value="b2">B2 - Upper Intermediate</SelectItem>
-                      <SelectItem value="c1">C1 - Advanced</SelectItem>
                       <SelectItem value="unsure">Not Sure - Need Guidance</SelectItem>
                     </SelectContent>
                   </Select>

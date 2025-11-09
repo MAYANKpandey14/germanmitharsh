@@ -14,7 +14,6 @@ const courseLevels: CourseLevel[] = [
   { level: "A2", name: "Elementary (A2)", path: "/course/A2" },
   { level: "B1", name: "Intermediate (B1)", path: "/course/B1" },
   { level: "B2", name: "Upper Intermediate (B2)", path: "/course/B2" },
-  { level: "C1", name: "Advanced (C1)", path: "/course/C1" },
 ];
 
 const NavDropdown = () => {

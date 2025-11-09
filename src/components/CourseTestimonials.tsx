@@ -70,20 +70,6 @@ const testimonialData: Record<string, Testimonial[]> = {
       quote: "The business German focus helped me advance my career. Highly recommend!",
       result: "B2 Certified"
     }
-  ],
-  C1: [
-    {
-      name: "Divya Krishnan",
-      level: "C1",
-      quote: "I can now write professional reports and give presentations entirely in German. Game changer!",
-      result: "Senior Role in Frankfurt"
-    },
-    {
-      name: "Rohan Malhotra",
-      level: "C1",
-      quote: "Harsh's advanced course helped me achieve near-native fluency. Worth every rupee!",
-      result: "C1 Certified"
-    }
   ]
 };
 

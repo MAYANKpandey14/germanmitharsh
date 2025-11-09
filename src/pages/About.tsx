@@ -14,7 +14,7 @@ const About = () => {
     {
       icon: BookOpen,
       title: "5+ Years Experience",
-      description: "Extensive experience teaching all levels from A1 to C1",
+      description: "Extensive experience teaching all levels from A1 to B2",
     },
     {
       icon: Users,

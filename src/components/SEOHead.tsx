@@ -10,8 +10,8 @@ interface SEOHeadProps {
 }
 
 const SEOHead = ({
-  title = "Learn German Online | A1-C1 Courses by Harsh",
-  description = "Master German with live classes, 1:1 mentorship, and proven results. 95% exam pass rate. Learn from ex-Language Pantheon faculty. Enroll in A1-C1 courses today!",
+  title = "Learn German Online | A1-B2 Courses by Harsh",
+  description = "Master German with live classes, 1:1 mentorship, and proven results. 95% exam pass rate. Learn from ex-Language Pantheon faculty. Enroll in A1-B2 courses today!",
   keywords = "learn german online, german courses, german classes, german language, A1 german, B2 german, german tutor, online german course",
   ogImage = "https://germanmitharsh.lovable.app/og-image.jpg",
   ogType = "website",

@@ -57,19 +57,6 @@ const CoursesOverview = () => {
         "Advanced writing skills",
       ],
     },
-    {
-      level: "C1",
-      title: "Advanced Level",
-      duration: "16-20 weeks",
-      description: "Achieve near-native fluency and handle professional and academic German.",
-      topics: [
-        "Sophisticated grammar structures",
-        "Academic and professional vocabulary",
-        "Complex text analysis",
-        "Advanced debate and discussion",
-        "Nuanced writing and expression",
-      ],
-    },
   ];
 
   return (
