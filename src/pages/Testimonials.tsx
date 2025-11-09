@@ -95,7 +95,7 @@ const Testimonials = () => {
           {testimonials.map((testimonial, index) => (
             <Card 
               key={index}
-              className="hover-lift animate-fade-in border-2 border-transparent hover:border-primary/20"
+              className="hover-lift animate-fade-in border"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <CardContent className="p-6">
@@ -137,10 +137,10 @@ const Testimonials = () => {
           <div className="grid md:grid-cols-2 gap-6">
             {[1, 2].map((i) => (
               <Card key={i} className="overflow-hidden">
-                <div className="aspect-video bg-gradient-to-br from-primary-dark to-primary flex items-center justify-center">
-                  <div className="text-center text-white">
-                    <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mx-auto mb-3">
-                      <div className="w-0 h-0 border-t-8 border-t-transparent border-l-12 border-l-white border-b-8 border-b-transparent ml-1"></div>
+                <div className="aspect-video bg-primary flex items-center justify-center">
+                  <div className="text-center text-primary-foreground">
+                    <div className="w-14 h-14 rounded-full bg-primary-foreground/10 flex items-center justify-center mx-auto mb-3 border border-primary-foreground/20">
+                      <div className="w-0 h-0 border-t-8 border-t-transparent border-l-12 border-l-primary-foreground border-b-8 border-b-transparent ml-1"></div>
                     </div>
                     <p className="text-sm">Student Success Story #{i}</p>
                   </div>
@@ -152,19 +152,19 @@ const Testimonials = () => {
 
         {/* CTA Section */}
         <div className="max-w-4xl mx-auto text-center animate-fade-in">
-          <Card className="bg-gradient-to-r from-primary-dark to-primary text-white border-0">
+          <Card className="bg-primary text-primary-foreground border">
             <CardContent className="p-8 md:p-12">
               <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
                 Ready to Write Your Success Story?
               </h2>
-              <p className="text-xl text-white/90 mb-8">
+              <p className="text-xl text-primary-foreground/80 mb-8">
                 Join hundreds of successful students who achieved their German language goals with expert guidance.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground hover-scale">
                   <Link to="/enroll">Start Your Journey</Link>
                 </Button>
-                <Button asChild size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm border-white text-white hover:bg-white/20">
+                <Button asChild size="lg" variant="outline" className="bg-background text-primary hover:bg-background/90">
                   <Link to="/courses">View Courses</Link>
                 </Button>
               </div>

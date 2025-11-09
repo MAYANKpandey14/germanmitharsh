@@ -227,7 +227,7 @@ const Enroll = () => {
             </Card>
 
             {/* Benefits */}
-            <Card className="bg-gradient-to-br from-primary-dark to-primary text-white border-0">
+            <Card className="bg-primary text-primary-foreground border">
               <CardHeader>
                 <CardTitle className="text-2xl">What You Get</CardTitle>
               </CardHeader>

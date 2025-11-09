@@ -143,14 +143,14 @@ const CourseVideo = () => {
           </div>
 
           {/* Video Player Placeholder */}
-          <Card className="overflow-hidden border-2 border-primary/20">
-            <div className="aspect-video bg-gradient-to-br from-primary-dark to-primary flex items-center justify-center">
-              <div className="text-center text-white p-8">
-                <div className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mx-auto mb-4">
-                  <div className="w-0 h-0 border-t-8 border-t-transparent border-l-12 border-l-white border-b-8 border-b-transparent ml-1"></div>
+          <Card className="overflow-hidden border">
+            <div className="aspect-video bg-primary flex items-center justify-center">
+              <div className="text-center text-primary-foreground p-8">
+                <div className="w-16 h-16 rounded-lg bg-primary-foreground/10 flex items-center justify-center mx-auto mb-4 border border-primary-foreground/20">
+                  <div className="w-0 h-0 border-t-8 border-t-transparent border-l-12 border-l-primary-foreground border-b-8 border-b-transparent ml-1"></div>
                 </div>
                 <h3 className="text-2xl font-bold mb-2">Course Introduction Video</h3>
-                <p className="text-white/80">Learn about the {course.title} curriculum, methodology, and outcomes</p>
+                <p className="text-primary-foreground/80">Learn about the {course.title} curriculum, methodology, and outcomes</p>
               </div>
             </div>
           </Card>
@@ -236,12 +236,12 @@ const CourseVideo = () => {
 
         {/* Final CTA */}
         <div className="max-w-3xl mx-auto mt-16 text-center animate-fade-in" style={{ animationDelay: '400ms' }}>
-          <Card className="bg-gradient-to-r from-primary-dark to-primary text-white border-0">
+          <Card className="bg-primary text-primary-foreground border">
             <CardContent className="p-8">
               <h3 className="text-3xl font-heading font-bold mb-4">
                 Ready to Begin Your Journey?
               </h3>
-              <p className="text-white/90 mb-6">
+              <p className="text-primary-foreground/80 mb-6">
                 Join now and get personalized guidance from an experienced instructor
               </p>
               <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground hover-scale">
