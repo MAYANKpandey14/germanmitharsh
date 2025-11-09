@@ -44,19 +44,33 @@ const Home = () => {
   ];
 
   const germanPhrases = [
-    { text: "Hallo", x: "-left-12", y: "top-8", size: "text-sm", duration: "3s", delay: "0s" },
-    { text: "Danke", x: "left-2", y: "-top-4", size: "text-xs", duration: "4s", delay: "0.2s" },
-    { text: "Bitte", x: "right-4", y: "top-12", size: "text-sm", duration: "3.5s", delay: "0.4s" },
-    { text: "mit", x: "-right-8", y: "top-28", size: "text-xs", duration: "4.5s", delay: "0.6s" },
-    { text: "Guten Tag", x: "-left-4", y: "bottom-20", size: "text-sm", duration: "3.8s", delay: "0.8s" },
-    { text: "sprechen", x: "right-8", y: "bottom-8", size: "text-xs", duration: "4.2s", delay: "1s" },
-    { text: "ich", x: "-left-20", y: "top-1/2", size: "text-xs", duration: "3.6s", delay: "1.2s" },
-    { text: "und", x: "-right-12", y: "bottom-28", size: "text-xs", duration: "4s", delay: "1.4s" },
-    { text: "sein", x: "left-8", y: "bottom-2", size: "text-sm", duration: "3.4s", delay: "1.6s" },
-    { text: "Ja", x: "right-2", y: "top-36", size: "text-xs", duration: "4.8s", delay: "1.8s" },
-    { text: "der/die/das", x: "-left-16", y: "bottom-36", size: "text-xs", duration: "4.4s", delay: "2s" },
-    { text: "haben", x: "-right-4", y: "top-44", size: "text-xs", duration: "3.2s", delay: "2.2s" },
+    // TOP LEFT
+    { text: "Hallo", x: "-left-12", y: "top-4", size: "text-lg", color: "primary", duration: "3s", delay: "0s" },
+    { text: "Danke", x: "left-4", y: "-top-6", size: "text-base", color: "gold", duration: "4s", delay: "0.2s" },
+    { text: "ich", x: "-left-20", y: "top-16", size: "text-base", color: "blue", duration: "3.6s", delay: "1.2s" },
+    
+    // TOP RIGHT
+    { text: "Bitte", x: "right-2", y: "top-8", size: "text-lg", color: "accent", duration: "3.5s", delay: "0.4s" },
+    { text: "mit", x: "-right-10", y: "top-2", size: "text-base", color: "primary", duration: "4.5s", delay: "0.6s" },
+    { text: "Ja", x: "right-4", y: "-top-4", size: "text-base", color: "gold", duration: "4.8s", delay: "1.8s" },
+    
+    // BOTTOM LEFT
+    { text: "Guten Tag", x: "-left-6", y: "bottom-12", size: "text-xl", color: "primary", duration: "3.8s", delay: "0.8s" },
+    { text: "sein", x: "left-2", y: "bottom-2", size: "text-lg", color: "accent", duration: "3.4s", delay: "1.6s" },
+    { text: "der", x: "-left-16", y: "bottom-24", size: "text-base", color: "blue", duration: "4.4s", delay: "2s" },
+    
+    // BOTTOM RIGHT
+    { text: "sprechen", x: "right-6", y: "bottom-6", size: "text-base", color: "gold", duration: "4.2s", delay: "1s" },
+    { text: "und", x: "-right-12", y: "bottom-16", size: "text-base", color: "blue", duration: "4s", delay: "1.4s" },
+    { text: "haben", x: "-right-6", y: "bottom-4", size: "text-base", color: "primary", duration: "3.2s", delay: "2.2s" },
   ];
+
+  const phraseStyles = {
+    primary: "bg-gradient-to-br from-primary/10 to-primary/5 text-primary border border-primary/20 shadow-[0_4px_12px_rgba(59,130,246,0.15)] backdrop-blur-sm",
+    gold: "bg-gradient-to-br from-secondary/10 to-secondary/5 text-secondary-foreground border border-secondary/30 shadow-[0_4px_12px_rgba(251,191,36,0.2)] backdrop-blur-sm",
+    accent: "bg-gradient-to-br from-accent/10 to-accent/5 text-accent border border-accent/20 shadow-[0_4px_12px_rgba(220,38,38,0.15)] backdrop-blur-sm",
+    blue: "bg-gradient-to-br from-blue-500/10 to-blue-500/5 text-blue-700 border border-blue-300/30 shadow-[0_4px_12px_rgba(59,130,246,0.12)] backdrop-blur-sm",
+  };
 
   return (
     <div className="min-h-screen">
@@ -119,7 +133,15 @@ const Home = () => {
                 {germanPhrases.map((phrase, index) => (
                   <div
                     key={index}
-                    className={`absolute ${phrase.x} ${phrase.y} bg-background px-3 py-1.5 rounded-full shadow-lg ${phrase.size} font-medium text-foreground whitespace-nowrap hidden md:block`}
+                    className={`
+                      absolute z-20 ${phrase.x} ${phrase.y} 
+                      ${phraseStyles[phrase.color as keyof typeof phraseStyles]}
+                      ${phrase.size}
+                      px-4 py-2 rounded-full font-semibold 
+                      whitespace-nowrap hidden md:block
+                      hover:scale-110 hover:shadow-xl hover:-translate-y-1
+                      transition-all duration-300 cursor-default
+                    `}
                     style={{
                       animation: `float-gentle ${phrase.duration} ease-in-out infinite`,
                       animationDelay: phrase.delay,
