@@ -12,8 +12,8 @@ const Testimonials = () => {
       thumbnail: "https://img.youtube.com/vi/bxZwKpjxU9I/maxresdefault.jpg"
     },
     {
-      name: "A1-B1 Course",
-      level: "German Course Graduate",
+      name: "Twinkle's Review",
+      level: "A1-B1 Course",
       youtubeId: "b41-3Xa3_MY",
       thumbnail: "https://img.youtube.com/vi/b41-3Xa3_MY/maxresdefault.jpg"
     },
