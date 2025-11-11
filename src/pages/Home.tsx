@@ -47,24 +47,52 @@ const Home = () => {
   ];
   const courses = [
     {
-      level: "A1",
-      title: "Beginner",
-      description: "Start your German journey",
+      level: "A1.1",
+      title: "Beginner 1",
+      description: "Start from zero",
+      price: "€89",
     },
     {
-      level: "A2",
-      title: "Elementary",
-      description: "Build your foundation",
+      level: "A1.2",
+      title: "Beginner 2",
+      description: "Build foundation",
+      price: "€89",
     },
     {
-      level: "B1",
-      title: "Intermediate",
-      description: "Gain confidence",
+      level: "A2.1",
+      title: "Elementary 1",
+      description: "Past tenses",
+      price: "€99",
     },
     {
-      level: "B2",
-      title: "Upper Intermediate",
-      description: "Master communication",
+      level: "A2.2",
+      title: "Elementary 2",
+      description: "Dative case",
+      price: "€99",
+    },
+    {
+      level: "B1.1",
+      title: "Intermediate 1",
+      description: "Subjunctive mood",
+      price: "€109",
+    },
+    {
+      level: "B1.2",
+      title: "Intermediate 2",
+      description: "Complex sentences",
+      price: "€109",
+    },
+    {
+      level: "B2.1",
+      title: "Advanced 1",
+      description: "Business German",
+      price: "€119",
+    },
+    {
+      level: "B2.2",
+      title: "Advanced 2",
+      description: "Near-native fluency",
+      price: "€119",
     },
   ];
   const germanPhrases = [
@@ -345,7 +373,7 @@ const Home = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 max-w-5xl mx-auto">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto">
               {courses.map((course, index) => (
                 <Card
                   key={index}
@@ -354,10 +382,11 @@ const Home = () => {
                     animationDelay: `${index * 100}ms`,
                   }}
                 >
-                  <CardContent className="p-6 text-center">
-                    <div className="text-4xl font-bold text-gradient mb-2">{course.level}</div>
-                    <h3 className="text-xl font-heading font-semibold mb-2">{course.title}</h3>
-                    <p className="text-muted-foreground text-sm mb-4">{course.description}</p>
+                  <CardContent className="p-4 md:p-6 text-center">
+                    <div className="text-3xl md:text-4xl font-bold text-gradient mb-2">{course.level}</div>
+                    <h3 className="text-lg md:text-xl font-heading font-semibold mb-1">{course.title}</h3>
+                    <p className="text-muted-foreground text-xs md:text-sm mb-2">{course.description}</p>
+                    <div className="text-lg md:text-xl font-bold text-primary mb-3">{course.price}</div>
                     <Button
                       asChild
                       variant="outline"
@@ -368,7 +397,7 @@ const Home = () => {
                         className="flex items-center justify-center gap-1"
                       >
                         <Video className="w-3 h-3 md:w-4 md:h-4" />
-                        Watch Video
+                        View
                       </Link>
                     </Button>
                   </CardContent>

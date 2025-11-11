@@ -30,267 +30,443 @@ const CourseVideo = () => {
     price: string;
     originalPrice: string;
   }> = {
-    a1: {
-      title: "A1 - Beginner Level",
-      duration: "8-10 weeks",
-      description: "Start your German journey from scratch. Perfect for absolute beginners who want to build a strong foundation in the language.",
+    "a1.1": {
+      title: "A1.1 - Beginner Level (Part 1)",
+      duration: "4-5 weeks",
+      description: "Start your German journey from absolute zero. Perfect for complete beginners who have never studied German before.",
       transformations: [
-        "Order coffee in German without hesitation or pointing",
-        "Introduce yourself confidently at social gatherings",
-        "Ask for directions and understand basic responses",
-        "Fill out forms and write simple emails in German",
-        "Hold basic conversations with German speakers"
+        "Introduce yourself confidently in German",
+        "Order food and drinks at restaurants",
+        "Ask for basic directions and locations",
+        "Understand simple everyday conversations",
+        "Write short messages and fill out basic forms"
       ],
       outcomes: [
-        "Introduce yourself and have basic conversations",
-        "Understand and use familiar everyday expressions",
-        "Ask and answer simple questions",
-        "Interact in a simple way with native speakers",
-        "Write short, simple texts and messages",
+        "Master German alphabet and pronunciation",
+        "Use basic greetings and introductions",
+        "Understand and use personal pronouns",
+        "Count numbers and tell time",
+        "Form simple present tense sentences",
       ],
       modules: [
         {
-          title: "Module 1: Foundation & Greetings",
+          title: "Module 1: Foundation & Pronunciation",
           lessons: [
-            { title: "German Alphabet & Pronunciation", duration: "45 min", isFreePreview: true },
-            { title: "Basic Greetings & Introductions", duration: "40 min" },
-            { title: "Personal Pronouns & Basic Verbs", duration: "50 min" },
-            { title: "Numbers 1-100", duration: "35 min" },
+            { title: "German Alphabet & Special Characters", duration: "45 min", isFreePreview: true },
+            { title: "Pronunciation Rules & Practice", duration: "40 min" },
+            { title: "Basic Greetings & Farewells", duration: "35 min" },
+            { title: "Numbers 1-50", duration: "30 min" },
           ]
         },
         {
-          title: "Module 2: Daily Life Vocabulary",
+          title: "Module 2: Personal Information",
           lessons: [
-            { title: "Time, Days & Dates", duration: "45 min" },
-            { title: "Food & Restaurant Vocabulary", duration: "50 min" },
-            { title: "Family & Relationships", duration: "40 min" },
+            { title: "Personal Pronouns (ich, du, er, sie)", duration: "40 min" },
+            { title: "Verb 'sein' (to be)", duration: "45 min" },
+            { title: "Introducing Yourself", duration: "40 min" },
+            { title: "Countries & Nationalities", duration: "35 min" },
+          ]
+        },
+        {
+          title: "Module 3: Basic Grammar",
+          lessons: [
+            { title: "Regular Verbs in Present Tense", duration: "50 min", isFreePreview: true },
+            { title: "Word Order Basics", duration: "40 min" },
+            { title: "Articles: der, die, das", duration: "45 min" },
+          ]
+        },
+        {
+          title: "Module 4: Everyday Vocabulary",
+          lessons: [
+            { title: "Days of the Week & Time", duration: "40 min" },
+            { title: "Food & Drinks", duration: "45 min" },
+            { title: "Basic Questions", duration: "35 min" },
+          ]
+        }
+      ],
+      price: "€89",
+      originalPrice: "€120"
+    },
+    "a1.2": {
+      title: "A1.2 - Beginner Level (Part 2)",
+      duration: "4-5 weeks",
+      description: "Continue building your German foundation with more grammar and practical vocabulary for everyday situations.",
+      transformations: [
+        "Shop for groceries and clothes confidently",
+        "Describe your daily routine in German",
+        "Talk about your hobbies and interests",
+        "Make simple plans with German speakers",
+        "Handle basic phone conversations"
+      ],
+      outcomes: [
+        "Use accusative case correctly",
+        "Conjugate irregular verbs",
+        "Express likes and dislikes",
+        "Talk about family and friends",
+        "Understand basic written texts",
+      ],
+      modules: [
+        {
+          title: "Module 1: Advanced Present Tense",
+          lessons: [
+            { title: "Irregular Verbs (haben, werden)", duration: "45 min", isFreePreview: true },
+            { title: "Separable Verbs", duration: "50 min" },
+            { title: "Modal Verbs Introduction", duration: "45 min" },
+          ]
+        },
+        {
+          title: "Module 2: Accusative Case",
+          lessons: [
+            { title: "Accusative Articles", duration: "45 min" },
+            { title: "Accusative Pronouns", duration: "40 min" },
+            { title: "Negation: nicht & kein", duration: "40 min" },
+          ]
+        },
+        {
+          title: "Module 3: Daily Life",
+          lessons: [
+            { title: "Family & Relationships", duration: "45 min", isFreePreview: true },
+            { title: "Hobbies & Free Time", duration: "40 min" },
             { title: "Shopping & Money", duration: "45 min" },
           ]
         },
         {
-          title: "Module 3: Grammar Basics",
+          title: "Module 4: Exam Preparation",
           lessons: [
-            { title: "Present Tense Regular Verbs", duration: "50 min" },
-            { title: "Sentence Structure Basics", duration: "45 min" },
-            { title: "Articles (der, die, das)", duration: "55 min", isFreePreview: true },
-            { title: "Negation (nicht, kein)", duration: "40 min" },
-          ]
-        },
-        {
-          title: "Module 4: Practical Communication",
-          lessons: [
-            { title: "Asking Questions", duration: "45 min" },
-            { title: "Directions & Locations", duration: "50 min" },
-            { title: "Hobbies & Free Time", duration: "40 min" },
-            { title: "Weather & Seasons", duration: "35 min" },
-          ]
-        },
-        {
-          title: "Module 5: Exam Preparation",
-          lessons: [
-            { title: "Review & Practice", duration: "60 min" },
-            { title: "Goethe A1 Exam Format", duration: "45 min" },
-            { title: "Mock Test & Feedback", duration: "90 min" },
+            { title: "A1.2 Review", duration: "50 min" },
+            { title: "Practice Tests", duration: "60 min" },
           ]
         }
       ],
-      price: "₹15,000",
-      originalPrice: "₹20,000"
+      price: "€89",
+      originalPrice: "€120"
     },
-    a2: {
-      title: "A2 - Elementary Level",
-      duration: "10-12 weeks",
-      description: "Build on your foundation with more complex grammar structures and everyday conversation skills.",
+    "a2.1": {
+      title: "A2.1 - Elementary Level (Part 1)",
+      duration: "5-6 weeks",
+      description: "Build on your A1 foundation with past tenses and more complex conversation skills.",
       transformations: [
-        "Share stories about your weekend in German",
-        "Handle everyday situations like doctor appointments",
-        "Write emails to colleagues or friends in German",
-        "Understand German movies with subtitles",
-        "Participate in casual conversations with natives"
+        "Tell stories about your past experiences",
+        "Describe events that happened yesterday",
+        "Make comparisons between things",
+        "Express abilities and permissions",
+        "Write emails to friends in German"
       ],
       outcomes: [
-        "Communicate in routine tasks",
-        "Describe your background and immediate environment",
-        "Express needs and talk about experiences",
-        "Understand texts about familiar topics",
-        "Write simple connected texts",
+        "Master Perfekt tense (past tense)",
+        "Use modal verbs confidently",
+        "Compare objects and people",
+        "Understand longer conversations",
+        "Write structured paragraphs",
       ],
       modules: [
         {
-          title: "Module 1: Past Tenses",
+          title: "Module 1: Past Tense - Perfekt",
           lessons: [
-            { title: "Perfekt Tense Introduction", duration: "50 min", isFreePreview: true },
-            { title: "Irregular Verbs in Perfekt", duration: "55 min" },
-            { title: "Storytelling Techniques", duration: "45 min" },
-            { title: "Past Tense Practice", duration: "50 min" },
+            { title: "Perfekt with haben", duration: "50 min", isFreePreview: true },
+            { title: "Perfekt with sein", duration: "50 min" },
+            { title: "Irregular Past Participles", duration: "45 min" },
+            { title: "Storytelling Practice", duration: "40 min" },
           ]
         },
         {
           title: "Module 2: Modal Verbs",
           lessons: [
-            { title: "Modal Verbs Overview", duration: "45 min" },
-            { title: "Expressing Abilities & Permissions", duration: "40 min" },
-            { title: "Making Suggestions & Requests", duration: "45 min" },
+            { title: "können, müssen, dürfen", duration: "45 min" },
+            { title: "wollen, sollen, mögen", duration: "45 min" },
+            { title: "Modal Verbs in Sentences", duration: "40 min" },
           ]
         },
         {
           title: "Module 3: Comparisons",
           lessons: [
-            { title: "Comparative Adjectives", duration: "45 min" },
+            { title: "Comparative Forms", duration: "45 min", isFreePreview: true },
             { title: "Superlative Forms", duration: "40 min" },
-            { title: "Making Comparisons in Conversations", duration: "50 min", isFreePreview: true },
+            { title: "Making Comparisons", duration: "40 min" },
           ]
         },
         {
-          title: "Module 4: Expanded Vocabulary",
+          title: "Module 4: Vocabulary Expansion",
           lessons: [
-            { title: "Health & Body", duration: "40 min" },
+            { title: "Health & Body Parts", duration: "40 min" },
             { title: "Travel & Transportation", duration: "45 min" },
-            { title: "Work & Professions", duration: "50 min" },
-            { title: "Idiomatic Expressions", duration: "45 min" },
-          ]
-        },
-        {
-          title: "Module 5: Exam Preparation",
-          lessons: [
-            { title: "Comprehensive Review", duration: "60 min" },
-            { title: "A2 Exam Strategies", duration: "45 min" },
-            { title: "Full Mock Exam", duration: "120 min" },
           ]
         }
       ],
-      price: "₹18,000",
-      originalPrice: "₹24,000"
+      price: "€99",
+      originalPrice: "€135"
     },
-    b1: {
-      title: "B1 - Intermediate Level",
-      duration: "12-14 weeks",
-      description: "Gain confidence in expressing opinions and handling various situations independently in German.",
+    "a2.2": {
+      title: "A2.2 - Elementary Level (Part 2)",
+      duration: "5-6 weeks",
+      description: "Complete your elementary level with dative case and more advanced communication skills.",
       transformations: [
-        "Handle job interviews entirely in German",
-        "Write professional emails and reports",
-        "Participate in work meetings with German colleagues",
-        "Debate topics and express complex opinions",
-        "Travel through Germany without language barriers"
+        "Handle doctor appointments in German",
+        "Give advice and make suggestions",
+        "Describe locations precisely",
+        "Understand German TV shows with subtitles",
+        "Write formal and informal emails"
       ],
       outcomes: [
-        "Handle most travel situations in German-speaking areas",
-        "Produce simple connected text on familiar topics",
-        "Describe experiences, events, dreams, and ambitions",
-        "Give reasons and explanations for opinions",
-        "Understand the main points of clear standard input",
+        "Use dative case correctly",
+        "Master Präteritum tense",
+        "Use two-way prepositions",
+        "Express opinions and preferences",
+        "Understand main ideas in texts",
       ],
       modules: [
         {
-          title: "Module 1: All Past Tenses",
+          title: "Module 1: Dative Case",
           lessons: [
-            { title: "Präteritum vs Perfekt", duration: "50 min", isFreePreview: true },
-            { title: "Plusquamperfekt", duration: "45 min" },
-            { title: "Narrative Writing", duration: "55 min" },
+            { title: "Dative Articles & Pronouns", duration: "50 min", isFreePreview: true },
+            { title: "Dative Verbs", duration: "45 min" },
+            { title: "Dative Prepositions", duration: "45 min" },
+          ]
+        },
+        {
+          title: "Module 2: Past Tense - Präteritum",
+          lessons: [
+            { title: "Präteritum Regular Verbs", duration: "45 min" },
+            { title: "Präteritum Irregular Verbs", duration: "50 min" },
+            { title: "When to use Perfekt vs Präteritum", duration: "40 min" },
+          ]
+        },
+        {
+          title: "Module 3: Two-Way Prepositions",
+          lessons: [
+            { title: "Accusative vs Dative with Prepositions", duration: "50 min", isFreePreview: true },
+            { title: "Location Descriptions", duration: "45 min" },
+          ]
+        },
+        {
+          title: "Module 4: Exam Preparation",
+          lessons: [
+            { title: "A2 Complete Review", duration: "60 min" },
+            { title: "Mock A2 Exam", duration: "90 min" },
+          ]
+        }
+      ],
+      price: "€99",
+      originalPrice: "€135"
+    },
+    "b1.1": {
+      title: "B1.1 - Intermediate Level (Part 1)",
+      duration: "6-7 weeks",
+      description: "Transition to intermediate German with subjunctive mood and complex sentence structures.",
+      transformations: [
+        "Express wishes and hypothetical situations",
+        "Participate in debates and discussions",
+        "Write detailed reports and essays",
+        "Understand news articles in German",
+        "Handle job interview conversations"
+      ],
+      outcomes: [
+        "Master Konjunktiv II (subjunctive)",
+        "Use relative clauses correctly",
+        "Master Plusquamperfekt tense",
+        "Express hypothetical scenarios",
+        "Produce detailed connected text",
+      ],
+      modules: [
+        {
+          title: "Module 1: Advanced Past Tenses",
+          lessons: [
+            { title: "Plusquamperfekt (Past Perfect)", duration: "50 min", isFreePreview: true },
+            { title: "All Past Tenses Review", duration: "45 min" },
+            { title: "Narrative Writing", duration: "50 min" },
           ]
         },
         {
           title: "Module 2: Subjunctive Mood",
           lessons: [
-            { title: "Konjunktiv II Introduction", duration: "50 min" },
+            { title: "Konjunktiv II - Formation", duration: "50 min" },
             { title: "Polite Requests & Wishes", duration: "45 min" },
             { title: "Hypothetical Situations", duration: "50 min" },
           ]
         },
         {
-          title: "Module 3: Complex Sentences",
+          title: "Module 3: Relative Clauses",
           lessons: [
-            { title: "Relative Clauses", duration: "55 min", isFreePreview: true },
-            { title: "Conjunctions & Sentence Connectors", duration: "50 min" },
-            { title: "Word Order in Complex Sentences", duration: "45 min" },
+            { title: "Relative Pronouns", duration: "50 min", isFreePreview: true },
+            { title: "Relative Clauses in All Cases", duration: "55 min" },
           ]
         },
         {
-          title: "Module 4: Fluency Development",
+          title: "Module 4: Advanced Vocabulary",
           lessons: [
-            { title: "Debate & Discussion Skills", duration: "60 min" },
-            { title: "Presentation Techniques", duration: "55 min" },
-            { title: "Conversational Strategies", duration: "50 min" },
-          ]
-        },
-        {
-          title: "Module 5: Exam Preparation",
-          lessons: [
-            { title: "B1 Writing Tasks", duration: "60 min" },
-            { title: "Speaking Exam Practice", duration: "55 min" },
-            { title: "Full Mock Examination", duration: "150 min" },
+            { title: "Work & Professions", duration: "45 min" },
+            { title: "Current Events & Politics", duration: "50 min" },
           ]
         }
       ],
-      price: "₹22,000",
-      originalPrice: "₹30,000"
+      price: "€109",
+      originalPrice: "€150"
     },
-    b2: {
-      title: "B2 - Upper Intermediate Level",
-      duration: "14-16 weeks",
-      description: "Master advanced grammar and communicate effectively on a wide range of complex topics.",
+    "b1.2": {
+      title: "B1.2 - Intermediate Level (Part 2)",
+      duration: "6-7 weeks",
+      description: "Complete your intermediate level with advanced conjunctions and fluency development.",
       transformations: [
-        "Participate in business meetings entirely in German",
-        "Write professional reports and presentations",
-        "Give speeches and presentations to German audiences",
-        "Understand news broadcasts and documentaries",
-        "Negotiate deals and handle client conversations in German"
+        "Give presentations in German",
+        "Negotiate and persuade in conversations",
+        "Write professional emails and letters",
+        "Understand podcasts and radio shows",
+        "Travel through Germany independently"
       ],
       outcomes: [
-        "Interact with native speakers fluently and spontaneously",
-        "Produce detailed text on a wide range of subjects",
-        "Explain viewpoints on topical issues",
-        "Understand complex texts and their implicit meanings",
-        "Use German confidently in professional settings",
+        "Use all conjunctions correctly",
+        "Master passive voice basics",
+        "Understand implicit meanings",
+        "Express complex ideas clearly",
+        "Handle most travel situations",
       ],
       modules: [
         {
-          title: "Module 1: Advanced Grammar",
+          title: "Module 1: Complex Conjunctions",
           lessons: [
-            { title: "Passive Voice - All Forms", duration: "55 min", isFreePreview: true },
-            { title: "Participle Constructions", duration: "50 min" },
-            { title: "Nominalization", duration: "45 min" },
+            { title: "Subordinating Conjunctions", duration: "50 min", isFreePreview: true },
+            { title: "Two-Part Conjunctions", duration: "45 min" },
+            { title: "Complex Sentence Building", duration: "50 min" },
           ]
         },
         {
-          title: "Module 2: Business German",
+          title: "Module 2: Passive Voice Introduction",
           lessons: [
-            { title: "Professional Email Writing", duration: "50 min" },
-            { title: "Meeting & Negotiation Language", duration: "55 min" },
-            { title: "Business Presentations", duration: "60 min" },
+            { title: "Passive Voice Present & Past", duration: "55 min" },
+            { title: "When to Use Passive", duration: "45 min" },
           ]
         },
         {
-          title: "Module 3: Cultural & Idiomatic German",
+          title: "Module 3: Fluency Development",
           lessons: [
-            { title: "Idiomatic Expressions", duration: "45 min", isFreePreview: true },
-            { title: "Cultural Nuances", duration: "50 min" },
-            { title: "Regional Variations", duration: "40 min" },
+            { title: "Debate Techniques", duration: "55 min", isFreePreview: true },
+            { title: "Presentation Skills", duration: "50 min" },
+            { title: "Advanced Conversation", duration: "50 min" },
           ]
         },
         {
-          title: "Module 4: Academic Skills",
+          title: "Module 4: Exam Preparation",
           lessons: [
-            { title: "Academic Writing", duration: "60 min" },
-            { title: "Critical Analysis", duration: "55 min" },
-            { title: "Research Presentations", duration: "50 min" },
-          ]
-        },
-        {
-          title: "Module 5: Exam Preparation",
-          lessons: [
-            { title: "B2 Exam Overview", duration: "45 min" },
-            { title: "Writing & Speaking Practice", duration: "90 min" },
-            { title: "Comprehensive Mock Test", duration: "180 min" },
+            { title: "B1 Complete Review", duration: "60 min" },
+            { title: "B1 Mock Examination", duration: "120 min" },
           ]
         }
       ],
-      price: "₹26,000",
-      originalPrice: "₹35,000"
+      price: "€109",
+      originalPrice: "€150"
+    },
+    "b2.1": {
+      title: "B2.1 - Upper Intermediate Level (Part 1)",
+      duration: "7-8 weeks",
+      description: "Master advanced grammar structures and develop professional communication skills.",
+      transformations: [
+        "Participate in business meetings fluently",
+        "Write professional reports and articles",
+        "Understand German news broadcasts",
+        "Discuss abstract and complex topics",
+        "Use German in academic settings"
+      ],
+      outcomes: [
+        "Master all passive voice forms",
+        "Use participle constructions",
+        "Understand nominalization",
+        "Interact with natives spontaneously",
+        "Produce detailed formal text",
+      ],
+      modules: [
+        {
+          title: "Module 1: Advanced Passive",
+          lessons: [
+            { title: "Passive with Modals", duration: "55 min", isFreePreview: true },
+            { title: "Subjective Passive", duration: "50 min" },
+            { title: "Passive Alternatives", duration: "45 min" },
+          ]
+        },
+        {
+          title: "Module 2: Participle Constructions",
+          lessons: [
+            { title: "Extended Participle Phrases", duration: "50 min" },
+            { title: "Participles as Adjectives", duration: "45 min" },
+            { title: "Academic Writing Style", duration: "50 min" },
+          ]
+        },
+        {
+          title: "Module 3: Business German",
+          lessons: [
+            { title: "Professional Email Writing", duration: "50 min", isFreePreview: true },
+            { title: "Meeting Language", duration: "55 min" },
+            { title: "Negotiations & Agreements", duration: "50 min" },
+          ]
+        },
+        {
+          title: "Module 4: Advanced Expression",
+          lessons: [
+            { title: "Nominalization Techniques", duration: "50 min" },
+            { title: "Formal vs Informal Register", duration: "45 min" },
+          ]
+        }
+      ],
+      price: "€119",
+      originalPrice: "€165"
+    },
+    "b2.2": {
+      title: "B2.2 - Upper Intermediate Level (Part 2)",
+      duration: "7-8 weeks",
+      description: "Perfect your German with idioms, cultural nuances, and exam preparation for B2 certification.",
+      transformations: [
+        "Give speeches and presentations professionally",
+        "Write research papers in German",
+        "Understand movies without subtitles",
+        "Debate complex social issues",
+        "Use German confidently in any situation"
+      ],
+      outcomes: [
+        "Master idiomatic expressions",
+        "Understand regional variations",
+        "Use advanced conjunctions naturally",
+        "Analyze complex texts critically",
+        "Achieve near-native fluency",
+      ],
+      modules: [
+        {
+          title: "Module 1: Idiomatic German",
+          lessons: [
+            { title: "Common Idioms & Phrases", duration: "50 min", isFreePreview: true },
+            { title: "Regional Expressions", duration: "45 min" },
+            { title: "Cultural Nuances", duration: "45 min" },
+          ]
+        },
+        {
+          title: "Module 2: Academic Skills",
+          lessons: [
+            { title: "Academic Writing", duration: "60 min" },
+            { title: "Critical Analysis", duration: "55 min" },
+            { title: "Research & Citations", duration: "50 min" },
+          ]
+        },
+        {
+          title: "Module 3: Professional Presentations",
+          lessons: [
+            { title: "Presentation Structure", duration: "55 min", isFreePreview: true },
+            { title: "Visual Aids & Delivery", duration: "50 min" },
+            { title: "Q&A Handling", duration: "45 min" },
+          ]
+        },
+        {
+          title: "Module 4: B2 Exam Preparation",
+          lessons: [
+            { title: "B2 Exam Overview", duration: "50 min" },
+            { title: "Writing & Speaking Strategies", duration: "90 min" },
+            { title: "Full B2 Mock Exam", duration: "180 min" },
+          ]
+        }
+      ],
+      price: "€119",
+      originalPrice: "€165"
     },
   };
 
-  const course = courseData[level?.toLowerCase() || 'a1'];
+  const course = courseData[level?.toLowerCase() || 'a1.1'];
 
   if (!course) {
     return (

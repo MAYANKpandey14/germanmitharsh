@@ -6,55 +6,115 @@ import { CheckCircle2, Clock, Users, Video } from "lucide-react";
 const CoursesOverview = () => {
   const courses = [
     {
-      level: "A1",
-      title: "Beginner Level",
-      duration: "8-10 weeks",
-      description: "Perfect for absolute beginners. Learn basic grammar, vocabulary, and conversational skills.",
+      level: "A1.1",
+      title: "Beginner (Part 1)",
+      duration: "4-5 weeks",
+      price: "€89",
+      description: "Start from absolute zero. Master alphabet, basic greetings, and present tense.",
       topics: [
-        "Basic greetings and introductions",
-        "Numbers, dates, and time",
-        "Present tense verbs",
-        "Essential vocabulary (family, food, hobbies)",
-        "Simple sentence construction",
+        "German alphabet & pronunciation",
+        "Basic greetings & introductions",
+        "Personal pronouns & verb 'sein'",
+        "Numbers, time, days of week",
+        "Regular present tense verbs",
       ],
     },
     {
-      level: "A2",
-      title: "Elementary Level",
-      duration: "10-12 weeks",
-      description: "Build on your foundation with more complex grammar and everyday conversations.",
+      level: "A1.2",
+      title: "Beginner (Part 2)",
+      duration: "4-5 weeks",
+      price: "€89",
+      description: "Complete your beginner foundation with accusative case and irregular verbs.",
       topics: [
-        "Past tense (Perfekt & Präteritum)",
-        "Comparative and superlative adjectives",
-        "Modal verbs",
-        "Expanded vocabulary",
-        "Short paragraph writing",
+        "Irregular verbs & separable verbs",
+        "Accusative case & articles",
+        "Modal verbs introduction",
+        "Family, hobbies, shopping vocabulary",
+        "Simple paragraph writing",
       ],
     },
     {
-      level: "B1",
-      title: "Intermediate Level",
-      duration: "12-14 weeks",
-      description: "Gain confidence in expressing opinions and handling everyday situations independently.",
+      level: "A2.1",
+      title: "Elementary (Part 1)",
+      duration: "5-6 weeks",
+      price: "€99",
+      description: "Build on A1 with past tenses and more complex conversations.",
       topics: [
-        "All past tenses",
-        "Subjunctive mood (Konjunktiv II)",
+        "Perfekt tense (past tense)",
+        "Modal verbs mastery",
+        "Comparative & superlative",
+        "Health & travel vocabulary",
+        "Storytelling skills",
+      ],
+    },
+    {
+      level: "A2.2",
+      title: "Elementary (Part 2)",
+      duration: "5-6 weeks",
+      price: "€99",
+      description: "Complete elementary level with dative case and Präteritum.",
+      topics: [
+        "Dative case & prepositions",
+        "Präteritum tense",
+        "Two-way prepositions",
+        "Email writing skills",
+        "A2 exam preparation",
+      ],
+    },
+    {
+      level: "B1.1",
+      title: "Intermediate (Part 1)",
+      duration: "6-7 weeks",
+      price: "€109",
+      description: "Transition to intermediate with subjunctive and relative clauses.",
+      topics: [
+        "Plusquamperfekt & all past tenses",
+        "Konjunktiv II (subjunctive)",
         "Relative clauses",
-        "Complex sentence structures",
-        "Fluent conversation practice",
+        "Hypothetical situations",
+        "Advanced conversation",
       ],
     },
     {
-      level: "B2",
-      title: "Upper Intermediate",
-      duration: "14-16 weeks",
-      description: "Master advanced grammar and communicate effectively on complex topics.",
+      level: "B1.2",
+      title: "Intermediate (Part 2)",
+      duration: "6-7 weeks",
+      price: "€109",
+      description: "Complete intermediate with complex sentences and passive voice.",
       topics: [
-        "Passive voice",
-        "Advanced conjunctions",
+        "Complex conjunctions",
+        "Passive voice basics",
+        "Debate & presentation skills",
+        "Professional communication",
+        "B1 exam preparation",
+      ],
+    },
+    {
+      level: "B2.1",
+      title: "Upper Intermediate (Part 1)",
+      duration: "7-8 weeks",
+      price: "€119",
+      description: "Master advanced grammar and professional German.",
+      topics: [
+        "Advanced passive constructions",
+        "Participle constructions",
+        "Business German",
+        "Nominalization",
+        "Academic writing",
+      ],
+    },
+    {
+      level: "B2.2",
+      title: "Upper Intermediate (Part 2)",
+      duration: "7-8 weeks",
+      price: "€119",
+      description: "Perfect your German with idioms and exam preparation.",
+      topics: [
         "Idiomatic expressions",
-        "Business German basics",
-        "Advanced writing skills",
+        "Regional variations",
+        "Academic research skills",
+        "Professional presentations",
+        "B2 certification prep",
       ],
     },
   ];
@@ -91,10 +151,13 @@ const CoursesOverview = () => {
                       {course.title}
                     </CardTitle>
                   </div>
-                  <div className="flex flex-col gap-2">
+                  <div className="flex flex-col gap-2 items-end">
                     <div className="flex items-center text-muted-foreground">
                       <Clock className="w-4 h-4 mr-2" />
                       <span className="text-sm">{course.duration}</span>
+                    </div>
+                    <div className="text-2xl font-bold text-primary">
+                      {course.price}
                     </div>
                     <Button asChild className="bg-primary hover:bg-primary/90">
                       <Link to={`/course/${course.level.toLowerCase()}`}>

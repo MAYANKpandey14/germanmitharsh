@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
+import FAQ from "@/components/FAQ";
 const Contact = () => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
@@ -173,14 +174,17 @@ const Contact = () => {
           </Card>
 
           {/* FAQ Link */}
-          <div className="text-center text-muted-foreground">
+          <div className="text-center text-muted-foreground mb-8">
             <p>
               Looking for quick answers?{" "}
-              <a href="/courses" className="text-primary hover:underline font-medium">
+              <span className="text-primary font-medium">
                 Check out our FAQ section
-              </a>
+              </span>
             </p>
           </div>
+
+          {/* FAQ Component */}
+          <FAQ />
         </div>
       </div>
     </div>

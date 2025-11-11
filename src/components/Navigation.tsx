@@ -29,19 +29,43 @@ const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={cn(
-                  "text-sm font-medium transition-colors hover:text-primary",
-                  isActive(link.path) ? "text-primary" : "text-muted-foreground",
-                )}
-              >
-                {link.name}
-              </Link>
-            ))}
+            <Link
+              to="/"
+              className={cn(
+                "text-sm font-medium transition-colors hover:text-primary",
+                isActive("/") ? "text-primary" : "text-muted-foreground",
+              )}
+            >
+              Home
+            </Link>
+            <Link
+              to="/about"
+              className={cn(
+                "text-sm font-medium transition-colors hover:text-primary",
+                isActive("/about") ? "text-primary" : "text-muted-foreground",
+              )}
+            >
+              About Harsh
+            </Link>
+            <Link
+              to="/student-results"
+              className={cn(
+                "text-sm font-medium transition-colors hover:text-primary",
+                isActive("/student-results") ? "text-primary" : "text-muted-foreground",
+              )}
+            >
+              Student Results
+            </Link>
             <NavDropdown />
+            <Link
+              to="/contact"
+              className={cn(
+                "text-sm font-medium transition-colors hover:text-primary",
+                isActive("/contact") ? "text-primary" : "text-muted-foreground",
+              )}
+            >
+              Contact
+            </Link>
             <Button asChild variant="cta">
               <Link to="/enroll">Enroll Now</Link>
             </Button>
@@ -56,25 +80,52 @@ const Navigation = () => {
         {/* Mobile Navigation */}
         {isOpen && (
           <div className="md:hidden py-4 space-y-3 animate-fade-in">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                onClick={() => setIsOpen(false)}
-                className={cn(
-                  "block py-2 text-sm font-medium transition-colors",
-                  isActive(link.path) ? "text-primary" : "text-muted-foreground",
-                )}
-              >
-                {link.name}
-              </Link>
-            ))}
+            <Link
+              to="/"
+              onClick={() => setIsOpen(false)}
+              className={cn(
+                "block py-2 text-sm font-medium transition-colors",
+                isActive("/") ? "text-primary" : "text-muted-foreground",
+              )}
+            >
+              Home
+            </Link>
+            <Link
+              to="/about"
+              onClick={() => setIsOpen(false)}
+              className={cn(
+                "block py-2 text-sm font-medium transition-colors",
+                isActive("/about") ? "text-primary" : "text-muted-foreground",
+              )}
+            >
+              About Harsh
+            </Link>
+            <Link
+              to="/student-results"
+              onClick={() => setIsOpen(false)}
+              className={cn(
+                "block py-2 text-sm font-medium transition-colors",
+                isActive("/student-results") ? "text-primary" : "text-muted-foreground",
+              )}
+            >
+              Student Results
+            </Link>
             <Link
               to="/courses"
               onClick={() => setIsOpen(false)}
               className="block py-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
             >
               Courses
+            </Link>
+            <Link
+              to="/contact"
+              onClick={() => setIsOpen(false)}
+              className={cn(
+                "block py-2 text-sm font-medium transition-colors",
+                isActive("/contact") ? "text-primary" : "text-muted-foreground",
+              )}
+            >
+              Contact
             </Link>
             <Button asChild variant="cta" className="w-full">
               <Link to="/enroll" onClick={() => setIsOpen(false)}>
