@@ -6,20 +6,20 @@ import { Star, Quote, Play } from "lucide-react";
 const Testimonials = () => {
   const videoTestimonials = [
     {
-      name: "Twinkle's Review",
-      level: "German Course Graduate",
+      name: "Aayush and Piyush's Review",
+      level: "A1-A2 Course",
       youtubeId: "bxZwKpjxU9I",
       thumbnail: "https://img.youtube.com/vi/bxZwKpjxU9I/maxresdefault.jpg"
     },
     {
-      name: "Aayush and Piyush's Review",
+      name: "A1-B1 Course",
       level: "German Course Graduate",
       youtubeId: "b41-3Xa3_MY",
       thumbnail: "https://img.youtube.com/vi/b41-3Xa3_MY/maxresdefault.jpg"
     },
     {
       name: "Aaditya's Review",
-      level: "German Course Graduate",
+      level: "A1-B1 Course",
       youtubeId: "zBQ-aqc7aqo",
       thumbnail: "https://img.youtube.com/vi/zBQ-aqc7aqo/maxresdefault.jpg"
     }
