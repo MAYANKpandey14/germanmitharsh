@@ -13,7 +13,7 @@ const About = () => {
     },
     {
       icon: BookOpen,
-      title: "5+ Years Experience",
+      title: "3+ Years Experience",
       description: "Extensive experience teaching all levels from A1 to B2",
     },
     {
@@ -32,17 +32,20 @@ const About = () => {
     {
       icon: Heart,
       title: "Personalized Approach",
-      description: "Every student learns differently. I adapt my teaching style to match your pace and learning preferences.",
+      description:
+        "Every student learns differently. I adapt my teaching style to match your pace and learning preferences.",
     },
     {
       icon: TrendingUp,
       title: "Focus on Results",
-      description: "My goal is your success. Whether it's passing an exam or conversing confidently, I'm committed to your progress.",
+      description:
+        "My goal is your success. Whether it's passing an exam or conversing confidently, I'm committed to your progress.",
     },
     {
       icon: Users,
       title: "Student-Centric",
-      description: "Small batch sizes ensure individual attention. Your doubts, questions, and concerns are always prioritized.",
+      description:
+        "Small batch sizes ensure individual attention. Your doubts, questions, and concerns are always prioritized.",
     },
   ];
 
@@ -57,12 +60,14 @@ const About = () => {
                 Meet <span className="text-gradient">Harsh</span>
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground mb-4 md:mb-6">
-                Your dedicated German language instructor with a passion for helping students achieve fluency and confidence.
+                Your dedicated German language instructor with a passion for helping students achieve fluency and
+                confidence.
               </p>
               <p className="text-muted-foreground mb-8">
-                With over 5 years of teaching experience and having worked at prestigious institutes like Language Pantheon, 
-                I've developed a teaching methodology that combines structure, flexibility, and real-world application. 
-                My approach focuses on building strong fundamentals while keeping lessons engaging and practical.
+                With over 5 years of teaching experience and having worked at prestigious institutes like Language
+                Pantheon, I've developed a teaching methodology that combines structure, flexibility, and real-world
+                application. My approach focuses on building strong fundamentals while keeping lessons engaging and
+                practical.
               </p>
               <Button asChild size="lg" className="bg-accent hover:bg-accent/90 hover-scale">
                 <Link to="/enroll">Start Learning with Harsh</Link>
@@ -70,9 +75,9 @@ const About = () => {
             </div>
             <div className="relative">
               <div className="aspect-[3/4] rounded-2xl overflow-hidden border-4 border-primary/20 shadow-2xl">
-                <img 
+                <img
                   src={instructorPortrait}
-                  alt="Harsh - German Language Instructor" 
+                  alt="Harsh - German Language Instructor"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -91,7 +96,7 @@ const About = () => {
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {credentials.map((credential, index) => (
-              <Card 
+              <Card
                 key={index}
                 className="hover-lift text-center animate-fade-in"
                 style={{ animationDelay: `${index * 100}ms` }}
@@ -100,12 +105,8 @@ const About = () => {
                   <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 text-primary mb-4">
                     <credential.icon size={32} />
                   </div>
-                  <h3 className="font-heading font-semibold mb-2">
-                    {credential.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    {credential.description}
-                  </p>
+                  <h3 className="font-heading font-semibold mb-2">{credential.title}</h3>
+                  <p className="text-sm text-muted-foreground">{credential.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -121,19 +122,18 @@ const About = () => {
               </h2>
               <div className="space-y-6 text-muted-foreground">
                 <p className="text-lg">
-                  Learning a new language is a journey, not a destination. My teaching philosophy centers on 
-                  creating a supportive, engaging environment where students feel comfortable making mistakes 
-                  and asking questions.
+                  Learning a new language is a journey, not a destination. My teaching philosophy centers on creating a
+                  supportive, engaging environment where students feel comfortable making mistakes and asking questions.
                 </p>
                 <p>
-                  I believe in a balanced approach that emphasizes all four language skills - reading, writing, 
-                  listening, and speaking. Grammar is important, but it's equally crucial to develop practical 
+                  I believe in a balanced approach that emphasizes all four language skills - reading, writing,
+                  listening, and speaking. Grammar is important, but it's equally crucial to develop practical
                   communication skills that you can use in real-world situations.
                 </p>
                 <p>
-                  Having taught at premier institutes and worked with diverse students, I understand that everyone 
-                  has unique goals and challenges. That's why I offer personalized attention and adapt my teaching 
-                  methods to suit individual learning styles.
+                  Having taught at premier institutes and worked with diverse students, I understand that everyone has
+                  unique goals and challenges. That's why I offer personalized attention and adapt my teaching methods
+                  to suit individual learning styles.
                 </p>
               </div>
             </CardContent>
@@ -147,21 +147,13 @@ const About = () => {
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             {values.map((value, index) => (
-              <Card 
-                key={index}
-                className="hover-lift animate-fade-in"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
+              <Card key={index} className="hover-lift animate-fade-in" style={{ animationDelay: `${index * 100}ms` }}>
                 <CardContent className="p-8 text-center">
                   <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 text-primary mb-4">
                     <value.icon size={32} />
                   </div>
-                  <h3 className="text-xl font-heading font-semibold mb-3">
-                    {value.title}
-                  </h3>
-                  <p className="text-muted-foreground">
-                    {value.description}
-                  </p>
+                  <h3 className="text-xl font-heading font-semibold mb-3">{value.title}</h3>
+                  <p className="text-muted-foreground">{value.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -176,14 +168,19 @@ const About = () => {
                 Let's Start Your German Journey Together
               </h2>
               <p className="text-xl text-white/90 mb-8">
-                Whether you're a complete beginner or looking to advance your skills, 
-                I'm here to guide you every step of the way.
+                Whether you're a complete beginner or looking to advance your skills, I'm here to guide you every step
+                of the way.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground hover-scale">
                   <Link to="/enroll">Book Free Consultation</Link>
                 </Button>
-                <Button asChild size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm border-white text-white hover:bg-white/20">
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="bg-white/10 backdrop-blur-sm border-white text-white hover:bg-white/20"
+                >
                   <Link to="/courses">View Courses</Link>
                 </Button>
               </div>
