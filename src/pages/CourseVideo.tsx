@@ -510,12 +510,14 @@ const CourseVideo = () => {
                   <div className="text-sm text-muted-foreground line-through mb-1">
                     {course.originalPrice}
                   </div>
-                  <div className="text-3xl font-bold text-primary">
-                    {course.price}
+                  <div className="flex items-center justify-end gap-2">
+                    <div className="text-3xl font-bold text-primary">
+                      {course.price}
+                    </div>
+                    <Badge variant="secondary" className="bg-accent/10 text-accent border-accent/20">
+                      Limited Offer
+                    </Badge>
                   </div>
-                  <Badge variant="secondary" className="mt-2 bg-accent/10 text-accent border-accent/20">
-                    Limited Offer
-                  </Badge>
                 </div>
               </div>
             </div>
@@ -527,16 +529,18 @@ const CourseVideo = () => {
             <div className="md:hidden mt-6 p-4 bg-muted/50 rounded-lg border border-border">
               <div className="flex items-center justify-between">
                 <div>
-                  <div className="text-sm text-muted-foreground line-through">
+                  <div className="text-sm text-muted-foreground line-through mb-1">
                     {course.originalPrice}
                   </div>
-                  <div className="text-2xl font-bold text-primary">
-                    {course.price}
+                  <div className="flex items-center gap-2">
+                    <div className="text-2xl font-bold text-primary">
+                      {course.price}
+                    </div>
+                    <Badge variant="secondary" className="bg-accent/10 text-accent border-accent/20">
+                      Limited Offer
+                    </Badge>
                   </div>
                 </div>
-                <Badge variant="secondary" className="bg-accent/10 text-accent border-accent/20">
-                  Limited Offer
-                </Badge>
               </div>
             </div>
 
