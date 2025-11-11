@@ -99,10 +99,14 @@ const Enroll = () => {
                       <SelectValue placeholder="Select your level" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="a1">A1 - Complete Beginner</SelectItem>
-                      <SelectItem value="a2">A2 - Elementary</SelectItem>
-                      <SelectItem value="b1">B1 - Intermediate</SelectItem>
-                      <SelectItem value="b2">B2 - Upper Intermediate</SelectItem>
+                      <SelectItem value="a1.1">A1.1 - Beginner (Part 1)</SelectItem>
+                      <SelectItem value="a1.2">A1.2 - Beginner (Part 2)</SelectItem>
+                      <SelectItem value="a2.1">A2.1 - Elementary (Part 1)</SelectItem>
+                      <SelectItem value="a2.2">A2.2 - Elementary (Part 2)</SelectItem>
+                      <SelectItem value="b1.1">B1.1 - Intermediate (Part 1)</SelectItem>
+                      <SelectItem value="b1.2">B1.2 - Intermediate (Part 2)</SelectItem>
+                      <SelectItem value="b2.1">B2.1 - Upper Intermediate (Part 1)</SelectItem>
+                      <SelectItem value="b2.2">B2.2 - Upper Intermediate (Part 2)</SelectItem>
                       <SelectItem value="unsure">Not Sure - Need Guidance</SelectItem>
                     </SelectContent>
                   </Select>

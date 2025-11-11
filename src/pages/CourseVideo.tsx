@@ -467,6 +467,16 @@ const CourseVideo = () => {
   };
 
   const course = courseData[level?.toLowerCase() || 'a1.1'];
+  
+  // Calculate discount percentage
+  const calculateDiscount = (original: string, current: string) => {
+    const originalNum = parseFloat(original.replace('€', ''));
+    const currentNum = parseFloat(current.replace('€', ''));
+    return Math.round(((originalNum - currentNum) / originalNum) * 100);
+  };
+
+  // Check if this level should show video preview
+  const showVideoPreview = ['a1.1', 'a2.1', 'b1.1'].includes(level?.toLowerCase() || '');
 
   if (!course) {
     return (
@@ -507,8 +517,13 @@ const CourseVideo = () => {
                   </p>
                 </div>
                 <div className="hidden md:block text-right">
-                  <div className="text-sm text-muted-foreground line-through mb-1">
-                    {course.originalPrice}
+                  <div className="flex items-center justify-end gap-2 mb-1">
+                    <div className="text-sm text-muted-foreground line-through">
+                      {course.originalPrice}
+                    </div>
+                    <Badge variant="secondary" className="bg-red-100 text-red-600 dark:bg-red-900/20 dark:text-red-400 text-xs whitespace-nowrap px-2 py-0.5">
+                      {calculateDiscount(course.originalPrice, course.price)}% OFF
+                    </Badge>
                   </div>
                   <div className="flex items-center justify-end gap-2">
                     <div className="text-3xl font-bold text-primary">
@@ -522,24 +537,27 @@ const CourseVideo = () => {
               </div>
             </div>
 
-            {/* Video Player */}
-            <VideoPlayer title={`${course.title} Preview`} />
+            {/* Video Player - Only for A1.1, A2.1, B1.1 */}
+            {showVideoPreview && <VideoPlayer title={`${course.title} Preview`} />}
 
             {/* Pricing for Mobile */}
             <div className="md:hidden mt-6 p-4 bg-muted/50 rounded-lg border border-border">
-              <div className="flex items-center justify-between">
-                <div>
-                  <div className="text-sm text-muted-foreground line-through mb-1">
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="text-sm text-muted-foreground line-through">
                     {course.originalPrice}
                   </div>
-                  <div className="flex items-center gap-2">
-                    <div className="text-2xl font-bold text-primary">
-                      {course.price}
-                    </div>
-                    <Badge variant="secondary" className="bg-accent/10 text-accent border-accent/20 text-xs whitespace-nowrap px-2 py-0.5">
-                      Limited Offer
-                    </Badge>
+                  <Badge variant="secondary" className="bg-red-100 text-red-600 dark:bg-red-900/20 dark:text-red-400 text-xs whitespace-nowrap px-2 py-0.5">
+                    {calculateDiscount(course.originalPrice, course.price)}% OFF
+                  </Badge>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="text-2xl font-bold text-primary">
+                    {course.price}
                   </div>
+                  <Badge variant="secondary" className="bg-accent/10 text-accent border-accent/20 text-xs whitespace-nowrap px-2 py-0.5">
+                    Limited Offer
+                  </Badge>
                 </div>
               </div>
             </div>

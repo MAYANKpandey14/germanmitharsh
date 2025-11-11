@@ -1,9 +1,50 @@
+import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Star, Quote } from "lucide-react";
 
 const Testimonials = () => {
+  const [isPaused, setIsPaused] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const videoTestimonials = [
+    {
+      name: "Sarah Johnson",
+      level: "B2 Graduate",
+      youtubeId: "dQw4w9WgXcQ", // Replace with actual YouTube video ID
+      thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"
+    },
+    {
+      name: "Michael Chen",
+      level: "B1 Graduate",
+      youtubeId: "dQw4w9WgXcQ", // Replace with actual YouTube video ID
+      thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"
+    },
+    {
+      name: "Emma Schmidt",
+      level: "A2 Graduate",
+      youtubeId: "dQw4w9WgXcQ", // Replace with actual YouTube video ID
+      thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"
+    },
+    {
+      name: "David Kumar",
+      level: "B2 Graduate",
+      youtubeId: "dQw4w9WgXcQ", // Replace with actual YouTube video ID
+      thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"
+    }
+  ];
+
+  // Auto-scroll functionality
+  useEffect(() => {
+    if (!isPaused) {
+      const interval = setInterval(() => {
+        setCurrentIndex((prev) => (prev + 1) % videoTestimonials.length);
+      }, 3000); // Change slide every 3 seconds
+      return () => clearInterval(interval);
+    }
+  }, [isPaused, videoTestimonials.length]);
+
   const testimonials = [
     {
       name: "Priya Sharma",
@@ -70,6 +111,75 @@ const Testimonials = () => {
           </p>
         </div>
 
+        {/* Video Testimonials Slider - Moved to Top */}
+        <div className="max-w-6xl mx-auto mb-16 md:mb-20 animate-fade-in">
+          <h2 className="text-3xl md:text-4xl font-heading font-bold text-center mb-8 md:mb-12">
+            Video <span className="text-gradient">Testimonials</span>
+          </h2>
+          <div 
+            className="relative overflow-hidden"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+          >
+            <div 
+              className="flex transition-transform duration-500 ease-in-out gap-4 md:gap-6"
+              style={{ 
+                transform: `translateX(-${currentIndex * (100 / videoTestimonials.length)}%)`,
+              }}
+            >
+              {videoTestimonials.map((video, index) => (
+                <div 
+                  key={index}
+                  className="flex-shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-2"
+                >
+                  <Card className="overflow-hidden hover-lift border-2 border-transparent hover:border-primary/20">
+                    {/* 9:16 Portrait Aspect Ratio */}
+                    <div className="relative w-full" style={{ paddingBottom: '177.78%' }}>
+                      <a 
+                        href={`https://www.youtube.com/watch?v=${video.youtubeId}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="absolute inset-0"
+                      >
+                        <img 
+                          src={video.thumbnail}
+                          alt={`${video.name} testimonial`}
+                          className="absolute inset-0 w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-black/30 hover:bg-black/40 transition-colors flex items-center justify-center">
+                          <div className="w-16 h-16 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center">
+                            <div className="w-0 h-0 border-t-8 border-t-transparent border-l-12 border-l-primary border-b-8 border-b-transparent ml-1"></div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                    <CardContent className="p-4">
+                      <h3 className="font-semibold text-lg">{video.name}</h3>
+                      <p className="text-sm text-muted-foreground">{video.level}</p>
+                    </CardContent>
+                  </Card>
+                </div>
+              ))}
+            </div>
+            
+            {/* Navigation Dots */}
+            <div className="flex justify-center gap-2 mt-6">
+              {videoTestimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentIndex(index)}
+                  className={`w-2 h-2 rounded-full transition-all ${
+                    index === currentIndex 
+                      ? 'bg-primary w-8' 
+                      : 'bg-muted-foreground/30 hover:bg-muted-foreground/50'
+                  }`}
+                  aria-label={`Go to testimonial ${index + 1}`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+
         {/* Success Metrics */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-4xl mx-auto mb-12 md:mb-20">
           {successMetrics.map((metric, index) => (
@@ -129,26 +239,6 @@ const Testimonials = () => {
           ))}
         </div>
 
-        {/* Video Testimonials Placeholder */}
-        <div className="max-w-5xl mx-auto mb-20 animate-fade-in">
-          <h2 className="text-3xl font-heading font-bold text-center mb-8">
-            Video <span className="text-gradient">Testimonials</span>
-          </h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            {[1, 2].map((i) => (
-              <Card key={i} className="overflow-hidden">
-                <div className="aspect-video bg-gradient-to-br from-primary-dark to-primary flex items-center justify-center">
-                  <div className="text-center text-white">
-                    <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mx-auto mb-3">
-                      <div className="w-0 h-0 border-t-8 border-t-transparent border-l-12 border-l-white border-b-8 border-b-transparent ml-1"></div>
-                    </div>
-                    <p className="text-sm">Student Success Story #{i}</p>
-                  </div>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </div>
 
         {/* CTA Section */}
         <div className="max-w-4xl mx-auto text-center animate-fade-in">
