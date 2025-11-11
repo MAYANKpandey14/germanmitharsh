@@ -1,11 +1,5 @@
-import { useState } from "react";
 import { PlayCircle } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-} from "@/components/ui/dialog";
 
 interface VideoPlayerProps {
   videoId?: string;
@@ -14,8 +8,6 @@ interface VideoPlayerProps {
 }
 
 const VideoPlayer = ({ videoId, thumbnail, title }: VideoPlayerProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-
   if (!videoId) {
     return (
       <AspectRatio ratio={16 / 9} className="bg-muted rounded-lg overflow-hidden">
@@ -32,11 +24,17 @@ const VideoPlayer = ({ videoId, thumbnail, title }: VideoPlayerProps) => {
     );
   }
 
+  const youtubeUrl = `https://www.youtube.com/watch?v=${videoId}`;
   const thumbnailUrl = thumbnail || `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
 
   return (
-    <>
-      <AspectRatio ratio={16 / 9} className="bg-black rounded-lg overflow-hidden shadow-lg group cursor-pointer relative" onClick={() => setIsOpen(true)}>
+    <a 
+      href={youtubeUrl} 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="block"
+    >
+      <AspectRatio ratio={16 / 9} className="bg-black rounded-lg overflow-hidden shadow-lg group cursor-pointer relative">
         <img 
           src={thumbnailUrl} 
           alt={title || "Video thumbnail"} 
@@ -52,22 +50,7 @@ const VideoPlayer = ({ videoId, thumbnail, title }: VideoPlayerProps) => {
           </div>
         </div>
       </AspectRatio>
-
-      <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="max-w-5xl w-[95vw] p-0 bg-black border-none">
-          <DialogTitle className="sr-only">{title || "Course Video"}</DialogTitle>
-          <AspectRatio ratio={16 / 9} className="bg-black">
-            <iframe
-              src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
-              title={title || "Course Video"}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="w-full h-full"
-            />
-          </AspectRatio>
-        </DialogContent>
-      </Dialog>
-    </>
+    </a>
   );
 };
 
