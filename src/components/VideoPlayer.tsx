@@ -32,7 +32,7 @@ const VideoPlayer = ({ videoId, thumbnail, title }: VideoPlayerProps) => {
     );
   }
 
-  const thumbnailUrl = thumbnail || `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+  const thumbnailUrl = thumbnail || `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
 
   return (
     <>
@@ -41,6 +41,10 @@ const VideoPlayer = ({ videoId, thumbnail, title }: VideoPlayerProps) => {
           src={thumbnailUrl} 
           alt={title || "Video thumbnail"} 
           className="w-full h-full object-cover"
+          onError={(e) => {
+            // Fallback to standard quality if high quality fails
+            e.currentTarget.src = `https://img.youtube.com/vi/${videoId}/sddefault.jpg`;
+          }}
         />
         <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors flex items-center justify-center">
           <div className="bg-primary/90 rounded-full p-6 group-hover:scale-110 transition-transform">
