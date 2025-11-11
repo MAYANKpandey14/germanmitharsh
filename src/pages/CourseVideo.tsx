@@ -29,9 +29,11 @@ const CourseVideo = () => {
     }>;
     price: string;
     originalPrice: string;
+    videoId?: string;
   }> = {
     "a1.1": {
       title: "A1.1 - Beginner Level (Part 1)",
+      videoId: "wraIX-Jf0HQ",
       duration: "4-5 weeks",
       description: "Start your German journey from absolute zero. Perfect for complete beginners who have never studied German before.",
       transformations: [
@@ -143,6 +145,7 @@ const CourseVideo = () => {
     },
     "a2.1": {
       title: "A2.1 - Elementary Level (Part 1)",
+      videoId: "GmY5u44KRWo",
       duration: "5-6 weeks",
       description: "Build on your A1 foundation with past tenses and more complex conversation skills.",
       transformations: [
@@ -251,6 +254,7 @@ const CourseVideo = () => {
     },
     "b1.1": {
       title: "B1.1 - Intermediate Level (Part 1)",
+      videoId: "xsWwchIkdzk",
       duration: "6-7 weeks",
       description: "Transition to intermediate German with subjunctive mood and complex sentence structures.",
       transformations: [
@@ -357,6 +361,7 @@ const CourseVideo = () => {
     },
     "b2.1": {
       title: "B2.1 - Upper Intermediate Level (Part 1)",
+      videoId: "xsWwchIkdzk",
       duration: "7-8 weeks",
       description: "Master advanced grammar structures and develop professional communication skills.",
       transformations: [
@@ -476,7 +481,7 @@ const CourseVideo = () => {
   };
 
   // Check if this level should show video preview
-  const showVideoPreview = ['a1.1', 'a2.1', 'b1.1'].includes(level?.toLowerCase() || '');
+  const showVideoPreview = ['a1.1', 'a2.1', 'b1.1', 'b2.1'].includes(level?.toLowerCase() || '');
 
   if (!course) {
     return (
@@ -537,8 +542,8 @@ const CourseVideo = () => {
               </div>
             </div>
 
-            {/* Video Player - Only for A1.1, A2.1, B1.1 */}
-            {showVideoPreview && <VideoPlayer title={`${course.title} Preview`} />}
+            {/* Video Player - Only for A1.1, A2.1, B1.1, B2.1 */}
+            {showVideoPreview && <VideoPlayer videoId={course.videoId} title={`${course.title} Preview`} />}
 
             {/* Pricing for Mobile */}
             <div className="md:hidden mt-6 p-4 bg-muted/50 rounded-lg border border-border">
