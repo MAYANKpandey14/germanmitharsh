@@ -514,7 +514,7 @@ const CourseVideo = () => {
                     <div className="text-3xl font-bold text-primary">
                       {course.price}
                     </div>
-                    <Badge variant="secondary" className="bg-accent/10 text-accent border-accent/20">
+                    <Badge variant="secondary" className="bg-accent/10 text-accent border-accent/20 text-xs whitespace-nowrap px-2 py-0.5">
                       Limited Offer
                     </Badge>
                   </div>
@@ -536,7 +536,7 @@ const CourseVideo = () => {
                     <div className="text-2xl font-bold text-primary">
                       {course.price}
                     </div>
-                    <Badge variant="secondary" className="bg-accent/10 text-accent border-accent/20">
+                    <Badge variant="secondary" className="bg-accent/10 text-accent border-accent/20 text-xs whitespace-nowrap px-2 py-0.5">
                       Limited Offer
                     </Badge>
                   </div>
