@@ -18,11 +18,6 @@ const faqData: FAQItem[] = [
       "You get lifetime access to all course materials, including future updates. You can learn at your own pace and revisit lessons anytime.",
   },
   {
-    question: "Is this course suitable for complete beginners?",
-    answer:
-      "Yes! Our A1 course is designed specifically for complete beginners with no prior German knowledge. We start from the absolute basics and build up gradually.",
-  },
-  {
     question: "What if I miss a live class?",
     answer:
       "All live classes are recorded and available within 24 hours. You can watch the recordings at your convenience and still participate in the next live session.",
