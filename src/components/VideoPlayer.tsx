@@ -1,4 +1,4 @@
-import { PlayCircle } from "lucide-react";
+import { PlayCircle, Play } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 interface VideoPlayerProps {
@@ -44,9 +44,9 @@ const VideoPlayer = ({ videoId, thumbnail, title }: VideoPlayerProps) => {
             e.currentTarget.src = `https://img.youtube.com/vi/${videoId}/sddefault.jpg`;
           }}
         />
-        <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors flex items-center justify-center">
-          <div className="bg-primary/90 rounded-full p-6 group-hover:scale-110 transition-transform">
-            <PlayCircle className="h-16 w-16 text-white" fill="white" />
+        <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors flex items-center justify-center">
+          <div className="w-20 h-20 rounded-full bg-white/95 backdrop-blur-sm flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform">
+            <Play className="w-8 h-8 text-primary fill-primary ml-1" />
           </div>
         </div>
       </AspectRatio>
