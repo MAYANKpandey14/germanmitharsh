@@ -218,7 +218,7 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="py-16 md:py-20 lg:py-24 bg-gradient-to-br from-background to-blue-50/30 m-12">
+      <section className="py-12 md:py-16 lg:py-24 bg-gradient-to-br from-background to-blue-50/30">
         <div className="container mx-auto px-4 md:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
             {/* Left Column - Text Content */}
@@ -306,11 +306,10 @@ const Home = () => {
       {/* Social Proof Bar */}
       <SocialProofBar />
 
-      <div className="m-12">
-        {/* Stats Section */}
-        <section className="py-8 md:py-12 bg-background border-t m-12">
+      {/* Stats Section */}
+      <section className="py-8 md:py-12 bg-background border-t">
           <div className="container mx-auto px-4 md:px-6 lg:px-8">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
               {stats.map((stat, index) => (
                 <div
                   key={index}
@@ -319,16 +318,16 @@ const Home = () => {
                     animationDelay: `${index * 100}ms`,
                   }}
                 >
-                  <div className="text-4xl md:text-5xl font-bold text-primary mb-2">{stat.number}</div>
-                  <div className="text-sm md:text-base text-muted-foreground">{stat.label}</div>
+                  <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-2">{stat.number}</div>
+                  <div className="text-xs sm:text-sm md:text-base text-muted-foreground">{stat.label}</div>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Features Section */}
-        <section className="py-12 md:py-16 lg:py-20 bg-gradient-to-b from-background to-muted/30">
+      {/* Features Section */}
+      <section className="py-12 md:py-16 lg:py-20 bg-gradient-to-b from-background to-muted/30">
           <div className="container mx-auto px-4 md:px-6 lg:px-8">
             <div className="text-center mb-10 md:mb-16 animate-fade-in">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-3 md:mb-4">
@@ -361,8 +360,8 @@ const Home = () => {
           </div>
         </section>
 
-        {/* Courses Overview */}
-        <section className="py-12 md:py-16 lg:py-20">
+      {/* Courses Overview */}
+      <section className="py-12 md:py-16 lg:py-20">
           <div className="container mx-auto px-4 md:px-6 lg:px-8">
             <div className="text-center mb-10 md:mb-16 animate-fade-in">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-3 md:mb-4">
@@ -373,7 +372,7 @@ const Home = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto">
               {courses.map((course, index) => (
                 <Card
                   key={index}
@@ -382,21 +381,24 @@ const Home = () => {
                     animationDelay: `${index * 100}ms`,
                   }}
                 >
-                  <CardContent className="p-4 md:p-6 text-center">
-                    <div className="text-3xl md:text-4xl font-bold text-gradient mb-2">{course.level}</div>
-                    <h3 className="text-lg md:text-xl font-heading font-semibold mb-1">{course.title}</h3>
-                    <p className="text-muted-foreground text-xs md:text-sm mb-2">{course.description}</p>
-                    <div className="text-lg md:text-xl font-bold text-primary mb-3">{course.price}</div>
+                  <CardContent className="p-5 md:p-6 text-center flex flex-col items-center justify-between min-h-[200px]">
+                    <div className="w-full">
+                      <div className="text-3xl md:text-4xl font-bold text-gradient mb-2">{course.level}</div>
+                      <h3 className="text-base md:text-xl font-heading font-semibold mb-1.5">{course.title}</h3>
+                      <p className="text-muted-foreground text-xs md:text-sm mb-3">{course.description}</p>
+                      <div className="text-xl md:text-2xl font-bold text-primary mb-4">{course.price}</div>
+                    </div>
                     <Button
                       asChild
                       variant="outline"
-                      className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors text-xs md:text-sm"
+                      size="sm"
+                      className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
                     >
                       <Link
                         to={`/course/${course.level.toLowerCase()}`}
-                        className="flex items-center justify-center gap-1"
+                        className="flex items-center justify-center gap-2"
                       >
-                        <Video className="w-3 h-3 md:w-4 md:h-4" />
+                        <Video className="w-4 h-4" />
                         View
                       </Link>
                     </Button>
@@ -416,8 +418,8 @@ const Home = () => {
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-12 md:py-16 lg:py-20 bg-gradient-to-r from-primary-dark to-primary text-white rounded-md">
+      {/* CTA Section */}
+      <section className="py-12 md:py-16 lg:py-20 bg-gradient-to-r from-primary-dark to-primary text-white mx-4 md:mx-6 lg:mx-8 rounded-lg">
           <div className="container mx-auto px-4 md:px-6 lg:px-8 text-center">
             <div className="max-w-3xl mx-auto space-y-4 md:space-y-6 animate-fade-in">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold">
@@ -442,7 +444,6 @@ const Home = () => {
             </div>
           </div>
         </section>
-      </div>
     </div>
   );
 };
