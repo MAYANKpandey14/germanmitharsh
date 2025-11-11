@@ -592,7 +592,7 @@ const CourseVideo = () => {
                 <Users className="h-12 w-12 mx-auto mb-4 text-primary" />
                 <h3 className="font-semibold text-lg mb-2">Class Format</h3>
                 <p className="text-muted-foreground">Live online classes</p>
-                <p className="text-sm text-muted-foreground mt-2">Small batches (8-12 students)</p>
+                <p className="text-sm text-muted-foreground mt-2">Small batches (15-20 students)</p>
               </CardContent>
             </Card>
 
