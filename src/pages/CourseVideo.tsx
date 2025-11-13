@@ -432,7 +432,7 @@ const CourseVideo = () => {
       videoId: "FDx9c6XWXbM",
       thumbnail:"
 https://img.youtube.com/vi/FDx9c6XWXbM/hqdefault.jpg
-"
+",
       duration: "7-8 weeks",
       description: "Perfect your German with idioms, cultural nuances, and exam preparation for B2 certification.",
       transformations: [
