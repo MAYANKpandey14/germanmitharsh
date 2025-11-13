@@ -5,37 +5,74 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { CheckCircle2, Mail, Phone, User, MessageSquare } from "lucide-react";
+import { CheckCircle2, Mail, Phone, User, MessageSquare, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
+
 const Enroll = () => {
-  const {
-    toast
-  } = useToast();
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     level: "",
-    message: ""
+    message: "",
+    honeypot: "", // Anti-spam honeypot field
   });
-  const handleSubmit = (e: React.FormEvent) => {
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (isSubmitting) return;
+    
+    setIsSubmitting(true);
 
-    // Here you would integrate with your backend/email service
-    toast({
-      title: "Enrollment Request Received!",
-      description: "We will contact you within 24 hours to discuss your learning goals."
-    });
+    try {
+      const { data, error } = await supabase.functions.invoke('enroll', {
+        body: {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          level: formData.level,
+          message: formData.message,
+          honeypot: formData.honeypot,
+        },
+      });
 
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      level: "",
-      message: ""
-    });
+      if (error) throw error;
+
+      if (data?.ok) {
+        toast({
+          title: "Enrollment Received! 🎉",
+          description: "Check your email for confirmation and next steps. We'll contact you within 24 hours!",
+          duration: 6000,
+        });
+        
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          level: "",
+          message: "",
+          honeypot: "",
+        });
+      } else {
+        throw new Error(data?.error || 'Failed to submit enrollment');
+      }
+    } catch (error: any) {
+      console.error('Enrollment form error:', error);
+      
+      toast({
+        title: "Enrollment Failed",
+        description: error.message || "Please try again or contact us directly at harsh@germanmitharsh.com",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
   const handleChange = (field: string, value: string) => {
     setFormData(prev => ({
       ...prev,
@@ -118,12 +155,42 @@ const Enroll = () => {
                     <MessageSquare className="w-4 h-4 mr-2 text-primary" />
                     Tell us about your goals (Optional)
                   </Label>
-                  <Textarea id="message" placeholder="Why do you want to learn German? What are your goals?" value={formData.message} onChange={e => handleChange("message", e.target.value)} rows={4} />
+                  <Textarea 
+                    id="message" 
+                    placeholder="Why do you want to learn German? What are your goals?" 
+                    value={formData.message} 
+                    onChange={e => handleChange("message", e.target.value)} 
+                    rows={4} 
+                    maxLength={1000}
+                  />
                 </div>
 
+                {/* Honeypot field - hidden from users */}
+                <input
+                  type="text"
+                  name="honeypot"
+                  value={formData.honeypot}
+                  onChange={e => handleChange("honeypot", e.target.value)}
+                  style={{ display: 'none' }}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+
                 {/* Submit Button */}
-                <Button type="submit" size="lg" className="w-full bg-accent hover:bg-accent/90 hover-scale">
-                  Book Free Consultation
+                <Button 
+                  type="submit" 
+                  size="lg" 
+                  className="w-full bg-accent hover:bg-accent/90 hover-scale"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                      Submitting...
+                    </>
+                  ) : (
+                    'Book Free Consultation'
+                  )}
                 </Button>
 
                 <p className="text-xs text-center text-muted-foreground">
