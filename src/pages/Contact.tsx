@@ -1,32 +1,73 @@
 import { useState } from "react";
-import { Mail, Phone, MessageSquare, Send } from "lucide-react";
+import { Mail, Phone, MessageSquare, Send, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 import FAQ from "@/components/FAQ";
+
 const Contact = () => {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     subject: "",
     message: "",
+    honeypot: "", // Anti-spam honeypot field
   });
-  const handleSubmit = (e: React.FormEvent) => {
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Message Sent!",
-      description: "We'll get back to you within 24 hours.",
-    });
-    setFormData({
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-    });
+    
+    if (isSubmitting) return;
+    
+    setIsSubmitting(true);
+
+    try {
+      const { data, error } = await supabase.functions.invoke('contact', {
+        body: {
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          honeypot: formData.honeypot,
+        },
+      });
+
+      if (error) throw error;
+
+      if (data?.ok) {
+        toast({
+          title: "Message Sent Successfully! ✓",
+          description: "We'll get back to you within 24 hours.",
+        });
+        
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+          honeypot: "",
+        });
+      } else {
+        throw new Error(data?.error || 'Failed to send message');
+      }
+    } catch (error: any) {
+      console.error('Contact form error:', error);
+      
+      toast({
+        title: "Failed to Send Message",
+        description: error.message || "Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData((prev) => ({
       ...prev,
@@ -162,12 +203,40 @@ const Contact = () => {
                     placeholder="Tell us more about your inquiry..."
                     rows={6}
                     required
+                    minLength={10}
+                    maxLength={5000}
                   />
                 </div>
 
-                <Button type="submit" variant="cta" size="lg" className="w-full md:w-auto">
-                  <Send className="mr-2 h-4 w-4" />
-                  Send Message
+                {/* Honeypot field - hidden from users */}
+                <input
+                  type="text"
+                  name="honeypot"
+                  value={formData.honeypot}
+                  onChange={handleChange}
+                  style={{ display: 'none' }}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+
+                <Button 
+                  type="submit" 
+                  variant="cta" 
+                  size="lg" 
+                  className="w-full md:w-auto"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="mr-2 h-4 w-4" />
+                      Send Message
+                    </>
+                  )}
                 </Button>
               </form>
             </CardContent>

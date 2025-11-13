@@ -1,1 +1,7 @@
 project_id = "ofxsgaqetsccjgpqpexy"
+
+[functions.contact]
+verify_jwt = false
+
+[functions.enroll]
+verify_jwt = false
