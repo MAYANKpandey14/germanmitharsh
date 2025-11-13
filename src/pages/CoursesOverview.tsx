@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { CheckCircle2, Clock, Users, Video } from "lucide-react";
+import { CheckCircle2, Clock, Users, Video, UserPlus } from "lucide-react";
 
 const CoursesOverview = () => {
   const courses = [
@@ -160,8 +160,18 @@ const CoursesOverview = () => {
                       {course.price}
                     </div>
                     <Button asChild className="bg-primary hover:bg-primary/90">
-                      <Link to={`/course/${course.level.toLowerCase()}`}>
-                        Watch Course Video
+                      <Link to={`/course/${course.level.toLowerCase()}`} className="flex items-center gap-2">
+                        {['A1.2', 'A2.2', 'B1.2', 'B2.2'].includes(course.level) ? (
+                          <>
+                            <UserPlus className="w-4 h-4" />
+                            Enroll
+                          </>
+                        ) : (
+                          <>
+                            <Video className="w-4 h-4" />
+                            Watch Course Video
+                          </>
+                        )}
                       </Link>
                     </Button>
                   </div>
