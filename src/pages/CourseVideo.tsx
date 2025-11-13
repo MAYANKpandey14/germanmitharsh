@@ -373,7 +373,7 @@ const CourseVideo = () => {
     },
     "b2.1": {
       title: "B2.1 - Upper Intermediate Level (Part 1)",
-      videoId: "xsWwchIkdzk",
+      videoId: "FDx9c6XWXbM",
       thumbnail: B1Thumbnail,
       duration: "7-8 weeks",
       description: "Master advanced grammar structures and develop professional communication skills.",
@@ -429,6 +429,10 @@ const CourseVideo = () => {
     },
     "b2.2": {
       title: "B2.2 - Upper Intermediate Level (Part 2)",
+      videoId: "FDx9c6XWXbM",
+      thumbnail:"
+https://img.youtube.com/vi/FDx9c6XWXbM/hqdefault.jpg
+"
       duration: "7-8 weeks",
       description: "Perfect your German with idioms, cultural nuances, and exam preparation for B2 certification.",
       transformations: [
