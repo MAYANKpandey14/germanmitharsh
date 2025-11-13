@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { CheckCircle2, Users, Video, BookOpen, Award, Clock, PlayCircle, ArrowRight } from "lucide-react";
+import { CheckCircle2, Users, Video, BookOpen, Award, Clock, PlayCircle, ArrowRight, UserPlus } from "lucide-react";
 import instructorPortrait from "@/assets/instructor-portrait.jpg";
 import SocialProofBar from "@/components/SocialProofBar";
 const Home = () => {
@@ -398,7 +398,11 @@ const Home = () => {
                         to={`/course/${course.level.toLowerCase()}`}
                         className="flex items-center justify-center gap-2"
                       >
-                        <Video className="w-4 h-4" />
+                        {['A1.2', 'A2.2', 'B1.2', 'B2.2'].includes(course.level) ? (
+                          <UserPlus className="w-4 h-4" />
+                        ) : (
+                          <Video className="w-4 h-4" />
+                        )}
                         {['A1.2', 'A2.2', 'B1.2', 'B2.2'].includes(course.level) ? 'Enroll' : 'View'}
                       </Link>
                     </Button>
