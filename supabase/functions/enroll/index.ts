@@ -1,3 +1,4 @@
+// supabase/functions/enroll/index.ts
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.39.3";
 import { Resend } from "npm:resend@4.0.0";
@@ -18,64 +19,32 @@ interface EnrollFormData {
   honeypot?: string;
 }
 
-const resend = new Resend(Deno.env.get("RESEND_ENROLL_API_KEY"));
-const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
-const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-
 const VALID_LEVELS = ["a1.1", "a1.2", "a2.1", "a2.2", "b1.1", "b1.2", "b2.1", "b2.2", "unsure"];
 
-function sanitizeInput(input: string): string {
-  return input.trim().replace(/[<>]/g, "");
+function stripInvisible(s: string) {
+  return (
+    s
+      ?.toString()
+      .replace(/[\u200B-\u200D\uFEFF]/g, "")
+      .replace(/[^\x20-\x7E]/g, "") ?? ""
+  );
+}
+function sanitize(input = "") {
+  return stripInvisible(String(input)).trim().replace(/[<>]/g, "");
+}
+// small wrapper used by templates (keeps your template calls unchanged)
+function sanitizeInput(input = "") {
+  return sanitize(input);
+}
+function isValidEmail(email: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+function isValidPhone(phone: string) {
+  const digits = (phone || "").replace(/\D/g, "");
+  return digits.length >= 10 && digits.length <= 20;
 }
 
-function validateEmail(email: string): boolean {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-}
-
-function validatePhone(phone: string): boolean {
-  const phoneRegex = /^[\d\s\+\-\(\)]+$/;
-  return phoneRegex.test(phone) && phone.replace(/\D/g, "").length >= 10;
-}
-
-async function checkRateLimit(
-  supabase: any,
-  email: string,
-  formType: string,
-): Promise<{ allowed: boolean; message?: string }> {
-  const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
-
-  // Check email rate limit (3 enrollments per day per email)
-  const { data: emailLimits, error } = await supabase
-    .from("rate_limit_tracker")
-    .select("*")
-    .eq("identifier", email)
-    .eq("form_type", formType)
-    .gte("window_start", oneDayAgo);
-
-  if (error) {
-    console.error("Rate limit check error:", error);
-    return { allowed: true };
-  }
-
-  const totalCount = emailLimits?.reduce((sum: number, record: any) => sum + record.submission_count, 0) || 0;
-
-  if (totalCount >= 3) {
-    return {
-      allowed: false,
-      message: "Too many enrollment submissions. Please contact us directly at harsh@germanmitharsh.com",
-    };
-  }
-
-  await supabase.from("rate_limit_tracker").insert({
-    identifier: email,
-    form_type: formType,
-    submission_count: 1,
-    window_start: new Date().toISOString(),
-  });
-
-  return { allowed: true };
-}
+/* ----------------- Keep the exact HTML templates below (unchanged) ----------------- */
 
 function generateOwnerEmailHTML(data: EnrollFormData, submissionId: string): string {
   return `
@@ -316,235 +285,180 @@ function generateStudentConfirmationHTML(data: EnrollFormData): string {
   `;
 }
 
+/* ----------------- end templates ----------------- */
+
+const resend = new Resend(Deno.env.get("RESEND_ENROLL_API_KEY") || "");
+const supabaseUrl = Deno.env.get("SUPABASE_URL") || "";
+const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || "";
+
 serve(async (req) => {
-  if (req.method === "OPTIONS") {
-    return new Response(null, { headers: corsHeaders });
-  }
+  if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
   try {
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
-
     const clientIP = req.headers.get("x-forwarded-for") || "unknown";
     const userAgent = req.headers.get("user-agent") || "unknown";
 
-    // Read payload (accepts either { body: {...} } or top-level fields)
-    const rawPayload: any = await req.json();
-    const incoming = rawPayload?.body ?? rawPayload;
+    // Accept either { body: {...} } or top-level JSON
+    let raw: any = {};
+    try {
+      raw = await req.json();
+    } catch (e) {
+      // invalid JSON
+      return new Response(JSON.stringify({ ok: false, error: "Invalid JSON" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    const incoming = raw?.body ?? raw ?? {};
 
-    // helper to remove zero-width / BOM / non-printable
-    const stripInvisible = (s: string) =>
-      s
-        ?.toString()
-        .replace(/[\u200B-\u200D\uFEFF]/g, "")
-        .replace(/[^\x20-\x7E]/g, "") ?? "";
-
-    // normalize + sanitize fields we rely on
+    // Normalize fields
     const formData: EnrollFormData = {
-      name: stripInvisible(String(incoming?.name ?? "")).trim(),
-      email: stripInvisible(String(incoming?.email ?? "")).trim(),
-      phone: stripInvisible(String(incoming?.phone ?? "")).trim(),
-      level: stripInvisible(String(incoming?.level ?? ""))
-        .trim()
-        .toLowerCase(),
-      message: stripInvisible(String(incoming?.message ?? "")).trim(),
-      startDate: stripInvisible(String(incoming?.startDate ?? "")).trim(),
-      coupon: stripInvisible(String(incoming?.coupon ?? "")).trim(),
-      honeypot: stripInvisible(String(incoming?.honeypot ?? "")).trim(),
+      name: sanitize(incoming.name),
+      email: sanitize(incoming.email).toLowerCase(),
+      phone: sanitize(incoming.phone),
+      level: sanitize(incoming.level).toLowerCase(),
+      message: sanitize(incoming.message),
+      startDate: sanitize(incoming.startDate),
+      coupon: sanitize(incoming.coupon),
+      honeypot: sanitize(incoming.honeypot),
     };
 
-    // Honeypot check
+    // Honeypot
     if (formData.honeypot) {
-      console.log("Honeypot triggered, likely spam");
+      console.log("Honeypot triggered:", formData.honeypot);
       return new Response(JSON.stringify({ ok: false, error: "Invalid submission" }), {
         status: 400,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
 
-    // Validate required fields
-    if (!formData.name || !formData.email || !formData.phone || !formData.level) {
-      return new Response(JSON.stringify({ ok: false, error: "Missing required fields" }), {
+    // Validate required fields (explicit messages)
+    if (!formData.name) {
+      return new Response(JSON.stringify({ ok: false, error: "Missing required field: name" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    if (!formData.email || !isValidEmail(formData.email)) {
+      return new Response(JSON.stringify({ ok: false, error: "Invalid or missing email" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    if (!formData.phone || !isValidPhone(formData.phone)) {
+      return new Response(JSON.stringify({ ok: false, error: "Invalid or missing phone" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    if (!formData.level) {
+      return new Response(JSON.stringify({ ok: false, error: "Missing required field: level" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    if (!formData.message) {
+      return new Response(JSON.stringify({ ok: false, error: "Missing required field: message" }), {
         status: 400,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
 
-    // Validate name
-    if (formData.name.length > 120) {
-      return new Response(JSON.stringify({ ok: false, error: "Name must be less than 120 characters" }), {
+    // Normalize level to a canonical VALID_LEVELS member (tolerant)
+    let matched = VALID_LEVELS.find((v) => v === formData.level);
+    if (!matched) matched = VALID_LEVELS.find((v) => formData.level.includes(v));
+    if (!matched) {
+      return new Response(JSON.stringify({ ok: false, error: "Invalid course level", received: formData.level }), {
         status: 400,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
+    formData.level = matched;
 
-    // Validate email
-    if (!validateEmail(formData.email)) {
-      return new Response(JSON.stringify({ ok: false, error: "Invalid email address" }), {
-        status: 400,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
-    }
-
-    // Validate phone
-    if (!validatePhone(formData.phone)) {
-      return new Response(JSON.stringify({ ok: false, error: "Invalid phone number" }), {
-        status: 400,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
-    }
-
-    // Validate course level
-    if (!VALID_LEVELS.includes(formData.level)) {
-      return new Response(JSON.stringify({ ok: false, error: "Invalid course level" }), {
-        status: 400,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
-    }
-
-    // Check rate limit
-    const rateLimitCheck = await checkRateLimit(supabase, formData.email, "enroll");
-    if (!rateLimitCheck.allowed) {
-      return new Response(JSON.stringify({ ok: false, error: rateLimitCheck.message }), {
-        status: 429,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
-    }
-
-    // Create submission record
-    const { data: submission, error: dbError } = await supabase
-      .from("form_submissions")
-      .insert({
-        form_type: "enroll",
-        payload_json: formData,
-        ip_address: clientIP,
-        user_agent: userAgent,
-        status: "pending",
-      })
-      .select()
-      .single();
-
-    if (dbError) {
-      console.error("Database error:", dbError);
-      throw new Error("Failed to save submission");
-    }
-
-    const submissionId = submission.id;
-    let studentEmailSent = false;
-
-    // Send owner notification email
+    // Best-effort DB insert (non-fatal)
+    let submissionId: string | null = null;
     try {
-      const ownerEmailHTML = generateOwnerEmailHTML(formData, submissionId);
+      const { data: submission, error: dbError } = await supabase
+        .from("form_submissions")
+        .insert({
+          form_type: "enroll",
+          payload_json: formData,
+          ip_address: clientIP,
+          user_agent: userAgent,
+          status: "pending",
+        })
+        .select()
+        .single();
 
-      const ownerEmailResponse = await resend.emails.send({
+      if (!dbError && submission && (submission as any).id) submissionId = (submission as any).id;
+      if (dbError) console.warn("DB insert warning (non-fatal):", dbError);
+    } catch (dbErr) {
+      console.warn("DB error (non-fatal):", dbErr);
+    }
+
+    // Build the exact HTML emails using your templates (they remain unchanged)
+    const ownerEmailHTML = generateOwnerEmailHTML(formData, submissionId ?? "n/a");
+    const studentEmailHTML = generateStudentConfirmationHTML(formData);
+
+    // Send emails via Resend
+    try {
+      const ownerResp = await resend.emails.send({
         from: "German mit Harsh <enroll@germanmitharsh.com>",
         to: ["harsh@germanmitharsh.com"],
         replyTo: formData.email,
-        subject: `[Enrollment] ${sanitizeInput(formData.name)} - ${sanitizeInput(formData.level)}`,
+        subject: `[Enrollment] ${formData.name} - ${formData.level}`,
         html: ownerEmailHTML,
       });
 
-      console.log("Owner notification sent:", ownerEmailResponse);
-
-      // Send student confirmation email
-      const studentEmailHTML = generateStudentConfirmationHTML(formData);
-
-      const studentEmailResponse = await resend.emails.send({
+      const studentResp = await resend.emails.send({
         from: "Harsh - German mit Harsh <harsh@germanmitharsh.com>",
         to: [formData.email],
-        subject: `Thanks for enrolling - Next steps for ${sanitizeInput(formData.level)}`,
+        subject: `Thanks for enrolling - Next steps for ${formData.level}`,
         html: studentEmailHTML,
       });
 
-      console.log("Student confirmation sent:", studentEmailResponse);
-      studentEmailSent = true;
-
-      // Update submission status
-      await supabase
-        .from("form_submissions")
-        .update({
-          status: "sent",
-          resend_message_id: ownerEmailResponse.id,
-          resend_response: {
-            owner: ownerEmailResponse,
-            student: studentEmailResponse,
-          },
-        })
-        .eq("id", submissionId);
-
-      return new Response(
-        JSON.stringify({
-          ok: true,
-          id: submissionId,
-          student_email_sent: studentEmailSent,
-        }),
-        { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } },
-      );
-    } catch (emailError: any) {
-      console.error("Email sending error:", emailError);
-
-      // Retry once for transient errors
-      if (emailError.statusCode >= 500) {
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-
+      // Update DB record to sent (best-effort)
+      if (submissionId) {
         try {
-          const retryOwnerResponse = await resend.emails.send({
-            from: "German mit Harsh <enroll@germanmitharsh.com>",
-            to: ["harsh@germanmitharsh.com"],
-            replyTo: formData.email,
-            subject: `[Enrollment] ${sanitizeInput(formData.name)} - ${sanitizeInput(formData.level)}`,
-            html: generateOwnerEmailHTML(formData, submissionId),
-          });
-
-          const retryStudentResponse = await resend.emails.send({
-            from: "Harsh - German mit Harsh <harsh@germanmitharsh.com>",
-            to: [formData.email],
-            subject: `Thanks for enrolling - Next steps for ${sanitizeInput(formData.level)}`,
-            html: generateStudentConfirmationHTML(formData),
-          });
-
           await supabase
             .from("form_submissions")
             .update({
               status: "sent",
-              resend_message_id: retryOwnerResponse.id,
-              resend_response: {
-                owner: retryOwnerResponse,
-                student: retryStudentResponse,
-              },
+              resend_message_id: (ownerResp as any).id ?? null,
+              resend_response: { owner: ownerResp, student: studentResp },
             })
             .eq("id", submissionId);
-
-          return new Response(
-            JSON.stringify({
-              ok: true,
-              id: submissionId,
-              student_email_sent: true,
-            }),
-            { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } },
-          );
-        } catch (retryError: any) {
-          console.error("Retry failed:", retryError);
+        } catch (uErr) {
+          console.warn("DB update warning (non-fatal):", uErr);
         }
       }
 
-      // Mark as failed
-      await supabase
-        .from("form_submissions")
-        .update({
-          status: "failed",
-          error_message: emailError.message,
-          resend_response: emailError,
-        })
-        .eq("id", submissionId);
-
-      return new Response(
-        JSON.stringify({ ok: false, error: "Failed to send email. Please try again or contact us directly." }),
-        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } },
-      );
+      return new Response(JSON.stringify({ ok: true, id: submissionId }), {
+        status: 200,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    } catch (emailErr: any) {
+      console.error("Email sending error:", emailErr);
+      // mark failed in DB if possible (best-effort)
+      if (submissionId) {
+        try {
+          await supabase
+            .from("form_submissions")
+            .update({ status: "failed", error_message: emailErr?.message ?? String(emailErr) })
+            .eq("id", submissionId);
+        } catch (_) {
+          /* ignore */
+        }
+      }
+      return new Response(JSON.stringify({ ok: false, error: "Failed to send email" }), {
+        status: 500,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
     }
-  } catch (error: any) {
-    console.error("Enrollment form error:", error);
-    return new Response(JSON.stringify({ ok: false, error: error.message || "Internal server error" }), {
+  } catch (err: any) {
+    console.error("Unexpected error:", err);
+    return new Response(JSON.stringify({ ok: false, error: err?.message ?? "Internal error" }), {
       status: 500,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
