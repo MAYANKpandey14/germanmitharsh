@@ -3,8 +3,8 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2.39.3";
 import { Resend } from "npm:resend@4.0.0";
 
 const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
 interface ContactFormData {
@@ -16,13 +16,13 @@ interface ContactFormData {
   honeypot?: string;
 }
 
-const resend = new Resend(Deno.env.get('RESEND_CONTACT_API_KEY'));
-const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
-const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+const resend = new Resend(Deno.env.get("RESEND_CONTACT_API_KEY"));
+const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 
 // Validation functions
 function sanitizeInput(input: string): string {
-  return input.trim().replace(/[<>]/g, '');
+  return input.trim().replace(/[<>]/g, "");
 }
 
 function validateEmail(email: string): boolean {
@@ -32,45 +32,44 @@ function validateEmail(email: string): boolean {
 
 function validatePhone(phone: string): boolean {
   const phoneRegex = /^[\d\s\+\-\(\)]+$/;
-  return phoneRegex.test(phone) && phone.replace(/\D/g, '').length >= 10;
+  return phoneRegex.test(phone) && phone.replace(/\D/g, "").length >= 10;
 }
 
 async function checkRateLimit(
   supabase: any,
   identifier: string,
-  formType: string
+  formType: string,
 ): Promise<{ allowed: boolean; message?: string }> {
   const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString();
-  
+
   // Check IP rate limit (5 per hour)
   const { data: ipLimits, error } = await supabase
-    .from('rate_limit_tracker')
-    .select('*')
-    .eq('identifier', identifier)
-    .eq('form_type', formType)
-    .gte('window_start', oneHourAgo);
+    .from("rate_limit_tracker")
+    .select("*")
+    .eq("identifier", identifier)
+    .eq("form_type", formType)
+    .gte("window_start", oneHourAgo);
 
   if (error) {
-    console.error('Rate limit check error:', error);
+    console.error("Rate limit check error:", error);
     return { allowed: true }; // Allow on error
   }
 
-  const totalCount = ipLimits?.reduce((sum: number, record: any) => 
-    sum + record.submission_count, 0) || 0;
+  const totalCount = ipLimits?.reduce((sum: number, record: any) => sum + record.submission_count, 0) || 0;
 
   if (totalCount >= 5) {
-    return { 
-      allowed: false, 
-      message: 'Too many submissions. Please try again in an hour.' 
+    return {
+      allowed: false,
+      message: "Too many submissions. Please try again in an hour.",
     };
   }
 
   // Update rate limit tracker
-  await supabase.from('rate_limit_tracker').insert({
+  await supabase.from("rate_limit_tracker").insert({
     identifier,
     form_type: formType,
     submission_count: 1,
-    window_start: new Date().toISOString()
+    window_start: new Date().toISOString(),
   });
 
   return { allowed: true };
@@ -122,7 +121,9 @@ function generateContactEmailHTML(data: ContactFormData, submissionId: string): 
                     <a href="mailto:${data.email}" style="color: #667eea; text-decoration: none;">${data.email}</a>
                   </td>
                 </tr>
-                ${data.phone ? `
+                ${
+                  data.phone
+                    ? `
                 <tr>
                   <td style="padding: 12px; background-color: #f8f9fa; border: 1px solid #e9ecef; font-weight: 600; color: #333;">
                     Phone
@@ -131,8 +132,12 @@ function generateContactEmailHTML(data: ContactFormData, submissionId: string): 
                     ${sanitizeInput(data.phone)}
                   </td>
                 </tr>
-                ` : ''}
-                ${data.subject ? `
+                `
+                    : ""
+                }
+                ${
+                  data.subject
+                    ? `
                 <tr>
                   <td style="padding: 12px; background-color: #f8f9fa; border: 1px solid #e9ecef; font-weight: 600; color: #333;">
                     Subject
@@ -141,7 +146,9 @@ function generateContactEmailHTML(data: ContactFormData, submissionId: string): 
                     ${sanitizeInput(data.subject)}
                   </td>
                 </tr>
-                ` : ''}
+                `
+                    : ""
+                }
               </table>
               
               <!-- Message -->
@@ -153,7 +160,7 @@ function generateContactEmailHTML(data: ContactFormData, submissionId: string): 
               <!-- Metadata -->
               <div style="padding: 16px; background-color: #f8f9fa; border-radius: 4px; font-size: 12px; color: #999;">
                 <p style="margin: 0 0 4px;"><strong>Submission ID:</strong> ${submissionId}</p>
-                <p style="margin: 0;"><strong>Submitted:</strong> ${new Date().toLocaleString('en-US', { timeZone: 'Europe/Berlin' })} (Berlin Time)</p>
+                <p style="margin: 0;"><strong>Submitted:</strong> ${new Date().toLocaleString("en-US", { timeZone: "Europe/Berlin" })} (Berlin Time)</p>
               </div>
             </td>
           </tr>
@@ -177,94 +184,94 @@ function generateContactEmailHTML(data: ContactFormData, submissionId: string): 
 
 serve(async (req) => {
   // Handle CORS preflight
-  if (req.method === 'OPTIONS') {
+  if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
-    
+
     // Get client info
-    const clientIP = req.headers.get('x-forwarded-for') || 'unknown';
-    const userAgent = req.headers.get('user-agent') || 'unknown';
+    const clientIP = req.headers.get("x-forwarded-for") || "unknown";
+    const userAgent = req.headers.get("user-agent") || "unknown";
 
     // Parse request body
     const formData: ContactFormData = await req.json();
 
     // Honeypot check
     if (formData.honeypot) {
-      console.log('Honeypot triggered, likely spam');
-      return new Response(
-        JSON.stringify({ ok: false, error: 'Invalid submission' }),
-        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
+      console.log("Honeypot triggered, likely spam");
+      return new Response(JSON.stringify({ ok: false, error: "Invalid submission" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
     }
 
     // Validate required fields
     if (!formData.name || !formData.email || !formData.message) {
-      return new Response(
-        JSON.stringify({ ok: false, error: 'Missing required fields' }),
-        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
+      return new Response(JSON.stringify({ ok: false, error: "Missing required fields" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
     }
 
     // Validate name
     if (formData.name.length > 120) {
-      return new Response(
-        JSON.stringify({ ok: false, error: 'Name must be less than 120 characters' }),
-        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
+      return new Response(JSON.stringify({ ok: false, error: "Name must be less than 120 characters" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
     }
 
     // Validate email
     if (!validateEmail(formData.email)) {
-      return new Response(
-        JSON.stringify({ ok: false, error: 'Invalid email address' }),
-        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
+      return new Response(JSON.stringify({ ok: false, error: "Invalid email address" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
     }
 
     // Validate message
     if (formData.message.length < 10 || formData.message.length > 5000) {
-      return new Response(
-        JSON.stringify({ ok: false, error: 'Message must be between 10 and 5000 characters' }),
-        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
+      return new Response(JSON.stringify({ ok: false, error: "Message must be between 10 and 5000 characters" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
     }
 
     // Validate phone if provided
     if (formData.phone && !validatePhone(formData.phone)) {
-      return new Response(
-        JSON.stringify({ ok: false, error: 'Invalid phone number' }),
-        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
+      return new Response(JSON.stringify({ ok: false, error: "Invalid phone number" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
     }
 
     // Check rate limit
-    const rateLimitCheck = await checkRateLimit(supabase, clientIP, 'contact');
+    const rateLimitCheck = await checkRateLimit(supabase, clientIP, "contact");
     if (!rateLimitCheck.allowed) {
-      return new Response(
-        JSON.stringify({ ok: false, error: rateLimitCheck.message }),
-        { status: 429, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
+      return new Response(JSON.stringify({ ok: false, error: rateLimitCheck.message }), {
+        status: 429,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
     }
 
     // Create submission record
     const { data: submission, error: dbError } = await supabase
-      .from('form_submissions')
+      .from("form_submissions")
       .insert({
-        form_type: 'contact',
+        form_type: "contact",
         payload_json: formData,
         ip_address: clientIP,
         user_agent: userAgent,
-        status: 'pending'
+        status: "pending",
       })
       .select()
       .single();
 
     if (dbError) {
-      console.error('Database error:', dbError);
-      throw new Error('Failed to save submission');
+      console.error("Database error:", dbError);
+      throw new Error("Failed to save submission");
     }
 
     const submissionId = submission.id;
@@ -272,87 +279,85 @@ serve(async (req) => {
     // Send email via Resend
     try {
       const emailHTML = generateContactEmailHTML(formData, submissionId);
-      
+
       const emailResponse = await resend.emails.send({
-        from: 'German mit Harsh <noreply@germanmitharsh.com>',
-        to: ['support@germanmitharsh.com'],
+        from: "German mit Harsh <contact@germanmitharsh.com>",
+        to: ["support@germanmitharsh.com"],
         replyTo: formData.email,
         subject: `[Contact Form] New enquiry from ${sanitizeInput(formData.name)}`,
-        html: emailHTML
+        html: emailHTML,
       });
 
-      console.log('Email sent successfully:', emailResponse);
+      console.log("Email sent successfully:", emailResponse);
 
       // Update submission status
       await supabase
-        .from('form_submissions')
+        .from("form_submissions")
         .update({
-          status: 'sent',
+          status: "sent",
           resend_message_id: emailResponse.id,
-          resend_response: emailResponse
+          resend_response: emailResponse,
         })
-        .eq('id', submissionId);
+        .eq("id", submissionId);
 
-      return new Response(
-        JSON.stringify({ ok: true, id: submissionId }),
-        { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
-
+      return new Response(JSON.stringify({ ok: true, id: submissionId }), {
+        status: 200,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
     } catch (emailError: any) {
-      console.error('Email sending error:', emailError);
+      console.error("Email sending error:", emailError);
 
       // Retry once for transient errors
       if (emailError.statusCode >= 500) {
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+
         try {
           const retryResponse = await resend.emails.send({
-            from: 'German mit Harsh <noreply@germanmitharsh.com>',
-            to: ['support@germanmitharsh.com'],
+            from: "German mit Harsh <contact@germanmitharsh.com>",
+            to: ["support@germanmitharsh.com"],
             replyTo: formData.email,
             subject: `[Contact Form] New enquiry from ${sanitizeInput(formData.name)}`,
-            html: generateContactEmailHTML(formData, submissionId)
+            html: generateContactEmailHTML(formData, submissionId),
           });
 
           await supabase
-            .from('form_submissions')
+            .from("form_submissions")
             .update({
-              status: 'sent',
+              status: "sent",
               resend_message_id: retryResponse.id,
-              resend_response: retryResponse
+              resend_response: retryResponse,
             })
-            .eq('id', submissionId);
+            .eq("id", submissionId);
 
-          return new Response(
-            JSON.stringify({ ok: true, id: submissionId }),
-            { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-          );
+          return new Response(JSON.stringify({ ok: true, id: submissionId }), {
+            status: 200,
+            headers: { ...corsHeaders, "Content-Type": "application/json" },
+          });
         } catch (retryError: any) {
-          console.error('Retry failed:', retryError);
+          console.error("Retry failed:", retryError);
         }
       }
 
       // Mark as failed
       await supabase
-        .from('form_submissions')
+        .from("form_submissions")
         .update({
-          status: 'failed',
+          status: "failed",
           error_message: emailError.message,
-          resend_response: emailError
+          resend_response: emailError,
         })
-        .eq('id', submissionId);
+        .eq("id", submissionId);
 
-      return new Response(
-        JSON.stringify({ ok: false, error: 'Failed to send email. Please try again.' }),
-        { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
+      return new Response(JSON.stringify({ ok: false, error: "Failed to send email. Please try again." }), {
+        status: 500,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
     }
-
   } catch (error: any) {
-    console.error('Contact form error:', error);
-    return new Response(
-      JSON.stringify({ ok: false, error: error.message || 'Internal server error' }),
-      { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-    );
+    console.error("Contact form error:", error);
+    return new Response(JSON.stringify({ ok: false, error: error.message || "Internal server error" }), {
+      status: 500,
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
   }
 });
