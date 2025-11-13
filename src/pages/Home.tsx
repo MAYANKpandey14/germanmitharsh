@@ -423,8 +423,21 @@ const Home = () => {
         </section>
 
       {/* CTA Section */}
-      <section className="py-12 md:py-16 lg:py-20 bg-gradient-to-r from-primary-dark to-primary text-white mx-4 md:mx-6 lg:mx-8 rounded-lg">
-          <div className="container mx-auto px-4 md:px-6 lg:px-8 text-center">
+      <section className="relative py-12 md:py-16 lg:py-20 bg-gradient-to-r from-primary-dark to-primary text-white mx-4 md:mx-6 lg:mx-8 rounded-lg overflow-hidden">
+          {/* Diagonal Pattern Overlay */}
+          <div 
+            className="absolute inset-0 opacity-10"
+            style={{
+              backgroundImage: `repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 20px,
+                rgba(255, 255, 255, 0.1) 20px,
+                rgba(255, 255, 255, 0.1) 40px
+              )`
+            }}
+          />
+          <div className="container mx-auto px-4 md:px-6 lg:px-8 text-center relative z-10">
             <div className="max-w-3xl mx-auto space-y-4 md:space-y-6 animate-fade-in">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold">
                 Ready to Start Your German Journey?
