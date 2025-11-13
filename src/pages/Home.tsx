@@ -399,7 +399,7 @@ const Home = () => {
                         className="flex items-center justify-center gap-2"
                       >
                         <Video className="w-4 h-4" />
-                        View
+                        {['A1.2', 'A2.2', 'B1.2', 'B2.2'].includes(course.level) ? 'Enroll' : 'View'}
                       </Link>
                     </Button>
                   </CardContent>
