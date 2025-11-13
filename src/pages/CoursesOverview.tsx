@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { CheckCircle2, Clock, Users, Video, UserPlus } from "lucide-react";
 
 const CoursesOverview = () => {
@@ -10,6 +11,8 @@ const CoursesOverview = () => {
       title: "Beginner (Part 1)",
       duration: "4-5 weeks",
       price: "€89",
+      originalPrice: "€149",
+      discount: "40%",
       description: "Start from absolute zero. Master alphabet, basic greetings, and present tense.",
       topics: [
         "German alphabet & pronunciation",
@@ -24,6 +27,8 @@ const CoursesOverview = () => {
       title: "Beginner (Part 2)",
       duration: "4-5 weeks",
       price: "€89",
+      originalPrice: "€149",
+      discount: "40%",
       description: "Complete your beginner foundation with accusative case and irregular verbs.",
       topics: [
         "Irregular verbs & separable verbs",
@@ -38,6 +43,8 @@ const CoursesOverview = () => {
       title: "Elementary (Part 1)",
       duration: "5-6 weeks",
       price: "€99",
+      originalPrice: "€169",
+      discount: "41%",
       description: "Build on A1 with past tenses and more complex conversations.",
       topics: [
         "Perfekt tense (past tense)",
@@ -52,6 +59,8 @@ const CoursesOverview = () => {
       title: "Elementary (Part 2)",
       duration: "5-6 weeks",
       price: "€99",
+      originalPrice: "€169",
+      discount: "41%",
       description: "Complete elementary level with dative case and Präteritum.",
       topics: [
         "Dative case & prepositions",
@@ -66,6 +75,8 @@ const CoursesOverview = () => {
       title: "Intermediate (Part 1)",
       duration: "6-7 weeks",
       price: "€109",
+      originalPrice: "€189",
+      discount: "42%",
       description: "Transition to intermediate with subjunctive and relative clauses.",
       topics: [
         "Plusquamperfekt & all past tenses",
@@ -80,6 +91,8 @@ const CoursesOverview = () => {
       title: "Intermediate (Part 2)",
       duration: "6-7 weeks",
       price: "€109",
+      originalPrice: "€189",
+      discount: "42%",
       description: "Complete intermediate with complex sentences and passive voice.",
       topics: [
         "Complex conjunctions",
@@ -94,6 +107,8 @@ const CoursesOverview = () => {
       title: "Upper Intermediate (Part 1)",
       duration: "7-8 weeks",
       price: "€119",
+      originalPrice: "€209",
+      discount: "43%",
       description: "Master advanced grammar and professional German.",
       topics: [
         "Advanced passive constructions",
@@ -108,6 +123,8 @@ const CoursesOverview = () => {
       title: "Upper Intermediate (Part 2)",
       duration: "7-8 weeks",
       price: "€119",
+      originalPrice: "€209",
+      discount: "43%",
       description: "Perfect your German with idioms and exam preparation.",
       topics: [
         "Idiomatic expressions",
@@ -156,8 +173,18 @@ const CoursesOverview = () => {
                       <Clock className="w-4 h-4 mr-2" />
                       <span className="text-sm">{course.duration}</span>
                     </div>
-                    <div className="text-2xl font-bold text-primary">
-                      {course.price}
+                    <div className="flex items-center gap-2">
+                      <Badge variant="destructive" className="text-xs font-bold">
+                        {course.discount} OFF
+                      </Badge>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-lg text-muted-foreground line-through">
+                        {course.originalPrice}
+                      </span>
+                      <span className="text-2xl font-bold text-primary">
+                        {course.price}
+                      </span>
                     </div>
                     <Button asChild className="bg-primary hover:bg-primary/90">
                       <Link to={`/course/${course.level.toLowerCase()}`} className="flex items-center gap-2">
