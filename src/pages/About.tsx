@@ -64,7 +64,7 @@ const About = () => {
                 confidence.
               </p>
               <p className="text-muted-foreground mb-8">
-                With over 5 years of teaching experience and having worked at prestigious institutes like Language
+                With over 3 years of teaching experience and having worked at prestigious institutes like Language
                 Pantheon, I've developed a teaching methodology that combines structure, flexibility, and real-world
                 application. My approach focuses on building strong fundamentals while keeping lessons engaging and
                 practical.
