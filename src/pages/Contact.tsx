@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Mail, Phone, MessageSquare, Send, Loader2 } from "lucide-react";
+import { Mail, Phone, MessageSquare, Send, Loader2, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -11,28 +11,109 @@ import FAQ from "@/components/FAQ";
 const Contact = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<{
+    name?: string;
+    email?: string;
+    phone?: string;
+  }>({});
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     subject: "",
     message: "",
-    honeypot: "", // Anti-spam honeypot field
+    honeypot: "",
   });
+
+  const validateName = (name: string): string | undefined => {
+    if (!name.trim()) {
+      return "Name is required";
+    }
+    if (name.trim().length < 2) {
+      return "Name must be at least 2 characters";
+    }
+    if (name.length > 120) {
+      return "Name must be less than 120 characters";
+    }
+    if (!/^[a-zA-Z\s'-]+$/.test(name)) {
+      return "Name can only contain letters, spaces, hyphens, and apostrophes";
+    }
+    return undefined;
+  };
+
+  const validateEmail = (email: string): string | undefined => {
+    if (!email.trim()) {
+      return "Email is required";
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return "Please enter a valid email address";
+    }
+    if (email.length > 255) {
+      return "Email must be less than 255 characters";
+    }
+    return undefined;
+  };
+
+  const validatePhone = (phone: string): string | undefined => {
+    if (!phone.trim()) {
+      return undefined; // Phone is optional in contact form
+    }
+    const phoneRegex = /^[\d\s\+\-\(\)]+$/;
+    if (!phoneRegex.test(phone)) {
+      return "Phone can only contain numbers, spaces, +, -, and parentheses";
+    }
+    const digitsOnly = phone.replace(/\D/g, '');
+    if (digitsOnly.length < 10) {
+      return "Phone number must have at least 10 digits";
+    }
+    if (digitsOnly.length > 15) {
+      return "Phone number must have less than 15 digits";
+    }
+    return undefined;
+  };
+
+  const validateForm = (): boolean => {
+    const newErrors: typeof errors = {};
+    
+    const nameError = validateName(formData.name);
+    if (nameError) newErrors.name = nameError;
+    
+    const emailError = validateEmail(formData.email);
+    if (emailError) newErrors.email = emailError;
+    
+    const phoneError = validatePhone(formData.phone);
+    if (phoneError) newErrors.phone = phoneError;
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (isSubmitting) return;
+
+    // Validate form
+    if (!validateForm()) {
+      toast({
+        title: "Validation Error",
+        description: "Please fix the errors in the form",
+        variant: "destructive",
+      });
+      return;
+    }
     
     setIsSubmitting(true);
 
     try {
       const { data, error } = await supabase.functions.invoke('contact', {
         body: {
-          name: formData.name,
-          email: formData.email,
-          subject: formData.subject,
-          message: formData.message,
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          phone: formData.phone.trim(),
+          subject: formData.subject.trim(),
+          message: formData.message.trim(),
           honeypot: formData.honeypot,
         },
       });
@@ -48,10 +129,12 @@ const Contact = () => {
         setFormData({
           name: "",
           email: "",
+          phone: "",
           subject: "",
           message: "",
           honeypot: "",
         });
+        setErrors({});
       } else {
         throw new Error(data?.error || 'Failed to send message');
       }
@@ -69,10 +152,38 @@ const Contact = () => {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [name]: value,
     }));
+    
+    // Clear error for this field when user starts typing
+    if (errors[name as keyof typeof errors]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: undefined,
+      }));
+    }
+  };
+
+  const handleBlur = (fieldName: keyof typeof errors) => {
+    let error: string | undefined;
+    
+    if (fieldName === 'name') {
+      error = validateName(formData.name);
+    } else if (fieldName === 'email') {
+      error = validateEmail(formData.email);
+    } else if (fieldName === 'phone') {
+      error = validatePhone(formData.phone);
+    }
+    
+    if (error) {
+      setErrors(prev => ({
+        ...prev,
+        [fieldName]: error,
+      }));
+    }
   };
   return (
     <div className="min-h-screen pt-20 pb-16">
@@ -156,9 +267,17 @@ const Contact = () => {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
+                      onBlur={() => handleBlur('name')}
                       placeholder="Enter your name"
+                      className={errors.name ? "border-red-500 focus-visible:ring-red-500" : ""}
                       required
                     />
+                    {errors.name && (
+                      <p className="text-sm text-red-600 flex items-center gap-1">
+                        <AlertCircle className="h-4 w-4" />
+                        {errors.name}
+                      </p>
+                    )}
                   </div>
 
                   <div className="space-y-2">
@@ -171,10 +290,40 @@ const Contact = () => {
                       type="email"
                       value={formData.email}
                       onChange={handleChange}
+                      onBlur={() => handleBlur('email')}
                       placeholder="your.email@example.com"
+                      className={errors.email ? "border-red-500 focus-visible:ring-red-500" : ""}
                       required
                     />
+                    {errors.email && (
+                      <p className="text-sm text-red-600 flex items-center gap-1">
+                        <AlertCircle className="h-4 w-4" />
+                        {errors.email}
+                      </p>
+                    )}
                   </div>
+                </div>
+
+                <div className="space-y-2">
+                  <label htmlFor="phone" className="text-sm font-medium">
+                    Phone Number (Optional)
+                  </label>
+                  <Input
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    onBlur={() => handleBlur('phone')}
+                    placeholder="+49 XXX XXXXXXX"
+                    className={errors.phone ? "border-red-500 focus-visible:ring-red-500" : ""}
+                  />
+                  {errors.phone && (
+                    <p className="text-sm text-red-600 flex items-center gap-1">
+                      <AlertCircle className="h-4 w-4" />
+                      {errors.phone}
+                    </p>
+                  )}
                 </div>
 
                 <div className="space-y-2">
