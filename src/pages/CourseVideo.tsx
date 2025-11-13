@@ -96,7 +96,7 @@ const CourseVideo = () => {
         },
       ],
       price: "€89",
-      originalPrice: "€120",
+      originalPrice: "€149",
     },
     "a1.2": {
       title: "A1.2 - Beginner Level (Part 2)",
@@ -151,7 +151,7 @@ const CourseVideo = () => {
         },
       ],
       price: "€89",
-      originalPrice: "€120",
+      originalPrice: "€149",
     },
     "a2.1": {
       title: "A2.1 - Elementary Level (Part 1)",
@@ -208,7 +208,7 @@ const CourseVideo = () => {
         },
       ],
       price: "€99",
-      originalPrice: "€135",
+      originalPrice: "€169",
     },
     "a2.2": {
       title: "A2.2 - Elementary Level (Part 2)",
@@ -261,7 +261,7 @@ const CourseVideo = () => {
         },
       ],
       price: "€99",
-      originalPrice: "€135",
+      originalPrice: "€169",
     },
     "b1.1": {
       title: "B1.1 - Intermediate Level (Part 1)",
@@ -316,7 +316,7 @@ const CourseVideo = () => {
         },
       ],
       price: "€109",
-      originalPrice: "€150",
+      originalPrice: "€189",
     },
     "b1.2": {
       title: "B1.2 - Intermediate Level (Part 2)",
@@ -369,7 +369,7 @@ const CourseVideo = () => {
         },
       ],
       price: "€109",
-      originalPrice: "€150",
+      originalPrice: "€189",
     },
     "b2.1": {
       title: "B2.1 - Upper Intermediate Level (Part 1)",
@@ -425,7 +425,7 @@ const CourseVideo = () => {
         },
       ],
       price: "€119",
-      originalPrice: "€165",
+      originalPrice: "€209",
     },
     "b2.2": {
       title: "B2.2 - Upper Intermediate Level (Part 2)",
@@ -480,7 +480,7 @@ const CourseVideo = () => {
         },
       ],
       price: "€119",
-      originalPrice: "€165",
+      originalPrice: "€209",
     },
   };
 
