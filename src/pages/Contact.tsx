@@ -63,7 +63,7 @@ const Contact = () => {
     if (!phoneRegex.test(phone)) {
       return "Phone can only contain numbers, spaces, +, -, and parentheses";
     }
-    const digitsOnly = phone.replace(/\D/g, '');
+    const digitsOnly = phone.replace(/\D/g, "");
     if (digitsOnly.length < 10) {
       return "Phone number must have at least 10 digits";
     }
@@ -75,13 +75,13 @@ const Contact = () => {
 
   const validateForm = (): boolean => {
     const newErrors: typeof errors = {};
-    
+
     const nameError = validateName(formData.name);
     if (nameError) newErrors.name = nameError;
-    
+
     const emailError = validateEmail(formData.email);
     if (emailError) newErrors.email = emailError;
-    
+
     const phoneError = validatePhone(formData.phone);
     if (phoneError) newErrors.phone = phoneError;
 
@@ -91,7 +91,7 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (isSubmitting) return;
 
     // Validate form
@@ -103,11 +103,11 @@ const Contact = () => {
       });
       return;
     }
-    
+
     setIsSubmitting(true);
 
     try {
-      const { data, error } = await supabase.functions.invoke('contact', {
+      const { data, error } = await supabase.functions.invoke("contact", {
         body: {
           name: formData.name.trim(),
           email: formData.email.trim(),
@@ -125,7 +125,7 @@ const Contact = () => {
           title: "Message Sent Successfully! ✓",
           description: "We'll get back to you within 24 hours.",
         });
-        
+
         setFormData({
           name: "",
           email: "",
@@ -136,11 +136,11 @@ const Contact = () => {
         });
         setErrors({});
       } else {
-        throw new Error(data?.error || 'Failed to send message');
+        throw new Error(data?.error || "Failed to send message");
       }
     } catch (error: any) {
-      console.error('Contact form error:', error);
-      
+      console.error("Contact form error:", error);
+
       toast({
         title: "Failed to Send Message",
         description: error.message || "Please try again or contact us directly.",
@@ -157,10 +157,10 @@ const Contact = () => {
       ...prev,
       [name]: value,
     }));
-    
+
     // Clear error for this field when user starts typing
     if (errors[name as keyof typeof errors]) {
-      setErrors(prev => ({
+      setErrors((prev) => ({
         ...prev,
         [name]: undefined,
       }));
@@ -169,17 +169,17 @@ const Contact = () => {
 
   const handleBlur = (fieldName: keyof typeof errors) => {
     let error: string | undefined;
-    
-    if (fieldName === 'name') {
+
+    if (fieldName === "name") {
       error = validateName(formData.name);
-    } else if (fieldName === 'email') {
+    } else if (fieldName === "email") {
       error = validateEmail(formData.email);
-    } else if (fieldName === 'phone') {
+    } else if (fieldName === "phone") {
       error = validatePhone(formData.phone);
     }
-    
+
     if (error) {
-      setErrors(prev => ({
+      setErrors((prev) => ({
         ...prev,
         [fieldName]: error,
       }));
@@ -267,7 +267,7 @@ const Contact = () => {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      onBlur={() => handleBlur('name')}
+                      onBlur={() => handleBlur("name")}
                       placeholder="Enter your name"
                       className={errors.name ? "border-red-500 focus-visible:ring-red-500" : ""}
                       required
@@ -290,7 +290,7 @@ const Contact = () => {
                       type="email"
                       value={formData.email}
                       onChange={handleChange}
-                      onBlur={() => handleBlur('email')}
+                      onBlur={() => handleBlur("email")}
                       placeholder="your.email@example.com"
                       className={errors.email ? "border-red-500 focus-visible:ring-red-500" : ""}
                       required
@@ -306,15 +306,16 @@ const Contact = () => {
 
                 <div className="space-y-2">
                   <label htmlFor="phone" className="text-sm font-medium">
-                    Phone Number (Optional)
+                    Phone Number
                   </label>
                   <Input
                     id="phone"
                     name="phone"
                     type="tel"
+                    maxlength="12"
                     value={formData.phone}
                     onChange={handleChange}
-                    onBlur={() => handleBlur('phone')}
+                    onBlur={() => handleBlur("phone")}
                     placeholder="+49 XXX XXXXXXX"
                     className={errors.phone ? "border-red-500 focus-visible:ring-red-500" : ""}
                   />
@@ -363,18 +364,12 @@ const Contact = () => {
                   name="honeypot"
                   value={formData.honeypot}
                   onChange={handleChange}
-                  style={{ display: 'none' }}
+                  style={{ display: "none" }}
                   tabIndex={-1}
                   autoComplete="off"
                 />
 
-                <Button 
-                  type="submit" 
-                  variant="cta" 
-                  size="lg" 
-                  className="w-full md:w-auto"
-                  disabled={isSubmitting}
-                >
+                <Button type="submit" variant="cta" size="lg" className="w-full md:w-auto" disabled={isSubmitting}>
                   {isSubmitting ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -394,10 +389,7 @@ const Contact = () => {
           {/* FAQ Link */}
           <div className="text-center text-muted-foreground mb-8">
             <p>
-              Looking for quick answers?{" "}
-              <span className="text-primary font-medium">
-                Check out our FAQ section
-              </span>
+              Looking for quick answers? <span className="text-primary font-medium">Check out our FAQ section</span>
             </p>
           </div>
 
