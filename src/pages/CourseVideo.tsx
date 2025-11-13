@@ -12,6 +12,8 @@ import SEOHead from "@/components/SEOHead";
 import A1Thumbnail from "@/assets/A1-Thumbnail.png";
 import A2Thumbnail from "@/assets/A2-Thumbnail.png";
 import B1Thumbnail from "@/assets/B1-Thumbnail.png";
+import B21Thumbnail from "@/assets/B2.1-Thumbnail.png";
+import B22Thumbnail from "@/assets/B2.2-Thumbnail.png";
 
 const CourseVideo = () => {
   const { level } = useParams<{ level: string }>();
@@ -374,7 +376,7 @@ const CourseVideo = () => {
     "b2.1": {
       title: "B2.1 - Upper Intermediate Level (Part 1)",
       videoId: "FDx9c6XWXbM",
-      thumbnail: B1Thumbnail,
+      thumbnail: B21Thumbnail,
       duration: "7-8 weeks",
       description: "Master advanced grammar structures and develop professional communication skills.",
       transformations: [
@@ -429,10 +431,8 @@ const CourseVideo = () => {
     },
     "b2.2": {
       title: "B2.2 - Upper Intermediate Level (Part 2)",
-      videoId: "FDx9c6XWXbM",
-      thumbnail:"
-https://img.youtube.com/vi/FDx9c6XWXbM/hqdefault.jpg
-",
+      videoId: "fNZ45_J9wc0",
+      thumbnail:B22Thumbnail,
       duration: "7-8 weeks",
       description: "Perfect your German with idioms, cultural nuances, and exam preparation for B2 certification.",
       transformations: [
@@ -498,7 +498,7 @@ https://img.youtube.com/vi/FDx9c6XWXbM/hqdefault.jpg
   };
 
   // Check if this level should show video preview
-  const showVideoPreview = ["a1.1", "a2.1", "b1.1", "b2.1"].includes(level?.toLowerCase() || "");
+  const showVideoPreview = ["a1.1", "a2.1", "b1.1", "b2.1","b2.2"].includes(level?.toLowerCase() || "");
 
   if (!course) {
     return (
