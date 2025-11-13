@@ -300,17 +300,96 @@ serve(async (req) => {
     const userAgent = req.headers.get("user-agent") || "unknown";
 
     // Accept either { body: {...} } or top-level JSON
+    // let raw: any = {};
+    // try {
+    //   raw = await req.json();
+    // } catch (e) {
+    //   // invalid JSON
+    //   return new Response(JSON.stringify({ ok: false, error: "Invalid JSON" }), {
+    //     status: 400,
+    //     headers: { ...corsHeaders, "Content-Type": "application/json" },
+    //   });
+    // }
+    // const incoming = raw?.body ?? raw ?? {};
+    // Robust body parsing (accepts both { body: {...} } or top-level JSON).
     let raw: any = {};
+    let rawText = "";
     try {
-      raw = await req.json();
+      // read text first (safer and avoids unexpected parse errors)
+      rawText = await req.text();
     } catch (e) {
-      // invalid JSON
-      return new Response(JSON.stringify({ ok: false, error: "Invalid JSON" }), {
-        status: 400,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
+      console.warn("Failed to read body text:", e?.message ?? e);
+      rawText = "";
     }
-    const incoming = raw?.body ?? raw ?? {};
+
+    // If there is no body at all
+    if (!rawText || rawText.trim() === "") {
+      console.log("Empty request body received");
+      return new Response(
+        JSON.stringify({
+          ok: false,
+          error: "Empty request body. Ensure Content-Type: application/json and a valid JSON payload is sent.",
+        }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+      );
+    }
+
+    // Try parse the raw text into JSON
+    try {
+      raw = JSON.parse(rawText);
+    } catch (parseErr) {
+      // If parse fails, sometimes clients send a JSON string in `body` field, e.g. { body: "{\"name\":\"...\"}" }
+      // Try to detect that and salvage it.
+      try {
+        const maybe = JSON.parse(rawText); // rethrow normally, but keep for clarity
+        raw = maybe;
+      } catch {
+        // Try a heuristic: rawText might already be a quoted JSON string (double-encoded)
+        // e.g. rawText === "{\"body\":\"{\\\"name\\\":\\\"abc\\\"}\"}"
+        // Attempt to extract a JSON substring that looks like an object
+        const firstBrace = rawText.indexOf("{");
+        const lastBrace = rawText.lastIndexOf("}");
+        if (firstBrace !== -1 && lastBrace !== -1 && lastBrace > firstBrace) {
+          const candidate = rawText.slice(firstBrace, lastBrace + 1);
+          try {
+            raw = JSON.parse(candidate);
+            console.log("Recovered JSON by slicing rawText candidate");
+          } catch (recoverErr) {
+            console.warn("Could not recover JSON from rawText:", recoverErr?.message ?? recoverErr);
+            return new Response(JSON.stringify({ ok: false, error: "Invalid JSON", rawText }), {
+              status: 400,
+              headers: { ...corsHeaders, "Content-Type": "application/json" },
+            });
+          }
+        } else {
+          console.warn("JSON parse failed and no recoverable candidate:", parseErr?.message ?? parseErr);
+          return new Response(JSON.stringify({ ok: false, error: "Invalid JSON", rawText }), {
+            status: 400,
+            headers: { ...corsHeaders, "Content-Type": "application/json" },
+          });
+        }
+      }
+    }
+
+    // Accept either nested `body` or top-level
+    let incoming: any = raw?.body ?? raw ?? {};
+
+    // If incoming is a string (common when client stringifies body), parse it
+    if (typeof incoming === "string") {
+      try {
+        incoming = JSON.parse(incoming);
+        console.log("Parsed incoming.body string into object");
+      } catch (e) {
+        console.warn("incoming is string but not valid JSON:", e?.message ?? e);
+        return new Response(
+          JSON.stringify({ ok: false, error: "Invalid nested JSON string in 'body'", incoming: String(incoming) }),
+          { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+        );
+      }
+    }
+
+    // Final debug log so we can see exactly what shape arrived
+    console.log("INCOMING (post-parse):", JSON.stringify(incoming));
 
     // Normalize fields
     const formData: EnrollFormData = {
