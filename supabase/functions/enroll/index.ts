@@ -413,7 +413,7 @@ serve(async (req) => {
       const ownerEmailHTML = generateOwnerEmailHTML(formData, submissionId);
 
       const ownerEmailResponse = await resend.emails.send({
-        from: "German mit Harsh <noreply@germanmitharsh.com>",
+        from: "German mit Harsh <enroll@germanmitharsh.com>",
         to: ["harsh@germanmitharsh.com"],
         replyTo: formData.email,
         subject: `[Enrollment] ${sanitizeInput(formData.name)} - ${sanitizeInput(formData.level)}`,
@@ -465,7 +465,7 @@ serve(async (req) => {
 
         try {
           const retryOwnerResponse = await resend.emails.send({
-            from: "German mit Harsh <noreply@germanmitharsh.com>",
+            from: "German mit Harsh <enroll@germanmitharsh.com>",
             to: ["harsh@germanmitharsh.com"],
             replyTo: formData.email,
             subject: `[Enrollment] ${sanitizeInput(formData.name)} - ${sanitizeInput(formData.level)}`,
