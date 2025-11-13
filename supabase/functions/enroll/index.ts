@@ -327,7 +327,30 @@ serve(async (req) => {
     const clientIP = req.headers.get("x-forwarded-for") || "unknown";
     const userAgent = req.headers.get("user-agent") || "unknown";
 
-    const formData: EnrollFormData = await req.json();
+    // Read payload (accepts either { body: {...} } or top-level fields)
+    const rawPayload: any = await req.json();
+    const incoming = rawPayload?.body ?? rawPayload;
+
+    // helper to remove zero-width / BOM / non-printable
+    const stripInvisible = (s: string) =>
+      s
+        ?.toString()
+        .replace(/[\u200B-\u200D\uFEFF]/g, "")
+        .replace(/[^\x20-\x7E]/g, "") ?? "";
+
+    // normalize + sanitize fields we rely on
+    const formData: EnrollFormData = {
+      name: stripInvisible(String(incoming?.name ?? "")).trim(),
+      email: stripInvisible(String(incoming?.email ?? "")).trim(),
+      phone: stripInvisible(String(incoming?.phone ?? "")).trim(),
+      level: stripInvisible(String(incoming?.level ?? ""))
+        .trim()
+        .toLowerCase(),
+      message: stripInvisible(String(incoming?.message ?? "")).trim(),
+      startDate: stripInvisible(String(incoming?.startDate ?? "")).trim(),
+      coupon: stripInvisible(String(incoming?.coupon ?? "")).trim(),
+      honeypot: stripInvisible(String(incoming?.honeypot ?? "")).trim(),
+    };
 
     // Honeypot check
     if (formData.honeypot) {
