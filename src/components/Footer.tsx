@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Mail, Phone, Instagram, Linkedin } from "lucide-react";
+import { Mail, Phone, Instagram, Youtube } from "lucide-react";
 const Footer = () => {
   return <footer className="bg-card border-t border-border mt-12 md:mt-16 lg:mt-20">
       <div className="container mx-auto px-4 md:px-6 lg:px-8 py-8 md:py-12">
@@ -57,8 +57,8 @@ const Footer = () => {
                 <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
                   <Instagram size={20} />
                 </a>
-                <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                  <Linkedin size={20} />
+                <a href="https://www.youtube.com/@GermanmitHarsh" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                  <Youtube size={20} />
                 </a>
               </li>
             </ul>
