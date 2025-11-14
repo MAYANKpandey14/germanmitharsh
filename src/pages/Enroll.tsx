@@ -16,6 +16,7 @@ const Enroll = () => {
     name?: string;
     email?: string;
     phone?: string;
+    message?: string;
   }>({});
   const [formData, setFormData] = useState({
     name: "",
@@ -74,6 +75,16 @@ const Enroll = () => {
     return undefined;
   };
 
+  const validateMessage = (message: string): string | undefined => {
+    if (!message.trim()) {
+      return "Please tell us about your goals";
+    }
+    if (message.length > 1000) {
+      return "Message must be less than 1000 characters";
+    }
+    return undefined;
+  };
+
   const validateForm = (): boolean => {
     const newErrors: typeof errors = {};
 
@@ -85,6 +96,9 @@ const Enroll = () => {
 
     const phoneError = validatePhone(formData.phone);
     if (phoneError) newErrors.phone = phoneError;
+
+    const messageError = validateMessage(formData.message);
+    if (messageError) newErrors.message = messageError;
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -187,6 +201,8 @@ const Enroll = () => {
       error = validateEmail(formData.email);
     } else if (fieldName === "phone") {
       error = validatePhone(formData.phone);
+    } else if (fieldName === "message") {
+      error = validateMessage(formData.message);
     }
 
     if (error) {
@@ -322,16 +338,25 @@ const Enroll = () => {
                 <div className="space-y-2">
                   <Label htmlFor="message" className="flex items-center">
                     <MessageSquare className="w-4 h-4 mr-2 text-primary" />
-                    Tell us about your goals
+                    Tell us about your goals *
                   </Label>
                   <Textarea
                     id="message"
                     placeholder="Why do you want to learn German? What are your goals?"
                     value={formData.message}
                     onChange={(e) => handleChange("message", e.target.value)}
+                    onBlur={() => handleBlur("message")}
+                    className={errors.message ? "border-red-500 focus-visible:ring-red-500" : ""}
                     rows={4}
                     maxLength={1000}
+                    required
                   />
+                  {errors.message && (
+                    <p className="text-sm text-red-600 flex items-center gap-1">
+                      <AlertCircle className="h-4 w-4" />
+                      {errors.message}
+                    </p>
+                  )}
                 </div>
 
                 {/* Honeypot field - hidden from users */}
