@@ -1,7 +1,7 @@
 // supabase/functions/enroll/index.ts
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.39.3";
-import { Resend } from "npm:resend@4.0.0";
+import { Resend } from "https://esm.sh/resend@4.0.0";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -318,7 +318,7 @@ serve(async (req) => {
       // read text first (safer and avoids unexpected parse errors)
       rawText = await req.text();
     } catch (e) {
-      console.warn("Failed to read body text:", e?.message ?? e);
+      console.warn("Failed to read body text:", (e as Error)?.message ?? e);
       rawText = "";
     }
 
@@ -355,14 +355,14 @@ serve(async (req) => {
             raw = JSON.parse(candidate);
             console.log("Recovered JSON by slicing rawText candidate");
           } catch (recoverErr) {
-            console.warn("Could not recover JSON from rawText:", recoverErr?.message ?? recoverErr);
+            console.warn("Could not recover JSON from rawText:", (recoverErr as Error)?.message ?? recoverErr);
             return new Response(JSON.stringify({ ok: false, error: "Invalid JSON", rawText }), {
               status: 400,
               headers: { ...corsHeaders, "Content-Type": "application/json" },
             });
           }
         } else {
-          console.warn("JSON parse failed and no recoverable candidate:", parseErr?.message ?? parseErr);
+          console.warn("JSON parse failed and no recoverable candidate:", (parseErr as Error)?.message ?? parseErr);
           return new Response(JSON.stringify({ ok: false, error: "Invalid JSON", rawText }), {
             status: 400,
             headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -380,7 +380,7 @@ serve(async (req) => {
         incoming = JSON.parse(incoming);
         console.log("Parsed incoming.body string into object");
       } catch (e) {
-        console.warn("incoming is string but not valid JSON:", e?.message ?? e);
+        console.warn("incoming is string but not valid JSON:", (e as Error)?.message ?? e);
         return new Response(
           JSON.stringify({ ok: false, error: "Invalid nested JSON string in 'body'", incoming: String(incoming) }),
           { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } },

@@ -1,6 +1,6 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.39.3";
-import { Resend } from "npm:resend@4.0.0";
+import { Resend } from "https://esm.sh/resend@4.0.0";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -295,7 +295,7 @@ serve(async (req) => {
         .from("form_submissions")
         .update({
           status: "sent",
-          resend_message_id: emailResponse.id,
+          resend_message_id: emailResponse.data?.id || null,
           resend_response: emailResponse,
         })
         .eq("id", submissionId);
@@ -324,7 +324,7 @@ serve(async (req) => {
             .from("form_submissions")
             .update({
               status: "sent",
-              resend_message_id: retryResponse.id,
+              resend_message_id: retryResponse.data?.id || null,
               resend_response: retryResponse,
             })
             .eq("id", submissionId);
