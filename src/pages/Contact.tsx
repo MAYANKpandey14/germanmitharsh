@@ -315,7 +315,7 @@ const Contact = () => {
                     value={formData.phone}
                     onChange={handleChange}
                     onBlur={() => handleBlur("phone")}
-                    placeholder="+49 XXX XXXXXXX"
+                    placeholder="49 XXX XXXXXXX"
                     className={errors.phone ? "border-red-500 focus-visible:ring-red-500" : ""}
                   />
                   {errors.phone && (
