@@ -308,159 +308,159 @@ const Home = () => {
 
       {/* Stats Section */}
       <section className="py-8 md:py-12 bg-background border-t">
-          <div className="container mx-auto px-4 md:px-6 lg:px-8">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-              {stats.map((stat, index) => (
-                <div
-                  key={index}
-                  className="text-center animate-slide-up"
-                  style={{
-                    animationDelay: `${index * 100}ms`,
-                  }}
-                >
-                  <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-2">{stat.number}</div>
-                  <div className="text-xs sm:text-sm md:text-base text-muted-foreground">{stat.label}</div>
-                </div>
-              ))}
-            </div>
+        <div className="container mx-auto px-4 md:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+            {stats.map((stat, index) => (
+              <div
+                key={index}
+                className="text-center animate-slide-up"
+                style={{
+                  animationDelay: `${index * 100}ms`,
+                }}
+              >
+                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-2">{stat.number}</div>
+                <div className="text-xs sm:text-sm md:text-base text-muted-foreground">{stat.label}</div>
+              </div>
+            ))}
           </div>
-        </section>
+        </div>
+      </section>
 
       {/* Features Section */}
       <section className="py-12 md:py-16 lg:py-20 bg-gradient-to-b from-background to-muted/30">
-          <div className="container mx-auto px-4 md:px-6 lg:px-8">
-            <div className="text-center mb-10 md:mb-16 animate-fade-in">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-3 md:mb-4">
-                Why Learn with <span className="text-gradient">Harsh?</span>
-              </h2>
-              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
-                A proven teaching methodology focused on real results, not just theory
-              </p>
-            </div>
-
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-              {features.map((feature, index) => (
-                <Card
-                  key={index}
-                  className="hover-lift border-2 border-transparent hover:border-primary/20 transition-all animate-fade-in"
-                  style={{
-                    animationDelay: `${index * 100}ms`,
-                  }}
-                >
-                  <CardContent className="p-6 text-center">
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 text-primary mb-4">
-                      <feature.icon size={32} />
-                    </div>
-                    <h3 className="text-xl font-heading font-semibold mb-3">{feature.title}</h3>
-                    <p className="text-muted-foreground">{feature.description}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+        <div className="container mx-auto px-4 md:px-6 lg:px-8">
+          <div className="text-center mb-10 md:mb-16 animate-fade-in">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-3 md:mb-4">
+              Why Learn with <span className="text-gradient">Harsh?</span>
+            </h2>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
+              A proven teaching methodology focused on real results, not just theory
+            </p>
           </div>
-        </section>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            {features.map((feature, index) => (
+              <Card
+                key={index}
+                className="hover-lift border-2 border-transparent hover:border-primary/20 transition-all animate-fade-in"
+                style={{
+                  animationDelay: `${index * 100}ms`,
+                }}
+              >
+                <CardContent className="p-6 text-center">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 text-primary mb-4">
+                    <feature.icon size={32} />
+                  </div>
+                  <h3 className="text-xl font-heading font-semibold mb-3">{feature.title}</h3>
+                  <p className="text-muted-foreground">{feature.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Courses Overview */}
       <section className="py-12 md:py-16 lg:py-20">
-          <div className="container mx-auto px-4 md:px-6 lg:px-8">
-            <div className="text-center mb-10 md:mb-16 animate-fade-in">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-3 md:mb-4">
-                Choose Your <span className="text-gradient">Level</span>
-              </h2>
-              <p className="text-base md:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
-                From complete beginner to advanced proficiency - structured courses for every level
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto">
-              {courses.map((course, index) => (
-                <Card
-                  key={index}
-                  className="hover-lift cursor-pointer group border-2 border-transparent hover:border-primary transition-all animate-fade-in"
-                  style={{
-                    animationDelay: `${index * 100}ms`,
-                  }}
-                >
-                  <CardContent className="p-5 md:p-6 text-center flex flex-col items-center justify-between min-h-[200px]">
-                    <div className="w-full">
-                      <div className="text-3xl md:text-4xl font-bold text-gradient mb-2">{course.level}</div>
-                      <h3 className="text-base md:text-xl font-heading font-semibold mb-1.5">{course.title}</h3>
-                      <p className="text-muted-foreground text-xs md:text-sm mb-3">{course.description}</p>
-                      <div className="text-xl md:text-2xl font-bold text-primary mb-4">{course.price}</div>
-                    </div>
-                    <Button
-                      asChild
-                      variant="outline"
-                      size="sm"
-                      className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
-                    >
-                      <Link
-                        to={`/course/${course.level.toLowerCase()}`}
-                        className="flex items-center justify-center gap-2"
-                      >
-                        {['A1.2', 'A2.2', 'B1.2', 'B2.2'].includes(course.level) ? (
-                          <UserPlus className="w-4 h-4" />
-                        ) : (
-                          <Video className="w-4 h-4" />
-                        )}
-                        {['A1.2', 'A2.2', 'B1.2', 'B2.2'].includes(course.level) ? 'Enroll' : 'View'}
-                      </Link>
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-
-            <div className="text-center mt-8 md:mt-12">
-              <Button asChild size="lg" variant="cta" className="hover-scale">
-                <Link to="/courses" className="flex items-center gap-2">
-                  Explore All Courses
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </Button>
-            </div>
+        <div className="container mx-auto px-4 md:px-6 lg:px-8">
+          <div className="text-center mb-10 md:mb-16 animate-fade-in">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-3 md:mb-4">
+              Choose Your <span className="text-gradient">Level</span>
+            </h2>
+            <p className="text-base md:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
+              From complete beginner to advanced proficiency - structured courses for every level
+            </p>
           </div>
-        </section>
+
+          <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto">
+            {courses.map((course, index) => (
+              <Card
+                key={index}
+                className="hover-lift cursor-pointer group border-2 border-transparent hover:border-primary transition-all animate-fade-in"
+                style={{
+                  animationDelay: `${index * 100}ms`,
+                }}
+              >
+                <CardContent className="p-5 md:p-6 text-center flex flex-col items-center justify-between min-h-[200px]">
+                  <div className="w-full">
+                    <div className="text-3xl md:text-4xl font-bold text-gradient mb-2">{course.level}</div>
+                    <h3 className="text-base md:text-xl font-heading font-semibold mb-1.5">{course.title}</h3>
+                    <p className="text-muted-foreground text-xs md:text-sm mb-3">{course.description}</p>
+                    <div className="text-xl md:text-2xl font-bold text-primary mb-4">{course.price}</div>
+                  </div>
+                  <Button
+                    asChild
+                    variant="outline"
+                    size="sm"
+                    className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                  >
+                    <Link
+                      to={`/course/${course.level.toLowerCase()}`}
+                      className="flex items-center justify-center gap-2"
+                    >
+                      {["A1.2", "A2.2", "B1.2"].includes(course.level) ? (
+                        <UserPlus className="w-4 h-4" />
+                      ) : (
+                        <Video className="w-4 h-4" />
+                      )}
+                      {["A1.2", "A2.2", "B1.2"].includes(course.level) ? "Enroll" : "View"}
+                    </Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="text-center mt-8 md:mt-12">
+            <Button asChild size="lg" variant="cta" className="hover-scale">
+              <Link to="/courses" className="flex items-center gap-2">
+                Explore All Courses
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
 
       {/* CTA Section */}
       <section className="relative py-12 md:py-16 lg:py-20 bg-gradient-to-r from-primary-dark to-primary text-white mx-4 md:mx-6 lg:mx-8 rounded-lg overflow-hidden">
-          {/* Diagonal Pattern Overlay */}
-          <div 
-            className="absolute inset-0 opacity-10"
-            style={{
-              backgroundImage: `repeating-linear-gradient(
+        {/* Diagonal Pattern Overlay */}
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: `repeating-linear-gradient(
                 45deg,
                 transparent,
                 transparent 20px,
                 rgba(255, 255, 255, 0.1) 20px,
                 rgba(255, 255, 255, 0.1) 40px
-              )`
-            }}
-          />
-          <div className="container mx-auto px-4 md:px-6 lg:px-8 text-center relative z-10">
-            <div className="max-w-3xl mx-auto space-y-4 md:space-y-6 animate-fade-in">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold">
-                Ready to Start Your German Journey?
-              </h2>
-              <p className="text-base md:text-lg lg:text-xl text-white/90 px-4">
-                Join 500+ successful students who achieved their language goals with personalized guidance
-              </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 pt-2 md:pt-4">
-                <Button asChild size="lg" variant="cta">
-                  <Link to="/enroll">Enroll Now</Link>
-                </Button>
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="bg-white/10 backdrop-blur-sm border-white text-white hover:bg-white/20"
-                >
-                  <Link to="/student-results">Read Success Stories</Link>
-                </Button>
-              </div>
+              )`,
+          }}
+        />
+        <div className="container mx-auto px-4 md:px-6 lg:px-8 text-center relative z-10">
+          <div className="max-w-3xl mx-auto space-y-4 md:space-y-6 animate-fade-in">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold">
+              Ready to Start Your German Journey?
+            </h2>
+            <p className="text-base md:text-lg lg:text-xl text-white/90 px-4">
+              Join 500+ successful students who achieved their language goals with personalized guidance
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 pt-2 md:pt-4">
+              <Button asChild size="lg" variant="cta">
+                <Link to="/enroll">Enroll Now</Link>
+              </Button>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="bg-white/10 backdrop-blur-sm border-white text-white hover:bg-white/20"
+              >
+                <Link to="/student-results">Read Success Stories</Link>
+              </Button>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
     </div>
   );
 };
