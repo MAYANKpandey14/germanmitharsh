@@ -312,7 +312,6 @@ const Contact = () => {
                     id="phone"
                     name="phone"
                     type="tel"
-                    maxlength="12"
                     value={formData.phone}
                     onChange={handleChange}
                     onBlur={() => handleBlur("phone")}
