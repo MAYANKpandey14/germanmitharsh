@@ -64,7 +64,7 @@ const Enroll = () => {
     if (!phoneRegex.test(phone)) {
       return "Phone can only contain numbers, spaces, +, -, and parentheses";
     }
-    const digitsOnly = phone.replace(/\D/g, '');
+    const digitsOnly = phone.replace(/\D/g, "");
     if (digitsOnly.length < 10) {
       return "Phone number must have at least 10 digits";
     }
@@ -76,13 +76,13 @@ const Enroll = () => {
 
   const validateForm = (): boolean => {
     const newErrors: typeof errors = {};
-    
+
     const nameError = validateName(formData.name);
     if (nameError) newErrors.name = nameError;
-    
+
     const emailError = validateEmail(formData.email);
     if (emailError) newErrors.email = emailError;
-    
+
     const phoneError = validatePhone(formData.phone);
     if (phoneError) newErrors.phone = phoneError;
 
@@ -92,7 +92,7 @@ const Enroll = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (isSubmitting) return;
 
     // Validate form
@@ -114,11 +114,11 @@ const Enroll = () => {
       });
       return;
     }
-    
+
     setIsSubmitting(true);
 
     try {
-      const { data, error } = await supabase.functions.invoke('enroll', {
+      const { data, error } = await supabase.functions.invoke("enroll", {
         body: {
           name: formData.name.trim(),
           email: formData.email.trim(),
@@ -137,7 +137,7 @@ const Enroll = () => {
           description: "Check your email for confirmation and next steps. We'll contact you within 24 hours!",
           duration: 6000,
         });
-        
+
         setFormData({
           name: "",
           email: "",
@@ -148,11 +148,11 @@ const Enroll = () => {
         });
         setErrors({});
       } else {
-        throw new Error(data?.error || 'Failed to submit enrollment');
+        throw new Error(data?.error || "Failed to submit enrollment");
       }
     } catch (error: any) {
-      console.error('Enrollment form error:', error);
-      
+      console.error("Enrollment form error:", error);
+
       toast({
         title: "Enrollment Failed",
         description: error.message || "Please try again or contact us directly at harsh@germanmitharsh.com",
@@ -164,14 +164,14 @@ const Enroll = () => {
   };
 
   const handleChange = (field: string, value: string) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [field]: value
+      [field]: value,
     }));
-    
+
     // Clear error for this field when user starts typing
     if (errors[field as keyof typeof errors]) {
-      setErrors(prev => ({
+      setErrors((prev) => ({
         ...prev,
         [field]: undefined,
       }));
@@ -180,24 +180,32 @@ const Enroll = () => {
 
   const handleBlur = (fieldName: keyof typeof errors) => {
     let error: string | undefined;
-    
-    if (fieldName === 'name') {
+
+    if (fieldName === "name") {
       error = validateName(formData.name);
-    } else if (fieldName === 'email') {
+    } else if (fieldName === "email") {
       error = validateEmail(formData.email);
-    } else if (fieldName === 'phone') {
+    } else if (fieldName === "phone") {
       error = validatePhone(formData.phone);
     }
-    
+
     if (error) {
-      setErrors(prev => ({
+      setErrors((prev) => ({
         ...prev,
         [fieldName]: error,
       }));
     }
   };
-  const benefits = ["Free consultation call to discuss your goals", "Personalized learning plan tailored to you", "Flexible class scheduling", "Comprehensive study materials included", "Lifetime doubt support", "Exam preparation guidance"];
-  return <div className="min-h-screen pt-20 md:pt-24 pb-12 md:pb-20">
+  const benefits = [
+    "Free consultation call to discuss your goals",
+    "Personalized learning plan tailored to you",
+    "Flexible class scheduling",
+    "Comprehensive study materials included",
+    "Lifetime doubt support",
+    "Exam preparation guidance",
+  ];
+  return (
+    <div className="min-h-screen pt-20 md:pt-24 pb-12 md:pb-20">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-10 md:mb-16 animate-fade-in">
@@ -205,8 +213,8 @@ const Enroll = () => {
             Start Your <span className="text-gradient">German Journey</span>
           </h1>
           <p className="text-base md:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
-            Fill out the form below to book your free consultation call. 
-            Let's discuss your goals and create a personalized learning plan.
+            Fill out the form below to book your free consultation call. Let's discuss your goals and create a
+            personalized learning plan.
           </p>
         </div>
 
@@ -224,14 +232,14 @@ const Enroll = () => {
                     <User className="w-4 h-4 mr-2 text-primary" />
                     Full Name *
                   </Label>
-                  <Input 
-                    id="name" 
-                    placeholder="Enter your full name" 
-                    value={formData.name} 
-                    onChange={e => handleChange("name", e.target.value)} 
-                    onBlur={() => handleBlur('name')}
+                  <Input
+                    id="name"
+                    placeholder="Enter your full name"
+                    value={formData.name}
+                    onChange={(e) => handleChange("name", e.target.value)}
+                    onBlur={() => handleBlur("name")}
                     className={errors.name ? "border-red-500 focus-visible:ring-red-500" : ""}
-                    required 
+                    required
                   />
                   {errors.name && (
                     <p className="text-sm text-red-600 flex items-center gap-1">
@@ -247,15 +255,15 @@ const Enroll = () => {
                     <Mail className="w-4 h-4 mr-2 text-primary" />
                     Email Address *
                   </Label>
-                  <Input 
-                    id="email" 
-                    type="email" 
-                    placeholder="your.email@example.com" 
-                    value={formData.email} 
-                    onChange={e => handleChange("email", e.target.value)} 
-                    onBlur={() => handleBlur('email')}
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="your.email@example.com"
+                    value={formData.email}
+                    onChange={(e) => handleChange("email", e.target.value)}
+                    onBlur={() => handleBlur("email")}
                     className={errors.email ? "border-red-500 focus-visible:ring-red-500" : ""}
-                    required 
+                    required
                   />
                   {errors.email && (
                     <p className="text-sm text-red-600 flex items-center gap-1">
@@ -271,15 +279,15 @@ const Enroll = () => {
                     <Phone className="w-4 h-4 mr-2 text-primary" />
                     Phone Number *
                   </Label>
-                  <Input 
-                    id="phone" 
-                    type="tel" 
-                    placeholder="+49 XXX XXXXXXX" 
-                    value={formData.phone} 
-                    onChange={e => handleChange("phone", e.target.value)} 
-                    onBlur={() => handleBlur('phone')}
+                  <Input
+                    id="phone"
+                    type="tel"
+                    placeholder="+49 XXX XXXXXXX"
+                    value={formData.phone}
+                    onChange={(e) => handleChange("phone", e.target.value)}
+                    onBlur={() => handleBlur("phone")}
                     className={errors.phone ? "border-red-500 focus-visible:ring-red-500" : ""}
-                    required 
+                    required
                   />
                   {errors.phone && (
                     <p className="text-sm text-red-600 flex items-center gap-1">
@@ -292,7 +300,7 @@ const Enroll = () => {
                 {/* Level Selection */}
                 <div className="space-y-2">
                   <Label htmlFor="level">Desired Course Level *</Label>
-                  <Select value={formData.level} onValueChange={value => handleChange("level", value)}>
+                  <Select value={formData.level} onValueChange={(value) => handleChange("level", value)}>
                     <SelectTrigger>
                       <SelectValue placeholder="Select your level" />
                     </SelectTrigger>
@@ -314,14 +322,14 @@ const Enroll = () => {
                 <div className="space-y-2">
                   <Label htmlFor="message" className="flex items-center">
                     <MessageSquare className="w-4 h-4 mr-2 text-primary" />
-                    Tell us about your goals (Optional)
+                    Tell us about your goals
                   </Label>
-                  <Textarea 
-                    id="message" 
-                    placeholder="Why do you want to learn German? What are your goals?" 
-                    value={formData.message} 
-                    onChange={e => handleChange("message", e.target.value)} 
-                    rows={4} 
+                  <Textarea
+                    id="message"
+                    placeholder="Why do you want to learn German? What are your goals?"
+                    value={formData.message}
+                    onChange={(e) => handleChange("message", e.target.value)}
+                    rows={4}
                     maxLength={1000}
                   />
                 </div>
@@ -331,16 +339,16 @@ const Enroll = () => {
                   type="text"
                   name="honeypot"
                   value={formData.honeypot}
-                  onChange={e => handleChange("honeypot", e.target.value)}
-                  style={{ display: 'none' }}
+                  onChange={(e) => handleChange("honeypot", e.target.value)}
+                  style={{ display: "none" }}
                   tabIndex={-1}
                   autoComplete="off"
                 />
 
                 {/* Submit Button */}
-                <Button 
-                  type="submit" 
-                  size="lg" 
+                <Button
+                  type="submit"
+                  size="lg"
                   className="w-full bg-accent hover:bg-accent/90 hover-scale"
                   disabled={isSubmitting}
                 >
@@ -350,7 +358,7 @@ const Enroll = () => {
                       Submitting...
                     </>
                   ) : (
-                    'Book Free Consultation'
+                    "Book Free Consultation"
                   )}
                 </Button>
 
@@ -362,9 +370,12 @@ const Enroll = () => {
           </Card>
 
           {/* Benefits & Info */}
-          <div className="space-y-8 animate-fade-in" style={{
-          animationDelay: '200ms'
-        }}>
+          <div
+            className="space-y-8 animate-fade-in"
+            style={{
+              animationDelay: "200ms",
+            }}
+          >
             {/* What Happens Next */}
             <Card>
               <CardHeader>
@@ -377,9 +388,7 @@ const Enroll = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold mb-1">Submit Your Request</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Fill out the form and tell us about your goals
-                    </p>
+                    <p className="text-sm text-muted-foreground">Fill out the form and tell us about your goals</p>
                   </div>
                 </div>
 
@@ -428,10 +437,12 @@ const Enroll = () => {
               </CardHeader>
               <CardContent>
                 <ul className="space-y-3">
-                  {benefits.map((benefit, index) => <li key={index} className="flex items-start">
+                  {benefits.map((benefit, index) => (
+                    <li key={index} className="flex items-start">
                       <CheckCircle2 className="w-5 h-5 mr-3 flex-shrink-0 mt-0.5" />
                       <span>{benefit}</span>
-                    </li>)}
+                    </li>
+                  ))}
                 </ul>
               </CardContent>
             </Card>
@@ -458,6 +469,7 @@ const Enroll = () => {
           </div>
         </div>
       </div>
-    </div>;
+    </div>
+  );
 };
 export default Enroll;
