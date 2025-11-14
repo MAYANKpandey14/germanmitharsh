@@ -282,7 +282,7 @@ const Enroll = () => {
                   <Input
                     id="phone"
                     type="tel"
-                    placeholder="+49 XXX XXXXXXX"
+                    placeholder="49 XXX XXXXXXX"
                     value={formData.phone}
                     onChange={(e) => handleChange("phone", e.target.value)}
                     onBlur={() => handleBlur("phone")}
