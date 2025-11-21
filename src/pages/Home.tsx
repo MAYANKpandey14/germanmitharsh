@@ -252,7 +252,7 @@ const Home = () => {
                   </Link>
                 </Button>
                 <Button asChild size="lg" variant="outline" className="group">
-                  <Link to="/course/a1" className="flex items-center gap-2">
+                  <Link to="/course/a1.1" className="flex items-center gap-2">
                     <PlayCircle className="w-5 h-5" />
                     Watch Free Lesson
                   </Link>
