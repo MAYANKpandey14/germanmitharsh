@@ -56,6 +56,8 @@ const Footer = () => {
               <li className="flex items-center space-x-4 pt-2">
                 <a
                   href="https://www.instagram.com/germanmitharsh"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-primary transition-colors"
                 >
                   <Instagram size={20} />
