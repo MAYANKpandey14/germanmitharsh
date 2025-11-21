@@ -1,16 +1,16 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, Instagram, Youtube } from "lucide-react";
 const Footer = () => {
-  return <footer className="bg-card border-t border-border mt-12 md:mt-16 lg:mt-20">
+  return (
+    <footer className="bg-card border-t border-border mt-12 md:mt-16 lg:mt-20">
       <div className="container mx-auto px-4 md:px-6 lg:px-8 py-8 md:py-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
           {/* Brand */}
           <div>
-            <h3 className="text-xl font-heading font-bold text-gradient mb-4">
-              German Mit Harsh
-            </h3>
+            <h3 className="text-xl font-heading font-bold text-gradient mb-4">German Mit Harsh</h3>
             <p className="text-muted-foreground text-sm">
-              Learn German from an experienced instructor. Personalized teaching approach with live classes and comprehensive support.
+              Learn German from an experienced instructor. Personalized teaching approach with live classes and
+              comprehensive support.
             </p>
           </div>
 
@@ -54,10 +54,18 @@ const Footer = () => {
                 <span>+49 15511330861</span>
               </li>
               <li className="flex items-center space-x-4 pt-2">
-                <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                <a
+                  href="https://www.instagram.com/germanmitharsh"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
                   <Instagram size={20} />
                 </a>
-                <a href="https://www.youtube.com/@GermanmitHarsh" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                <a
+                  href="https://www.youtube.com/@GermanmitHarsh"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
                   <Youtube size={20} />
                 </a>
               </li>
@@ -71,6 +79,7 @@ const Footer = () => {
           </p>
         </div>
       </div>
-    </footer>;
+    </footer>
+  );
 };
 export default Footer;
