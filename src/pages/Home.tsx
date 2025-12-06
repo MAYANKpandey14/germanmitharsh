@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle2, Users, Video, BookOpen, Award, Clock, PlayCircle, ArrowRight, UserPlus } from "lucide-react";
 import instructorPortrait from "@/assets/instructor-portrait.jpg";
 import SocialProofBar from "@/components/SocialProofBar";
+import { AnimatedStat } from "@/components/AnimatedStat";
 const Home = () => {
   const features = [
     {
@@ -311,16 +312,12 @@ const Home = () => {
         <div className="container mx-auto px-4 md:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
             {stats.map((stat, index) => (
-              <div
+              <AnimatedStat
                 key={index}
-                className="text-center animate-slide-up"
-                style={{
-                  animationDelay: `${index * 100}ms`,
-                }}
-              >
-                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-2">{stat.number}</div>
-                <div className="text-xs sm:text-sm md:text-base text-muted-foreground">{stat.label}</div>
-              </div>
+                number={stat.number}
+                label={stat.label}
+                index={index}
+              />
             ))}
           </div>
         </div>
