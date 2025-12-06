@@ -204,11 +204,11 @@ const CourseSelectionTabs = () => {
                     {/* Actions */}
                     <div className="space-y-3">
                       <Button asChild className={`w-full ${styles.button}`}>
-                        <Link to={`/enroll?course=${subLevel.id}`}>Start Learning</Link>
+                        <Link to={`/course/{subLevel.id}`}>Start Learning</Link>
                       </Button>
                       <div className="text-center">
                         <Link
-                          to={`/course/${subLevel.id.toLowerCase()}`}
+                          to={`/course/${subLevel.id}`}
                           className="text-sm text-muted-foreground hover:text-primary transition-colors underline-offset-4 hover:underline"
                         >
                           View Syllabus
