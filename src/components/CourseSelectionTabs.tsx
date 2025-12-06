@@ -178,7 +178,7 @@ const CourseSelectionTabs = () => {
                     {/* Badge */}
                     <div className="flex items-center justify-between mb-4">
                       <span className={`px-3 py-1 rounded-full text-sm font-semibold ${styles.badge}`}>
-                        {subLevel.id}
+                        {subLevel.title}
                       </span>
                       <span className="text-xl font-bold text-foreground">{subLevel.price}</span>
                     </div>
@@ -188,8 +188,8 @@ const CourseSelectionTabs = () => {
                       <IconComponent className={`w-16 h-16 ${styles.icon}`} strokeWidth={1.5} />
                     </div>
 
-                    {/* Title */}
-                    <h3 className="text-xl font-heading font-bold text-center mb-4">{subLevel.title}</h3>
+                    {/* Course ID */}
+                    <h3 className="text-xl font-heading font-bold text-center mb-4">{subLevel.id}</h3>
 
                     {/* Outcomes */}
                     <ul className="space-y-2 mb-6">
