@@ -208,7 +208,7 @@ const CourseSelectionTabs = () => {
                       </Button>
                       <div className="text-center">
                         <Link
-                          to={`/course/${subLevel.id}`}
+                          to={`/course/${subLevel.id}#curriculum`}
                           className="text-sm text-muted-foreground hover:text-primary transition-colors underline-offset-4 hover:underline"
                         >
                           View Syllabus

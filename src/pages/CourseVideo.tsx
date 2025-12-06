@@ -654,7 +654,7 @@ const CourseVideo = () => {
           </div>
 
           {/* Curriculum */}
-          <div className="max-w-5xl mx-auto mb-16">
+          <div id="curriculum" className="max-w-5xl mx-auto mb-16 scroll-mt-24">
             <div className="mb-8">
               <h2 className="text-3xl font-heading font-bold mb-3">Course Curriculum</h2>
               <p className="text-lg text-muted-foreground">
