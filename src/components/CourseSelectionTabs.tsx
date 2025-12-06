@@ -204,7 +204,7 @@ const CourseSelectionTabs = () => {
                     {/* Actions */}
                     <div className="space-y-3">
                       <Button asChild className={`w-full ${styles.button}`}>
-                        <Link to={`/course/{subLevel.id}`}>Start Learning</Link>
+                        <Link to={`/course/${subLevel.id}`}>Start Learning</Link>
                       </Button>
                       <div className="text-center">
                         <Link
