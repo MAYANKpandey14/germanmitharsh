@@ -5,6 +5,7 @@ import { CheckCircle2, Users, Video, BookOpen, Award, Clock, PlayCircle, ArrowRi
 import instructorPortrait from "@/assets/instructor-portrait.jpg";
 import SocialProofBar from "@/components/SocialProofBar";
 import { AnimatedStat } from "@/components/AnimatedStat";
+import CourseSelectionTabs from "@/components/CourseSelectionTabs";
 const Home = () => {
   const features = [
     {
@@ -357,7 +358,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Courses Overview */}
+      {/* Course Selection */}
       <section className="py-12 md:py-16 lg:py-20">
         <div className="container mx-auto px-4 md:px-6 lg:px-8">
           <div className="text-center mb-10 md:mb-16 animate-fade-in">
@@ -369,44 +370,7 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto">
-            {courses.map((course, index) => (
-              <Card
-                key={index}
-                className="hover-lift cursor-pointer group border-2 border-transparent hover:border-primary transition-all animate-fade-in"
-                style={{
-                  animationDelay: `${index * 100}ms`,
-                }}
-              >
-                <CardContent className="p-5 md:p-6 text-center flex flex-col items-center justify-between min-h-[200px]">
-                  <div className="w-full">
-                    <div className="text-3xl md:text-4xl font-bold text-gradient mb-2">{course.level}</div>
-                    <h3 className="text-base md:text-xl font-heading font-semibold mb-1.5">{course.title}</h3>
-                    <p className="text-muted-foreground text-xs md:text-sm mb-3">{course.description}</p>
-                    <div className="text-xl md:text-2xl font-bold text-primary mb-4">{course.price}</div>
-                  </div>
-                  <Button
-                    asChild
-                    variant="outline"
-                    size="sm"
-                    className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
-                  >
-                    <Link
-                      to={`/course/${course.level.toLowerCase()}`}
-                      className="flex items-center justify-center gap-2"
-                    >
-                      {["A1.2", "A2.2", "B1.2"].includes(course.level) ? (
-                        <UserPlus className="w-4 h-4" />
-                      ) : (
-                        <Video className="w-4 h-4" />
-                      )}
-                      {["A1.2", "A2.2", "B1.2"].includes(course.level) ? "Enroll" : "View"}
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <CourseSelectionTabs />
 
           <div className="text-center mt-8 md:mt-12">
             <Button asChild size="lg" variant="cta" className="hover-scale">
