@@ -18,12 +18,19 @@ const Navigation = () => {
 
   const isActive = (path: string) => location.pathname === path;
 
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (location.pathname === "/") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
+          <Link to="/" onClick={handleLogoClick} className="flex items-center space-x-2">
             <span className="text-2xl font-heading font-bold text-gradient">German Mit Harsh</span>
           </Link>
 

@@ -9,11 +9,11 @@ import CourseTestimonials from "@/components/CourseTestimonials";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
 import FAQ from "@/components/FAQ";
 import SEOHead from "@/components/SEOHead";
-import A1Thumbnail from "@/assets/A1-Thumbnail.png";
-import A2Thumbnail from "@/assets/A2-Thumbnail.png";
-import B1Thumbnail from "@/assets/B1-Thumbnail.png";
-import B21Thumbnail from "@/assets/B2.1-Thumbnail.png";
-import B22Thumbnail from "@/assets/B2.2-Thumbnail.png";
+import A1Thumbnail from "@/assets/A1-Thumbnail.webp";
+import A2Thumbnail from "@/assets/A2-Thumbnail.webp";
+import B1Thumbnail from "@/assets/B1-Thumbnail.webp";
+import B21Thumbnail from "@/assets/B2.1-Thumbnail.webp";
+import B22Thumbnail from "@/assets/B2.2-Thumbnail.webp";
 
 const CourseVideo = () => {
   const { level } = useParams<{ level: string }>();
