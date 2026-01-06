@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Users, Video, BookOpen, Award, PlayCircle, ArrowRight } from "lucide-react";
-import instructorPortrait from "@/assets/instructor-portrait.jpg";
+import instructorPortrait from "@/assets/instructor-portrait.avif";
 import SocialProofBar from "@/components/SocialProofBar";
 import { AnimatedStat } from "@/components/AnimatedStat";
 import CourseSelectionTabs from "@/components/CourseSelectionTabs";
