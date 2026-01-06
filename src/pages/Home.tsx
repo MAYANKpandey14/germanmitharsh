@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { CheckCircle2, Users, Video, BookOpen, Award, Clock, PlayCircle, ArrowRight, UserPlus } from "lucide-react";
+import { Users, Video, BookOpen, Award, PlayCircle, ArrowRight } from "lucide-react";
 import instructorPortrait from "@/assets/instructor-portrait.jpg";
 import SocialProofBar from "@/components/SocialProofBar";
 import { AnimatedStat } from "@/components/AnimatedStat";
@@ -47,81 +47,32 @@ const Home = () => {
       label: "All Levels",
     },
   ];
-  const courses = [
-    {
-      level: "A1.1",
-      title: "Beginner 1",
-      description: "Start from zero",
-      price: "€89",
-    },
-    {
-      level: "A1.2",
-      title: "Beginner 2",
-      description: "Build foundation",
-      price: "€89",
-    },
-    {
-      level: "A2.1",
-      title: "Elementary 1",
-      description: "Past tenses",
-      price: "€99",
-    },
-    {
-      level: "A2.2",
-      title: "Elementary 2",
-      description: "Dative case",
-      price: "€99",
-    },
-    {
-      level: "B1.1",
-      title: "Intermediate 1",
-      description: "Subjunctive mood",
-      price: "€109",
-    },
-    {
-      level: "B1.2",
-      title: "Intermediate 2",
-      description: "Complex sentences",
-      price: "€109",
-    },
-    {
-      level: "B2.1",
-      title: "Advanced 1",
-      description: "Business German",
-      price: "€219",
-    },
-    {
-      level: "B2.2",
-      title: "Advanced 2",
-      description: "Near-native fluency",
-      price: "€219",
-    },
-  ];
+
   const germanPhrases = [
     // TOP LEFT
     {
       text: "Hallo",
-      x: "-left-12",
-      y: "top-4",
-      size: "text-lg",
+      x: "-left-4 md:-left-12",
+      y: "top-0 md:top-4",
+      size: "text-sm md:text-lg",
       color: "primary",
       duration: "3s",
       delay: "0s",
     },
     {
       text: "Danke",
-      x: "left-4",
-      y: "-top-6",
-      size: "text-base",
+      x: "left-6 md:left-4",
+      y: "-top-8 md:-top-6",
+      size: "text-xs md:text-base",
       color: "gold",
       duration: "4s",
       delay: "0.2s",
     },
     {
       text: "ich",
-      x: "-left-20",
-      y: "top-16",
-      size: "text-base",
+      x: "-left-6 md:-left-20",
+      y: "top-16 md:top-16",
+      size: "text-xs md:text-base",
       color: "blue",
       duration: "3.6s",
       delay: "1.2s",
@@ -129,27 +80,27 @@ const Home = () => {
     // TOP RIGHT
     {
       text: "Bitte",
-      x: "right-2",
-      y: "top-8",
-      size: "text-lg",
+      x: "right-0 md:right-2",
+      y: "top-4 md:top-8",
+      size: "text-sm md:text-lg",
       color: "accent",
       duration: "3.5s",
       delay: "0.4s",
     },
     {
       text: "mit",
-      x: "-right-10",
-      y: "top-2",
-      size: "text-base",
+      x: "-right-4 md:-right-10",
+      y: "top-0 md:top-2",
+      size: "text-xs md:text-base",
       color: "primary",
       duration: "4.5s",
       delay: "0.6s",
     },
     {
       text: "Ja",
-      x: "right-4",
-      y: "-top-4",
-      size: "text-base",
+      x: "right-8 md:right-4",
+      y: "-top-6 md:-top-4",
+      size: "text-xs md:text-base",
       color: "gold",
       duration: "4.8s",
       delay: "1.8s",
@@ -157,27 +108,27 @@ const Home = () => {
     // BOTTOM LEFT
     {
       text: "Guten Tag",
-      x: "-left-6",
-      y: "bottom-12",
-      size: "text-xl",
+      x: "-left-2 md:-left-6",
+      y: "bottom-8 md:bottom-12",
+      size: "text-sm md:text-xl",
       color: "primary",
       duration: "3.8s",
       delay: "0.8s",
     },
     {
       text: "sein",
-      x: "left-2",
-      y: "bottom-2",
-      size: "text-lg",
+      x: "left-4 md:left-2",
+      y: "-bottom-4 md:bottom-2",
+      size: "text-sm md:text-lg",
       color: "accent",
       duration: "3.4s",
       delay: "1.6s",
     },
     {
       text: "der",
-      x: "-left-16",
-      y: "bottom-24",
-      size: "text-base",
+      x: "-left-4 md:-left-16",
+      y: "bottom-20 md:bottom-24",
+      size: "text-xs md:text-base",
       color: "blue",
       duration: "4.4s",
       delay: "2s",
@@ -185,27 +136,27 @@ const Home = () => {
     // BOTTOM RIGHT
     {
       text: "sprechen",
-      x: "right-6",
-      y: "bottom-6",
-      size: "text-base",
+      x: "right-2 md:right-6",
+      y: "-bottom-2 md:bottom-6",
+      size: "text-sm md:text-base",
       color: "gold",
       duration: "4.2s",
       delay: "1s",
     },
     {
       text: "und",
-      x: "-right-12",
-      y: "bottom-16",
-      size: "text-base",
+      x: "-right-4 md:-right-12",
+      y: "bottom-16 md:bottom-16",
+      size: "text-xs md:text-base",
       color: "blue",
       duration: "4s",
       delay: "1.4s",
     },
     {
       text: "haben",
-      x: "-right-6",
-      y: "bottom-4",
-      size: "text-base",
+      x: "-right-2 md:-right-6",
+      y: "bottom-6 md:bottom-4",
+      size: "text-sm md:text-base",
       color: "primary",
       duration: "3.2s",
       delay: "2.2s",
@@ -286,8 +237,8 @@ const Home = () => {
                       absolute z-20 ${phrase.x} ${phrase.y} 
                       ${phraseStyles[phrase.color as keyof typeof phraseStyles]}
                       ${phrase.size}
-                      px-4 py-2 rounded-full font-semibold 
-                      whitespace-nowrap hidden md:block
+                      px-3 py-1.5 md:px-4 md:py-2 rounded-full font-semibold 
+                      whitespace-nowrap
                       hover:scale-110 hover:shadow-xl hover:-translate-y-1
                       transition-all duration-300 cursor-default
                     `}
