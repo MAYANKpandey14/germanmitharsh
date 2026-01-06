@@ -104,14 +104,14 @@ const courseData: CourseCategory[] = [
       {
         id: "B2.1",
         title: "Upper Intermediate I",
-        price: "€119",
+        price: "€219",
         icon: "Mountain",
         outcomes: ["Understand complex texts", "Speak fluently & spontaneously", "Write professional emails"],
       },
       {
         id: "B2.2",
         title: "Upper Intermediate II",
-        price: "€119",
+        price: "€219",
         icon: "Trophy",
         outcomes: ["Debate & present ideas", "Master academic writing", "Prepare for B2 certification"],
       },

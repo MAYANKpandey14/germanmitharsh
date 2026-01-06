@@ -88,13 +88,13 @@ const Home = () => {
       level: "B2.1",
       title: "Advanced 1",
       description: "Business German",
-      price: "€119",
+      price: "€219",
     },
     {
       level: "B2.2",
       title: "Advanced 2",
       description: "Near-native fluency",
-      price: "€119",
+      price: "€219",
     },
   ];
   const germanPhrases = [

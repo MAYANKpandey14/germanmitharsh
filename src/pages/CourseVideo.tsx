@@ -426,13 +426,13 @@ const CourseVideo = () => {
           ],
         },
       ],
-      price: "€119",
-      originalPrice: "€209",
+      price: "€219",
+      originalPrice: "€379",
     },
     "b2.2": {
       title: "B2.2 - Upper Intermediate Level (Part 2)",
       videoId: "fNZ45_J9wc0",
-      thumbnail:B22Thumbnail,
+      thumbnail: B22Thumbnail,
       duration: "7-8 weeks",
       description: "Perfect your German with idioms, cultural nuances, and exam preparation for B2 certification.",
       transformations: [
@@ -483,8 +483,8 @@ const CourseVideo = () => {
           ],
         },
       ],
-      price: "€119",
-      originalPrice: "€209",
+      price: "€219",
+      originalPrice: "€379",
     },
   };
 
@@ -498,7 +498,7 @@ const CourseVideo = () => {
   };
 
   // Check if this level should show video preview
-  const showVideoPreview = ["a1.1", "a2.1", "b1.1", "b2.1","b2.2"].includes(level?.toLowerCase() || "");
+  const showVideoPreview = ["a1.1", "a2.1", "b1.1", "b2.1", "b2.2"].includes(level?.toLowerCase() || "");
 
   if (!course) {
     return (
